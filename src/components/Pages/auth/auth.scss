@@ -1,0 +1,129 @@
+@import '../../../styles/commons.scss';
+
+.auth__custom__container {
+  padding: 0;
+  .auth__custom {
+    height: 100vh;
+    background: url('../../../assets/images/backgound.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .form__wrapper {
+      justify-content: center;
+      margin-top: 10%;
+      .header {
+        display: flex;
+        justify-content: center;
+        .logo__image {
+          width: 2.5rem;
+          margin-right: 0.5rem;
+        }
+        h3 {
+          color: $white;
+          font-size: 1.8rem;
+          font-weight: normal;
+          line-height: 26px;
+          letter-spacing: 1.1812px;
+        }
+      }
+      .auth__card {
+        width: 100%;
+        min-height: 20rem;
+        height: auto;
+        background: #ffffff;
+        box-shadow: $boxShadow;
+        border-radius: 46px;
+        .card__header {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          height: 4.5rem;
+          background: #ffffff;
+          box-shadow: $boxShadow;
+          border-radius: 56px;
+          overflow: hidden;
+          .register,
+          .login {
+            width: 35%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            h5 {
+              color: $primary;
+              font-size: 1.1rem;
+              font-weight: normal;
+              text-transform: capitalize;
+            }
+          }
+          .active__auth {
+            border-bottom: 2px solid $primary;
+          }
+        }
+        .social__auth__wrapper {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-top: 2rem;
+          button {
+            padding: 1rem 1.9rem;
+            padding-left: 2.9rem;
+            font-size: 0.9rem;
+            height: 100%;
+            border: none;
+            outline: none;
+            text-transform: capitalize;
+            position: relative;
+          }
+          .google__button {
+            color: $black;
+            padding-left: 3rem;
+            background-color: $white;
+            box-shadow: 0px 9px 28px rgba(63, 63, 68, 0.15);
+            border-radius: 55.5px;
+            margin-right: 0.6rem;
+          }
+          .facebook__button {
+            color: $white;
+            background-color: $facebookBlue;
+            box-shadow: 0px 9px 28px rgba(63, 63, 68, 0.15);
+            border-radius: 55.5px;
+            margin-left: 1.2rem;
+          }
+          .google__icon,
+          .facebook__icon {
+            position: absolute;
+          }
+          .google__icon {
+            width: 1.6rem;
+            top: 30%;
+            left: 15%;
+            transform: translate(-30%, -15%);
+          }
+          .facebook__icon {
+            width: 1.7rem;
+            top: 25%;
+            left: 15%;
+            transform: translate(-30%, -15%);
+          }
+        }
+        .alt__auth__wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 0.8rem;
+          .hr {
+            width: 39%;
+            border-bottom: 0.8px solid $horizontalRule;
+          }
+          .or {
+            color: $primary;
+            font-weight: normal;
+            margin-left: 0.2rem;
+            margin-right: 0.2rem;
+          }
+        }
+      }
+    }
+  }
+}
