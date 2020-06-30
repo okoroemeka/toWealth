@@ -5,6 +5,7 @@ import googleIcon from '../../../assets/images/googleIcon.svg';
 import facebookIcon from '../../../assets/images/facebookIcon.svg';
 import Card from '../../UI/Card';
 import Login from '../../Elements/Login';
+import SignUp from '../../Elements/SignUp';
 
 const Auth = () => {
   const [activeAuth, setActiveAuth] = React.useState(false);
@@ -55,7 +56,7 @@ const Auth = () => {
                 <h4 className='or'>OR</h4>
                 <div className='hr' />
               </div>
-              {!activeAuth ? <Login /> : <div />}
+              {!activeAuth ? <Login /> : <SignUp />}
             </Card>
           </div>
         </div>

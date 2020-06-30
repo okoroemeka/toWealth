@@ -1,12 +1,12 @@
-@import '../../styles/commons.scss';
+@import '../../../styles/commons.scss';
 
-.login__form__wrapper {
+.signup__form__wrapper {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 2rem;
-  .login__form {
+  .signup__form {
     width: 90%;
     text-align: center;
     input {
@@ -28,24 +28,11 @@
       top: 1.5rem;
       right: 1.5rem;
     }
-    .forgot__password__wrapper {
-      width: 100%;
-      text-align: right;
-      padding-right: 1.5rem;
-      .forgot__password {
-        width: auto;
-        color: $primary;
-        font-size: 0.8rem;
-        font-weight: normal;
-        margin: 0;
-        cursor: pointer;
-      }
-    }
     .button__wrapper {
       width: 100%;
       margin-top: 2.5rem;
-      margin-bottom: 1.6rem;
-      .login__button {
+      margin-bottom: 2.6rem;
+      .signup__button {
         color: $white;
         font-size: 0.9rem;
         padding: 0.8rem 5rem;
@@ -53,24 +40,6 @@
         border: none;
         border-radius: 16px;
       }
-    }
-  }
-  .no__account__wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-    h5 {
-      font-size: 0.7rem;
-      font-weight: normal;
-      margin: 0;
-    }
-    .no__account__text {
-      margin-right: 0.3rem;
-    }
-    .no__account__signup {
-      color: $primary;
-      cursor: pointer;
     }
   }
 }

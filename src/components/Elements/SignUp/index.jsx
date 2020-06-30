@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
-import eyeIcon from '../../assets/images/eye.svg';
-import './login.scss';
+import eyeIcon from '../../../assets/images/eye.svg';
+import './index.scss';
 
 const Login = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className='login__form__wrapper'>
-      <form className='login__form'>
+    <div className='signup__form__wrapper'>
+      <form className='signup__form'>
+        <input
+          type='text'
+          value={name}
+          placeholder='Name'
+          required
+          onChange={(event) => setName(event.target.value.trim())}
+        />
         <input
           type='email'
           value={email}
@@ -33,24 +41,12 @@ const Login = () => {
             onClick={() => setShowPassword(!showPassword)}
           />
         </div>
-
-        <div className='forgot__password__wrapper'>
-          <span className='forgot__password' onClick={() => {}}>
-            Forgot your password?
-          </span>
-        </div>
         <div className='button__wrapper'>
-          <button type='submit' className='login__button'>
-            Login
+          <button type='submit' className='signup__button'>
+            Sign up
           </button>
         </div>
       </form>
-      <div className='no__account__wrapper'>
-        <h5 className='no__account__text'>Don’t have an account?</h5>
-        <h5 className='no__account__signup' onClick={() => {}}>
-          Sign Up
-        </h5>
-      </div>
     </div>
   );
 };
