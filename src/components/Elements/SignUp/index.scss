@@ -27,6 +27,7 @@
       position: absolute;
       top: 1.5rem;
       right: 1.5rem;
+      cursor: pointer;
     }
     .button__wrapper {
       width: 100%;
@@ -39,6 +40,7 @@
         background-color: $primary;
         border: none;
         border-radius: 16px;
+        cursor: pointer;
       }
     }
   }

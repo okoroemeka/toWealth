@@ -27,6 +27,7 @@
       position: absolute;
       top: 1.5rem;
       right: 1.5rem;
+      cursor: pointer;
     }
     .forgot__password__wrapper {
       width: 100%;
@@ -49,9 +50,10 @@
         color: $white;
         font-size: 0.9rem;
         padding: 0.8rem 5rem;
-        background-color: $primary;
         border: none;
         border-radius: 16px;
+        background-color: $primary;
+        cursor: pointer;
       }
     }
   }
