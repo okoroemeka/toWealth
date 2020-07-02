@@ -15,7 +15,7 @@ const Login = () => {
           value={name}
           placeholder='Name'
           required
-          onChange={(event) => setName(event.target.value.trim())}
+          onChange={(event) => setName(event.target.value)}
         />
         <input
           type='email'
