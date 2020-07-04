@@ -33,7 +33,19 @@ const Dashboard = (props) => {
       </header>
       <main>
         <div className='row dashboard__body'>
-          <div className='col-sm-12 col-l-2 side__nav'></div>
+          <div className='col-sm-12 col-l-2 side__nav'>
+            <div className='row user__details__wrapper'>
+              <div className='col-l-11 user__details'>
+                <div className='sidenav__userimage__wrapper'>
+                  <img src='' alt='user' user__sidenav__image />
+                </div>
+                <h5 className='sidenav__user__name'>Chinwe Ezenwa-Onuaku</h5>
+                <h6 className='side__nav__user__position'>
+                  Executive Director
+                </h6>
+              </div>
+            </div>
+          </div>
           <div className='col-sm-12 col-l-10 main__content'></div>
         </div>
       </main>
