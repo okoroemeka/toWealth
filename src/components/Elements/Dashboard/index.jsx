@@ -8,7 +8,7 @@ import supportIcon from '../../../assets/images/surport.svg';
 import termsOfUse from '../../../assets/images/terms.svg';
 import howtos from '../../../assets/images/howto.svg';
 import black from '../../../assets/images/black.jpg';
-
+import Goals from './Goals';
 import './dashboard.scss';
 
 const Dashboard = (props) => {
@@ -88,7 +88,9 @@ const Dashboard = (props) => {
               </div>
             </div>
           </div>
-          <div className='col-sm-12 col-l-10 main__content'></div>
+          <div className='col-sm-12 col-l-10 main__content'>
+            <Goals />
+          </div>
         </div>
       </main>
       <footer>
