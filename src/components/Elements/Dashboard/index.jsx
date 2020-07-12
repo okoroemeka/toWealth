@@ -8,10 +8,16 @@ import supportIcon from '../../../assets/images/surport.svg';
 import termsOfUse from '../../../assets/images/terms.svg';
 import howtos from '../../../assets/images/howto.svg';
 import black from '../../../assets/images/black.jpg';
+import DropDown from '../../Reuable/Dropdown/DropDown';
+import DropDownNavItems from './DropDownNavItems/DropNavItem';
+
 import Goals from './Goals';
+import Modal from '../../Reuable/Modal/Modal';
+
 import './dashboard.scss';
 
 const Dashboard = (props) => {
+  const [showModal, setShowModal] = React.useState(false);
   return (
     <div className='dashboard__wrapper'>
       <header>
@@ -34,7 +40,14 @@ const Dashboard = (props) => {
                 className='notification'
               />
             </span>
-            <DrawerIcon />
+            <DrawerIcon handleClick={() => setShowModal(!showModal)} />
+            {showModal && (
+              <Modal>
+                <DropDown>
+                  <DropDownNavItems />
+                </DropDown>
+              </Modal>
+            )}
           </div>
         </div>
       </header>
@@ -95,7 +108,10 @@ const Dashboard = (props) => {
       </main>
       <footer>
         <div className='row'>
-          <div className='col-l-10 footer__content'></div>
+          <div className='col-l-10 footer__content'>
+            <h6>© WealthyGen Inc. 2020</h6>
+            <h6 className='all__right'>All rights reserved</h6>
+          </div>
         </div>
       </footer>
     </div>

@@ -1,0 +1,25 @@
+@import '../../../styles/commons.scss';
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: 4.7rem;
+  right: 0rem;
+  .top__menu__content {
+    width: 15rem;
+    height: auto;
+    padding: 2rem 1rem;
+    position: relative;
+    background-color: $white;
+    .triangle {
+      width: 1rem;
+      height: 1rem;
+      position: absolute;
+      top: -0.5rem;
+      right: 2rem;
+      background-color: $white;
+      transform: rotate(45deg);
+    }
+  }
+}

@@ -1,0 +1,71 @@
+@import '../../../../styles/commons.scss';
+
+.dropdown__nav__item {
+  .user__details {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-radius: 1.2rem;
+    border-left: 3px solid $primary;
+    background-color: $lightBlue;
+
+    .user__image__wrapper {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background-color: $gray;
+      object-fit: cover;
+      overflow: hidden;
+      .user__image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    h5 {
+      color: $black;
+      margin: 0;
+      margin-left: 0.3rem;
+    }
+  }
+  .nav__item {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    .items__wrapper {
+      display: flex;
+      margin: 1.2rem 0;
+      align-items: center;
+      cursor: pointer;
+      h5 {
+        color: $lightGray;
+        margin: 0;
+        margin-left: 0.5rem;
+        font-weight: normal;
+      }
+      .terms__icon {
+        width: 0.8rem;
+        margin-left: 0.3rem;
+      }
+      .howtos__icon {
+        margin-left: 0.2rem;
+      }
+      .terms__text {
+        margin-left: 0.8rem;
+      }
+    }
+    .how__tos {
+      padding-left: 0.2rem;
+      .howtos__text {
+        margin-left: 0.7rem;
+      }
+    }
+  }
+}
+.line {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid $gray;
+}
+.app__location__mobile {
+  width: 100%;
+}

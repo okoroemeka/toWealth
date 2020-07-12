@@ -2,9 +2,9 @@ import React from 'react';
 
 import Dashboard from './Icons/Dashboard';
 import BudgetIcon from './Icons/BudgetIcon';
-import Goals from './Icons/Goals';
-import Networth from './Icons/Networth';
 import Savings from './Icons/Savings';
+import Goal from './Icons/Goal';
+import NetWorth from './Icons/NetWorth';
 import Transaction from './Icons/Transaction';
 import Support from './Icons/Support';
 import TermsIcon from './Icons/TermsIcon';
@@ -24,7 +24,7 @@ const dashboardData = [
   {
     id: 3,
     name: 'Net Worth',
-    icon: Networth,
+    icon: NetWorth,
   },
   {
     id: 4,
@@ -38,8 +38,8 @@ const dashboardData = [
   },
   {
     id: 6,
-    name: 'Gaols',
-    icon: Goals,
+    name: 'Goals',
+    icon: Goal,
   },
 ];
 
@@ -60,7 +60,6 @@ const supportData = [
     icon: TermsIcon,
   },
 ];
-// '#66788A';
 const SideNav = (props) => {
   const [navId, setNavId] = React.useState(1);
 

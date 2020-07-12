@@ -2,8 +2,54 @@
 
 .body {
   height: 100%;
+  background-color: #f2f2f2;
   .dropdown__navigation__area {
     height: 15rem;
+    padding: 4rem 2rem;
+    .dropdown__container {
+      display: inline-block;
+      width: auto;
+      min-height: 1rem;
+      button {
+        display: flex;
+        color: $white;
+        width: 12rem;
+        text-align: left;
+        text-transform: uppercase;
+        padding: 0.7rem 1rem;
+        border: none;
+        border-radius: 13px;
+        background: $brandViolet;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2),
+          0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14);
+        outline: none;
+        .carat__icon {
+          width: 1rem;
+          margin-left: auto;
+        }
+      }
+      .dropdown__items {
+        display: none;
+        color: $brandViolet;
+        width: 100%;
+        padding: 0.2rem 1rem;
+        margin: 0;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        list-style-type: none;
+        background-color: $white;
+        li {
+          font-size: 0.8rem;
+          margin: 0.5rem 0;
+          cursor: pointer;
+        }
+      }
+      .toggle__dropdown {
+        display: block;
+      }
+    }
   }
   .main__content__area {
     height: 100%;
@@ -61,7 +107,7 @@
           font-family: $brandFontFamily;
           font-style: normal;
           font-weight: 500;
-          font-size: 18px;
+          font-size: 1rem;
           text-align: center;
           color: #212b36;
           margin: 0;
@@ -84,11 +130,12 @@
         }
         .rate {
           h4 {
+            text-align: right;
             margin: 0;
             font-family: $brandFontFamily;
             font-style: normal;
             font-weight: 500;
-            font-size: 24px;
+            font-size: 1.2rem;
             letter-spacing: -0.06px;
             color: #212529;
           }
@@ -120,11 +167,11 @@
         font-family: $brandFontFamily;
         font-style: normal;
         font-weight: normal;
-        font-size: 16px;
+        font-size: $normalFontSize;
         text-align: right;
       }
     }
-    .line {
+    .line__goal {
       width: 100%;
       height: 0.1rem;
       background-color: #edeff2;
@@ -140,6 +187,9 @@
         .icon {
           width: 0.9rem;
           cursor: pointer;
+        }
+        .pause-icon {
+          width: 0.7rem;
         }
       }
     }
