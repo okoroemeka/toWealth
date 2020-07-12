@@ -1,20 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Card from '../../../UI/Card';
 import plusIcon from '../../../../assets/images/plus.svg';
-import deleteIcon from '../../../../assets/images/deleteIcon.svg';
-import markIcon from '../../../../assets/images/markIcon.svg';
-import moreIcon from '../../../../assets/images/moreIcon.svg';
-import pauseIcon from '../../../../assets/images/pauseIcon.svg';
-import penIcon from '../../../../assets/images/penIcon.svg';
+import caratIcon from '../../../../assets/images/carat.svg';
 import GoalCard from '../../../UI/GoalCard';
 
 import './Goals.scss';
 
 const Goals = (props) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [currentItem, setCurrentItem] = useState([
+    'ACTIVE GOALS',
+    'PAUSED GOALS',
+    'REACHED GOALS',
+  ]);
+
+  const handleOnchange = (e) => {
+    const newCurrentItem = currentItem.filter(
+      (item) => item != e.target.innerText
+    );
+    newCurrentItem.unshift(e.target.innerText);
+    setCurrentItem(newCurrentItem);
+    setShowDropdown(!showDropdown);
+  };
   return (
     <div className='row body'>
-      <div className='col-l-12 dropdown__navigation__area'></div>
+      <div className='col-l-12 dropdown__navigation__area'>
+        <div className='dropdown__container'>
+          <button type='submit' onClick={() => setShowDropdown(!showDropdown)}>
+            {currentItem[0]}
+            <img src={caratIcon} alt='carat' className='carat__icon' />
+          </button>
+          <ul
+            className={`dropdown__items ${
+              showDropdown ? 'toggle__dropdown' : null
+            }`}
+          >
+            {currentItem.map((item, index) => {
+              if (item != currentItem[0]) {
+                return (
+                  <li key={index} onClick={(e) => handleOnchange(e)}>
+                    {item}
+                  </li>
+                );
+              }
+            })}
+          </ul>
+        </div>
+      </div>
       <div className='row main__content__area'>
         <Card classname='add__goals__card'>
           <button type='submit' className='add__goal__button'>

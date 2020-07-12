@@ -34,10 +34,10 @@ const GaolCard = ({ goal, deadLine, rate, progress, targetFraction }) => {
       <div className='target__fraction'>
         <h5>{targetFraction}</h5>
       </div>
-      <div className='line'></div>
+      <div className='line__goal'></div>
       <div className='actions__container'>
         <div className='icons__wrapper'>
-          <img src={pauseIcon} alt='pause' className='icon' />
+          <img src={pauseIcon} alt='pause' className='icon pause-icon' />
           <img src={penIcon} alt='edit' className='icon' />
           <img src={markIcon} alt='mark' className='icon' />
           <img src={deleteIcon} alt='delete' className='icon' />

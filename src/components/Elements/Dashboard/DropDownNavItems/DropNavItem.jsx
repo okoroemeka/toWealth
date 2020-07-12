@@ -1,0 +1,56 @@
+import React, { Fragment } from 'react';
+
+import {} from '../../../..';
+import Profile from '../../../UI/Icons/Profile';
+import LogoutIcon from '../../../UI/Icons/LogoutIcon';
+import SettingIcon from '../../../UI/Icons/SettingIcon';
+import HowToIcon from '../../../UI/Icons/HowToIcon';
+import termsOfUse from '../../../../assets/images/terms.svg';
+import black from '../../../../assets/images/black.jpg';
+import Line from '../../../UI/Line';
+import './DropNavItem.scss';
+
+const DropNavItem = (props) => {
+  return (
+    <Fragment>
+      <div className='dropdown__nav__item'>
+        <div className='user__details'>
+          <div className='user__image__wrapper'>
+            <img src={black} alt='user' className='user__image' />
+          </div>
+          <h5>My Account</h5>
+        </div>
+        <ul className='nav__item'>
+          <li className='items__wrapper'>
+            <Profile fill='#66788a' />
+            <h5>Profile</h5>
+          </li>
+          <li className='items__wrapper'>
+            <SettingIcon fill='#66788a' />
+            <h5>Settings</h5>
+          </li>
+          <li className='items__wrapper how__tos'>
+            <HowToIcon fill='#66788a' />
+            <h5 className='howtos__text'>How to's</h5>
+          </li>
+          <li className='items__wrapper'>
+            <img
+              src={termsOfUse}
+              alt='dashboard icon'
+              className='terms__icon'
+            />
+            <h5 className='terms__text'>Terms of use</h5>
+          </li>
+          <li className='items__wrapper'>
+            <LogoutIcon fill='#66788a' />
+            <h5>Logout</h5>
+          </li>
+        </ul>
+      </div>
+      <Line className='line' />
+      <div className='app__location__mobile'></div>
+    </Fragment>
+  );
+};
+
+export default DropNavItem;
