@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import logo from '../../../assets/images/logo.svg';
 import notifications from '../../../assets/images/notifications.svg';
@@ -10,6 +11,7 @@ import howtos from '../../../assets/images/howto.svg';
 import black from '../../../assets/images/black.jpg';
 import DropDown from '../../Reuable/Dropdown/DropDown';
 import DropDownNavItems from './DropDownNavItems/DropNavItem';
+import * as displayMode from '../../../store/actions/displayMode';
 
 import Goals from './Goals';
 import Modal from '../../Reuable/Modal/Modal';
@@ -17,7 +19,24 @@ import Modal from '../../Reuable/Modal/Modal';
 import './dashboard.scss';
 
 const Dashboard = (props) => {
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const topNavRef = useRef(null);
+  const dispatch = useDispatch();
+  const { darkMode } = useSelector((state) => state.darkMode);
+
+  React.useEffect(() => {
+    if (showModal) {
+      topNavRef.current.focus();
+    }
+  }, [showModal]);
+
+  const handleDisplayDarkMode = () => {
+    dispatch(displayMode.darkMode(true));
+  };
+  const handleDisplayLightMode = () => {
+    dispatch(displayMode.lightMode(false));
+  };
+
   return (
     <div className='dashboard__wrapper'>
       <header>
@@ -43,8 +62,16 @@ const Dashboard = (props) => {
             <DrawerIcon handleClick={() => setShowModal(!showModal)} />
             {showModal && (
               <Modal>
-                <DropDown>
-                  <DropDownNavItems />
+                <DropDown
+                  refName={topNavRef}
+                  handleBlur={() => {
+                    setShowModal(!showModal);
+                  }}
+                >
+                  <DropDownNavItems
+                    handleDarkMode={handleDisplayDarkMode}
+                    handleLightMode={handleDisplayLightMode}
+                  />
                 </DropDown>
               </Modal>
             )}
@@ -53,7 +80,11 @@ const Dashboard = (props) => {
       </header>
       <main>
         <div className='row dashboard__body'>
-          <div className='col-sm-12 col-l-2 side__nav'>
+          <div
+            className={`col-sm-12 col-l-2 side__nav ${
+              darkMode && 'sidenav__darkmode'
+            }`}
+          >
             <div className='row user__details__wrapper'>
               <div className='col-l-11 user__details'>
                 <div className='sidenav__userimage__wrapper'>
@@ -101,12 +132,16 @@ const Dashboard = (props) => {
               </div>
             </div>
           </div>
-          <div className='col-sm-12 col-l-10 main__content'>
+          <div
+            className={`col-sm-12 col-l-10 main__content ${
+              darkMode && 'dark__mode'
+            }`}
+          >
             <Goals />
           </div>
         </div>
       </main>
-      <footer>
+      <footer className={`${darkMode && 'dark__mode__footer'}`}>
         <div className='row'>
           <div className='col-l-10 footer__content'>
             <h6>© WealthyGen Inc. 2020</h6>
