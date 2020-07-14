@@ -190,14 +190,22 @@
         }
       }
     }
+    .sidenav__darkmode {
+      background-color: $darkModeCardColor;
+    }
     .main__content {
-      min-height: calc(100vh - 7rem);
+      min-height: calc(100vh - 11rem);
       overflow-y: scroll;
+      background-color: #f2f2f2;
+    }
+    .dark__mode {
+      background-color: $darkmodeMainBackground;
     }
   }
+
   footer {
     width: 100%;
-    height: auto;
+    height: 4rem;
     background-color: #f2f2f2;
     .footer__content {
       margin-left: auto;
@@ -212,5 +220,8 @@
         font-size: 0.6rem;
       }
     }
+  }
+  .dark__mode__footer {
+    background-color: $darkmodeMainBackground;
   }
 }

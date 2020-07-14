@@ -4,7 +4,7 @@ import Dashboard from './Icons/Dashboard';
 import BudgetIcon from './Icons/BudgetIcon';
 import Savings from './Icons/Savings';
 import Goal from './Icons/Goal';
-import NetWorth from './Icons/NetWorth';
+import NetWorth from './Icons/Networth';
 import Transaction from './Icons/Transaction';
 import Support from './Icons/Support';
 import TermsIcon from './Icons/TermsIcon';

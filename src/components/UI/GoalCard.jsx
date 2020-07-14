@@ -6,21 +6,37 @@ import markIcon from '../../assets/images/markIcon.svg';
 import moreIcon from '../../assets/images/moreIcon.svg';
 import pauseIcon from '../../assets/images/pauseIcon.svg';
 import penIcon from '../../assets/images/penIcon.svg';
+import { darkMode } from '../../store/actions/displayMode';
 
-const GaolCard = ({ goal, deadLine, rate, progress, targetFraction }) => {
+const GaolCard = ({
+  goal,
+  deadLine,
+  rate,
+  progress,
+  targetFraction,
+  isDarkMode,
+}) => {
   return (
-    <Card classname='goal__card'>
+    <Card classname={`goal__card ${isDarkMode && 'card__dark__mode'}`}>
       <div className='row goals__container'>
         <div className='color__box'></div>
-        <h5 className='goal'>{goal}</h5>
+        <h5 className={`goal ${isDarkMode && 'darkmode__goal__text'}`}>
+          {goal}
+        </h5>
       </div>
       <div className='row goal__details__wrapper'>
-        <div className='col-l-4 goal__deadline'>
+        <div
+          className={`col-l-4 goal__deadline ${
+            darkMode && 'goal__deadline__dark'
+          }`}
+        >
           <h6>Goal deadline</h6>
           <h6>{deadLine}</h6>
         </div>
         <div className='col-l-4 rate'>
-          <h4>{rate}</h4>
+          <h4 className={`rate__text ${isDarkMode && 'darkmode__rate__text'}`}>
+            {rate}
+          </h4>
         </div>
       </div>
       <div className='progress__bar__wrapper'>
@@ -32,7 +48,9 @@ const GaolCard = ({ goal, deadLine, rate, progress, targetFraction }) => {
         ></div>
       </div>
       <div className='target__fraction'>
-        <h5>{targetFraction}</h5>
+        <h5 className={isDarkMode && 'target__fraction__dark'}>
+          {targetFraction}
+        </h5>
       </div>
       <div className='line__goal'></div>
       <div className='actions__container'>

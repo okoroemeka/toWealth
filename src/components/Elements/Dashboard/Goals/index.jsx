@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Card from '../../../UI/Card';
 import plusIcon from '../../../../assets/images/plus.svg';
@@ -14,6 +15,7 @@ const Goals = (props) => {
     'PAUSED GOALS',
     'REACHED GOALS',
   ]);
+  const { darkMode } = useSelector((state) => state.darkMode);
 
   const handleOnchange = (e) => {
     const newCurrentItem = currentItem.filter(
@@ -49,10 +51,14 @@ const Goals = (props) => {
         </div>
       </div>
       <div className='row main__content__area'>
-        <Card classname='add__goals__card'>
+        <Card classname={`add__goals__card ${darkMode && 'card__dark__mode'}`}>
           <button type='submit' className='add__goal__button'>
             <img src={plusIcon} alt='plus icon' className='plus__icon' />
-            <h5>New Goal</h5>
+            <h5
+              className={`add__newgoal__text ${darkMode && 'darkmode__text'}`}
+            >
+              New Goal
+            </h5>
           </button>
         </Card>
         <GoalCard
@@ -61,6 +67,7 @@ const Goals = (props) => {
           rate='4.00%'
           progress='5%'
           targetFraction='$200,000.00/$500,000.00'
+          isDarkMode={darkMode}
         />
         <GoalCard
           goal='New Car'
@@ -68,6 +75,7 @@ const Goals = (props) => {
           rate='4.00%'
           progress='5%'
           targetFraction='$200,000.00/$500,000.00'
+          isDarkMode={darkMode}
         />
       </div>
     </div>
