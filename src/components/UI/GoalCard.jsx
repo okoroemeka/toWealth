@@ -15,6 +15,7 @@ const GaolCard = ({
   progress,
   targetFraction,
   isDarkMode,
+  toggleModal,
 }) => {
   return (
     <Card classname={`goal__card ${isDarkMode && 'card__dark__mode'}`}>
@@ -56,7 +57,12 @@ const GaolCard = ({
       <div className='actions__container'>
         <div className='icons__wrapper'>
           <img src={pauseIcon} alt='pause' className='icon pause-icon' />
-          <img src={penIcon} alt='edit' className='icon' />
+          <img
+            src={penIcon}
+            alt='edit'
+            className='icon'
+            onClick={toggleModal}
+          />
           <img src={markIcon} alt='mark' className='icon' />
           <img src={deleteIcon} alt='delete' className='icon' />
           <img src={moreIcon} alt='more' className='icon' />
