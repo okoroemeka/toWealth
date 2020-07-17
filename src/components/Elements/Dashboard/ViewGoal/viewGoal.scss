@@ -1,0 +1,92 @@
+@import '../../../../styles/commons.scss';
+.view__goal__card {
+  border-radius: 10px;
+  background-color: $white;
+  .card__content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 1rem 1rem;
+    .cancel__button {
+      position: absolute;
+      top: 0.5rem;
+      right: 1.2rem;
+      cursor: pointer;
+      .times {
+        font-size: 1.5rem;
+        font-weight: normal;
+        margin: 0;
+      }
+    }
+    .card__title {
+      color: #3a3b3f;
+      font-size: 1rem;
+      font-weight: normal;
+      margin: 0px;
+    }
+    .card__bar {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 1.4rem 0;
+      .goal__name {
+        font-size: 1rem;
+        margin: 0;
+        margin-left: 1rem;
+      }
+    }
+    .goal__detials__wrapper {
+      .goal__details {
+        padding: 0 0.5rem;
+        .saved__percent {
+          font-size: 1.5rem;
+          font-weight: normal;
+          margin: 0;
+          margin-bottom: 0.3rem;
+        }
+        .goal__deadline,
+        .deadline__date {
+          color: $lightGray;
+          font-weight: normal;
+          margin: 0;
+        }
+        .deadline__date {
+          margin-bottom: 0.5rem;
+        }
+        .saved__fraction {
+          margin: 1rem 0;
+        }
+        .advice__text,
+        .target__amount {
+          color: $lightGray;
+          font-size: 0.7rem;
+          margin: 0;
+          margin-top: 0.5rem;
+        }
+        .target__amount {
+          margin: 0;
+        }
+      }
+      .chart__wrapper {
+        svg {
+          max-height: 12.5rem;
+        }
+      }
+    }
+    .button__wrapper {
+      justify-content: flex-end;
+      padding: 0 0.5rem;
+      padding-bottom: 1rem;
+      .submit__button {
+        color: $white;
+        font-size: 0.7rem;
+        padding: 0.6rem 1.2rem;
+        border: none;
+        border-radius: 15px;
+        background-color: #1665d8;
+        cursor: pointer;
+        outline: none;
+      }
+    }
+  }
+}

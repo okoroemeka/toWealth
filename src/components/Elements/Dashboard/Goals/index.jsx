@@ -7,6 +7,7 @@ import caratIcon from '../../../../assets/images/carat.svg';
 import GoalCard from '../../../UI/GoalCard';
 import Modal from '../../../Reuable/Modal/Modal';
 import EditCard from '../EditCard';
+import ViewGoal from '../ViewGoal';
 
 import './Goals.scss';
 
@@ -19,9 +20,14 @@ const Goals = (props) => {
   ]);
   const [displayModal, setDispalyModal] = useState(true);
   const { darkMode } = useSelector((state) => state.darkMode);
+  const [clickedIconName, setClickedIconName] = useState('');
 
   const editCardRef = useRef(null);
 
+  /**
+   * Handles select goal
+   * @param {object} e
+   */
   const handleOnchange = (e) => {
     const newCurrentItem = currentItem.filter(
       (item) => item != e.target.innerText
@@ -31,6 +37,18 @@ const Goals = (props) => {
     setShowDropdown(!showDropdown);
   };
 
+  /**
+   * Handles which modal content to display
+   * @param {string} iconName
+   */
+  const handleSelectModalContent = (iconName) => {
+    setClickedIconName(iconName);
+    return toggleModal();
+  };
+
+  /**
+   * Toggles the modal
+   */
   const toggleModal = () => {
     return setDispalyModal(!displayModal);
   };
@@ -38,7 +56,6 @@ const Goals = (props) => {
   useEffect(() => {
     if (displayModal) {
       editCardRef.current.focus();
-      console.log('editCard', editCardRef.current);
     }
   }, [displayModal]);
 
@@ -91,7 +108,7 @@ const Goals = (props) => {
             progress='5%'
             targetFraction='$200,000.00/$500,000.00'
             isDarkMode={darkMode}
-            toggleModal={toggleModal}
+            toggleModal={handleSelectModalContent}
           />
           <GoalCard
             goal='New Car'
@@ -106,11 +123,19 @@ const Goals = (props) => {
       </div>
       {displayModal && (
         <Modal>
-          <EditCard
-            handleCancel={() => setDispalyModal(!displayModal)}
-            cardRef={editCardRef}
-            handleBlur={toggleModal}
-          ></EditCard>
+          {clickedIconName == 'edit' ? (
+            <EditCard
+              handleCancel={() => setDispalyModal(!displayModal)}
+              cardRef={editCardRef}
+              handleBlur={toggleModal}
+            />
+          ) : (
+            <ViewGoal
+              cardRef={editCardRef}
+              handleCancel={() => setDispalyModal(!displayModal)}
+              handleBlur={toggleModal}
+            />
+          )}
         </Modal>
       )}
     </React.Fragment>
