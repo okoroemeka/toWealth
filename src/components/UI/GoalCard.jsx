@@ -18,7 +18,7 @@ const GaolCard = ({
   toggleModal,
 }) => {
   return (
-    <Card classname={`goal__card ${isDarkMode && 'card__dark__mode'}`}>
+    <Card classname={`goal__card ${isDarkMode ? 'card__dark__mode' : ''}`}>
       <div className='row goals__container'>
         <div className='color__box'></div>
         <h5 className={`goal ${isDarkMode && 'darkmode__goal__text'}`}>
@@ -61,11 +61,16 @@ const GaolCard = ({
             src={penIcon}
             alt='edit'
             className='icon'
-            onClick={toggleModal}
+            onClick={() => toggleModal('edit')}
           />
           <img src={markIcon} alt='mark' className='icon' />
           <img src={deleteIcon} alt='delete' className='icon' />
-          <img src={moreIcon} alt='more' className='icon' />
+          <img
+            src={moreIcon}
+            alt='more'
+            className='icon'
+            onClick={() => toggleModal('more')}
+          />
         </div>
       </div>
     </Card>

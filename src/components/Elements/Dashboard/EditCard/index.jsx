@@ -13,6 +13,7 @@ import Card from '../../../UI/Card';
 import ColorBar from '../../../UI/ColorBar';
 import Button from '../../../UI/Button';
 import staticData from '../../../../utils/data/staticData';
+import CardHeader from '../../../UI/CardHeader';
 import './editCard.scss';
 
 const { colors: colorsInitialState } = staticData;
@@ -48,10 +49,7 @@ const EditCard = ({ handleCancel, cardRef, handleBlur }) => {
   return (
     <Card classname='col-sm-12 col-l-4 edit__goal__card'>
       <div ref={cardRef} className='card__content' onBlur={() => null}>
-        <div className='cancel__button' onClick={handleCancel}>
-          <h5 className='times'>&times;</h5>
-        </div>
-        <h5 className='card__title'>Edit goal</h5>
+        <CardHeader handleCancel={handleCancel} cardTitle='Edit goal' />
         <form>
           <fieldset className='fieldset'>
             <div className='wrap__input'>
@@ -122,6 +120,7 @@ const EditCard = ({ handleCancel, cardRef, handleBlur }) => {
               <div className='color__area'>
                 {colorsState.map(({ colorId, color, active }) => (
                   <ColorBar
+                    key={colorId}
                     color={color}
                     handleClick={() =>
                       handleSelectColor({
@@ -133,12 +132,6 @@ const EditCard = ({ handleCancel, cardRef, handleBlur }) => {
                     {active && <img src={tick} alt='mark' className='mark' />}
                   </ColorBar>
                 ))}
-                {/* <ColorBar color='#b620e0'>
-                  <img src={tick} alt='mark' className='mark' />
-                </ColorBar> */}
-                {/* <ColorBar color='#F7B500' />
-                <ColorBar color='#FA6400' />
-                <ColorBar color='#44D7B6' /> */}
                 <ColorBar color='#d8d8d8' className='others__button'>
                   <span className='others__text'>Others</span>
                 </ColorBar>
