@@ -12,16 +12,16 @@ const Chart = (props) => {
         data={[
           {
             x: '4%',
-            y: 12,
+            y: 60,
             fill: '#FFA500',
             opacity: 1,
           },
           { x: '96%', y: 150, fill: '#0073F7', opacity: 1 },
         ]}
-        innerRadius={180}
-        labelRadius={195}
+        innerRadius={185}
+        labelRadius={197}
         style={{
-          labels: { fontSize: 35, fill: 'white' },
+          labels: { fontSize: 32, fill: 'white' },
           data: {
             fill: ({ datum }) => datum.fill,
             opacity: ({ datum }) => datum.opacity,

@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Button = (props) => {
-  const { className, children } = props;
+  const { className, children, type } = props;
   return (
-    <button {...props} className={className} type='submit'>
+    <button {...props} className={className} type={type}>
       {children}
     </button>
   );

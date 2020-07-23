@@ -43,32 +43,20 @@ const dashboardData = [
   },
 ];
 
-const supportData = [
-  {
-    id: 7,
-    name: 'Support',
-    icon: Support,
-  },
-  {
-    id: 8,
-    name: 'How tos',
-    icon: HowToIcon,
-  },
-  {
-    id: 9,
-    name: 'Terms of use',
-    icon: TermsIcon,
-  },
-];
-const SideNav = (props) => {
+const SideNav = ({ handleSideNavItemClicked }) => {
   const [navId, setNavId] = React.useState(1);
+
+  const handleNavitemClicked = (itemName, id) => {
+    setNavId(id);
+    return handleSideNavItemClicked(itemName);
+  };
 
   return dashboardData.map(({ id, name, icon: Icon }) => (
     <div
       className={`nav__item ${
         navId != 0 && navId == id ? 'nav__item__active' : ''
       }`}
-      onClick={() => setNavId(id)}
+      onClick={() => handleNavitemClicked(name, id)}
       key={id}
     >
       <Icon

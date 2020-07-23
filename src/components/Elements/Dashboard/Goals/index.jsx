@@ -18,10 +18,9 @@ const Goals = (props) => {
     'PAUSED GOALS',
     'REACHED GOALS',
   ]);
-  const [displayModal, setDispalyModal] = useState(true);
-  const { darkMode } = useSelector((state) => state.darkMode);
+  const [displayModal, setDispalyModal] = useState(false);
   const [clickedIconName, setClickedIconName] = useState('');
-
+  const { darkMode } = useSelector((state) => state.darkMode);
   const editCardRef = useRef(null);
 
   /**

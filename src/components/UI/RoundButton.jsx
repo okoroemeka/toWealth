@@ -1,9 +1,10 @@
 import React from 'react';
 
 const RoundButton = (props) => {
-  const { width, height, borderRadius, color } = props;
+  const { className, width, height, borderRadius, color, children } = props;
   return (
     <div
+      className={className}
       {...props}
       style={{
         width,
@@ -11,7 +12,9 @@ const RoundButton = (props) => {
         borderRadius,
         backgroundColor: color,
       }}
-    ></div>
+    >
+      {children}
+    </div>
   );
 };
 
