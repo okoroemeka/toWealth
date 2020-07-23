@@ -11,6 +11,7 @@ import howtos from '../../../assets/images/howto.svg';
 import black from '../../../assets/images/black.jpg';
 import DropDown from '../../Reuable/Dropdown/DropDown';
 import DropDownNavItems from './DropDownNavItems/DropNavItem';
+import DashboardItems from './DashboardItems';
 import * as displayMode from '../../../store/actions/displayMode';
 
 import Goals from './Goals';
@@ -20,6 +21,7 @@ import './dashboard.scss';
 
 const Dashboard = (props) => {
   const [showModal, setShowModal] = useState(false);
+  const [sideNavItemName, setSideNavItemName] = useState('userDashBoard');
   const topNavRef = useRef(null);
   const dispatch = useDispatch();
   const { darkMode } = useSelector((state) => state.darkMode);
@@ -101,7 +103,7 @@ const Dashboard = (props) => {
               </div>
               <div className='col-l-12 nav__items__wrapper'>
                 <div className='nav__items__conatainer'>
-                  <SideNavItems />
+                  <SideNavItems handleSideNavItemClicked={setSideNavItemName} />
                 </div>
                 <div className='nav__items__conatainer settings'>
                   <div className='nav__item'>
@@ -137,7 +139,8 @@ const Dashboard = (props) => {
               darkMode && 'dark__mode'
             }`}
           >
-            <Goals />
+            <DashboardItems itemNameToDisplay={sideNavItemName} />
+            {/* <Goals /> */}
           </div>
         </div>
       </main>
