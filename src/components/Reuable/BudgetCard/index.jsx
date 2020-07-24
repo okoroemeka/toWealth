@@ -1,7 +1,9 @@
 import React from 'react';
 
-import RoundButton from '../../../UI/RoundButton';
-import Chart from '../../../UI/Chart';
+import RoundButton from '../../UI/RoundButton';
+import Chart from '../../UI/Chart';
+
+import './budgetCard.scss';
 
 const UserDashboardCard = (props) => {
   const {
@@ -12,9 +14,12 @@ const UserDashboardCard = (props) => {
     iconButtonColor,
     budgetAmount,
     actualAmount,
+    displayTopIcon,
+    charTitle,
   } = props;
   return (
-    <div className={`col-l-5 chart ${className}`}>
+    <div className={`chart ${className}`}>
+      {charTitle && <h6 className='chart__header'>{charTitle}</h6>}
       <div className='chart__breakdown'>
         <div className='budget'>
           <RoundButton
@@ -39,19 +44,21 @@ const UserDashboardCard = (props) => {
         <div className='chart__title'>{chartTitle}</div>
         <Chart />
       </div>
-      <div className='chart__income__icon'>
-        <RoundButton
-          className='top__icon__container'
-          width={40}
-          height={40}
-          borderRadius={20}
-          color={iconButtonColor}
-        >
-          <div className='top__icon__wrapper'>
-            <img src={arrowIcon} alt='income' className='income__image' />
-          </div>
-        </RoundButton>
-      </div>
+      {displayTopIcon && (
+        <div className='chart__income__icon'>
+          <RoundButton
+            className='top__icon__container'
+            width={40}
+            height={40}
+            borderRadius={20}
+            color={iconButtonColor}
+          >
+            <div className='top__icon__wrapper'>
+              <img src={arrowIcon} alt='income' className='income__image' />
+            </div>
+          </RoundButton>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,0 +1,89 @@
+@import '../../../../styles/commons.scss';
+
+.table {
+  border-radius: $cardBorderRadius;
+  background: $white;
+  .table__header,
+  .table__row {
+    align-items: flex-end;
+    color: $secondaryBlue;
+    font-size: 0.8rem;
+    text-transform: capitalize;
+    .category {
+      padding-left: 2rem;
+    }
+  }
+  .table__header {
+    height: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .table__body {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+  }
+  .table__row {
+    height: 2.5rem;
+    align-items: center;
+    color: $lightGray;
+    border-bottom: 1px solid $tableLine;
+    .category__area {
+      display: flex;
+      align-items: center;
+      padding-left: 2rem;
+      .icon__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1.7rem;
+        height: 1.7rem;
+        border-radius: 50%;
+        .icon__class {
+          width: 0.8rem;
+        }
+      }
+      .goal {
+        font-weight: normal;
+        margin: 0;
+        margin-left: 0.5rem;
+      }
+    }
+    .budget,
+    .actual,
+    .remaining {
+      font-size: 0.6rem;
+      overflow-x: scroll;
+    }
+    .progress__container {
+      display: flex;
+      align-items: center;
+      .progress__area {
+        width: 85%;
+        height: 0.3rem;
+        border-radius: 10px;
+        background-color: $gray;
+        position: relative;
+        .progress__bar {
+          position: absolute;
+          height: 100%;
+          border-radius: 10px;
+          top: 0px;
+          left: 0px;
+        }
+      }
+      .progress {
+        font-weight: normal;
+        font-size: 0.6rem;
+        margin: 0;
+        margin-left: auto;
+      }
+    }
+    .action {
+      padding-left: 1rem;
+      .action__icon {
+        margin-right: 0.5rem;
+        cursor: pointer;
+      }
+    }
+  }
+}
