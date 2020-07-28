@@ -1,0 +1,61 @@
+@import '../../../styles/commons.scss';
+.card {
+  width: 31.33%;
+  height: 8rem;
+  padding: 0.8rem 1rem;
+  background-color: $secondaryBlue;
+  border-radius: $cardBorderRadius;
+  box-shadow: $cardBoxShadow;
+
+  .savings__details {
+    width: 100%;
+    display: flex;
+
+    .details {
+      width: 80%;
+      color: $white;
+
+      .my__savings {
+        margin: 0.2rem 0;
+        font-weight: normal;
+        font-size: 0.6rem;
+      }
+      .amount {
+        margin: 0.2rem 0rem;
+      }
+    }
+    .icon {
+      width: 20%;
+      &__wrapper {
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        outline: none;
+        border-radius: 50%;
+        background-color: $white;
+        .savings__icon {
+          width: 1rem;
+        }
+      }
+    }
+  }
+
+  .progress__rate {
+    color: $white;
+    width: 100%;
+    display: flex;
+    padding-top: 1.5rem;
+    .percentage,
+    .text__percentage {
+      font-size: 0.8rem;
+      margin-right: 0.3rem;
+    }
+    .carat {
+      width: 0.7rem;
+      margin-right: 0.5rem;
+    }
+  }
+}

@@ -1,0 +1,73 @@
+@import '../../../styles/commons.scss';
+.chart {
+  display: flex;
+  justify-content: center;
+  border-radius: $cardBorderRadius;
+  background: $white;
+  position: relative;
+  box-shadow: $cardBoxShadow;
+  .chart__header {
+    color: $lightGray;
+    text-transform: uppercase;
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+    padding-bottom: 1.3rem;
+    margin: 0.5rem 0;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+  &__breakdown {
+    padding-left: 1rem;
+    padding-bottom: 1.3rem;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    .budget,
+    .actual {
+      display: flex;
+      align-items: center;
+      margin: 0.2rem 0;
+      h6 {
+        color: $lightGray;
+        font-size: 0.7rem;
+        margin: 0 0.3rem;
+      }
+    }
+  }
+  &__container {
+    width: 12rem;
+    padding: 1rem 0;
+    position: relative;
+    .chart__title {
+      color: $lightGray;
+      font-size: 0.6rem;
+      position: absolute;
+      top: 40%;
+      left: 48%;
+      transform: translate(-40%, -48%);
+    }
+  }
+  &__income__icon {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    .top__icon__container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .top__icon__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1.3rem;
+        height: 1.3rem;
+        border: 1px solid white;
+        border-radius: 50%;
+        .income__image {
+          width: 0.9rem;
+        }
+      }
+    }
+  }
+}

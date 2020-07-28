@@ -1,7 +1,8 @@
 import React from 'react';
 
-import carat from '../../../../assets/images/up-carat.svg';
-import Card from '../../../UI/Card';
+import carat from '../../../assets/images/up-carat.svg';
+import Card from '../../UI/Card';
+import './worthcard.scss';
 
 const WorthCard = ({
   cardTitle,
@@ -20,7 +21,7 @@ const WorthCard = ({
           <p className='amount'> {`$ ${amountToDisPlay || '2,149.00'}`}</p>
         </div>
         <div className='icon'>
-          <div className={`icon__wrapper ${iconButtonClassName}`} type='button'>
+          <div className={`icon__wrapper ${iconButtonClassName}`}>
             <Icon fill={iconColor || '#ffffff'} className={iconClassName} />
           </div>
         </div>

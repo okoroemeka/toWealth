@@ -14,7 +14,6 @@ import DropDownNavItems from './DropDownNavItems/DropNavItem';
 import DashboardItems from './DashboardItems';
 import * as displayMode from '../../../store/actions/displayMode';
 
-import Goals from './Goals';
 import Modal from '../../Reuable/Modal/Modal';
 
 import './dashboard.scss';
@@ -35,6 +34,7 @@ const Dashboard = (props) => {
   const handleDisplayDarkMode = () => {
     dispatch(displayMode.darkMode(true));
   };
+
   const handleDisplayLightMode = () => {
     dispatch(displayMode.lightMode(false));
   };
@@ -140,7 +140,6 @@ const Dashboard = (props) => {
             }`}
           >
             <DashboardItems itemNameToDisplay={sideNavItemName} />
-            {/* <Goals /> */}
           </div>
         </div>
       </main>
