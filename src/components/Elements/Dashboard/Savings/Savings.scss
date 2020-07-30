@@ -8,4 +8,12 @@
   .calender__wrapper {
     padding-top: 3rem;
   }
+  &__details__area {
+    padding-top: 2.5rem;
+    .savings__details__card {
+      .savigns__card {
+        width: 100%;
+      }
+    }
+  }
 }
