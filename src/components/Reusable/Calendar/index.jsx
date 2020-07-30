@@ -55,8 +55,11 @@ const Calendar = (props) => {
   };
 
   useEffect(dateChangeHandler, []);
+
   useEffect(() => {
-    handleReturnSelectedMonth(date);
+    if (handleReturnSelectedMonth) {
+      handleReturnSelectedMonth(date);
+    }
   }, [date, handleReturnSelectedMonth]);
   return (
     <div className='month__picker'>
