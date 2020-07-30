@@ -3,6 +3,7 @@ import React from 'react';
 import UserDashboard from './UserDashboard';
 import Goals from './Goals';
 import BudgetDashboard from './BudgetDashboard';
+import Savings from './Savings';
 
 const DashboardItems = ({ itemNameToDisplay }) => {
   let ItemToDisplay;
@@ -12,6 +13,9 @@ const DashboardItems = ({ itemNameToDisplay }) => {
       break;
     case 'Budget':
       ItemToDisplay = <BudgetDashboard />;
+      break;
+    case 'Savings':
+      ItemToDisplay = <Savings />;
       break;
     default:
       ItemToDisplay = <UserDashboard />;
