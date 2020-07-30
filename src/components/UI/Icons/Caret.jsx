@@ -1,0 +1,23 @@
+import React from 'react';
+
+const Caret = ({ className, fill }) => {
+  return (
+    <svg
+      width='20'
+      height='13'
+      viewBox='0 0 20 13'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      className={className}
+    >
+      <path
+        fill-rule='evenodd'
+        clip-rule='evenodd'
+        d='M17.2675 0.5L10 7.917L2.7325 0.5L0.5 2.7834L10 12.5L19.5 2.7834L17.2675 0.5Z'
+        fill={fill || 'white'}
+      />
+    </svg>
+  );
+};
+
+export default Caret;
