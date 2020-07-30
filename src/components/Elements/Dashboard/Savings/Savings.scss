@@ -5,15 +5,89 @@
   height: 100%;
   display: flex;
   padding: 3rem 2rem;
+
   .calender__wrapper {
     padding-top: 3rem;
   }
+
   &__details__area {
+    justify-content: space-between;
     padding-top: 2.5rem;
+
+    .table {
+      background: transparent;
+
+      &__wrapper {
+        width: 100%;
+        padding-bottom: 0.6rem;
+
+        background: $white;
+
+        .table__header {
+          display: flex;
+          width: 100%;
+          height: 3rem;
+          align-items: center;
+          padding: 0 1rem;
+          margin-bottom: 0rem;
+          border-radius: 10px;
+          background: #75bf72;
+
+          &__title,
+          .income__amount {
+            margin: 0;
+            color: #00fdff;
+            font-weight: normal;
+            font-size: 1rem;
+          }
+
+          .income__amount {
+            margin-left: auto;
+          }
+
+          &__caret {
+            width: 0.8rem;
+            margin-top: 0.3rem;
+            margin-left: 1.2rem;
+            cursor: pointer;
+          }
+        }
+
+        .table__body {
+          width: 100%;
+
+          .body__data {
+            width: 100%;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            border-bottom: 1px solid $tableLine;
+
+            .data,
+            .data__amount {
+              color: $fontColor;
+              font-weight: normal;
+              font-size: 14px;
+            }
+
+            .data__amount {
+              margin-left: auto;
+            }
+          }
+        }
+      }
+    }
     .savings__details__card {
       .savigns__card {
         width: 100%;
       }
     }
+  }
+  .floating__action {
+    position: fixed;
+    bottom: 7rem;
+    right: 4rem;
+    z-index: 20;
   }
 }
