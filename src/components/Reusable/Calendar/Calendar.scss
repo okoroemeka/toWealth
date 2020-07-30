@@ -1,0 +1,97 @@
+@import '../../../styles/commons.scss';
+
+.month__picker {
+  width: 14rem;
+  height: 2.5rem;
+  color: $white;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: 10px;
+  background: $secondaryBlue;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 2px 1px rgba(0, 0, 0, 0.12),
+    0px 1px 1px rgba(0, 0, 0, 0.14);
+  position: relative;
+  &__wrapper {
+    width: 100%;
+    display: flex;
+  }
+  .selected__month {
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-weight: normal;
+    justify-self: center;
+  }
+  .caret {
+    margin-left: auto;
+    width: 0.8rem;
+    cursor: pointer;
+  }
+  .increase__date,
+  .decrease__date {
+    cursor: pointer;
+  }
+  .calendar {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 13rem;
+    border-radius: 10px;
+    position: absolute;
+    bottom: -14.5rem;
+    left: 0px;
+    overflow: hidden;
+    background-color: $white;
+    box-shadow: $cardBoxShadow;
+
+    .year {
+      color: $white;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0.61rem;
+      border-radius: 10px;
+      background: $secondaryBlue;
+    }
+    .months {
+      width: 100%;
+      height: calc(100% - 2.6rem);
+      padding: 1rem 0rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      &__item {
+        color: rgba(0, 0, 0, 0.54);
+        width: 23%;
+        height: 1.5rem;
+        font-size: 0.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 13px;
+        transition: all 250ms;
+        &:hover {
+          background-color: $gray;
+          cursor: pointer;
+        }
+      }
+      &__active {
+        background-color: $gray;
+      }
+      .buttons__container {
+        width: 100%;
+        display: flex;
+        padding-left: 0.8rem;
+        .cancel__button {
+          color: $secondaryBlue;
+          font-size: 0.8rem;
+          border: none;
+          background: none;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

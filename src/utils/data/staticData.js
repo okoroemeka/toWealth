@@ -21,4 +21,19 @@ const colors = [
   },
 ];
 
-export default { colors };
+const months = {
+  JAN: 'JANUARY',
+  FEB: 'FEBRUARY',
+  MAR: 'MARCH',
+  APR: 'APRIL',
+  MAY: 'MAY',
+  JUN: 'JUNE',
+  JUL: 'JULY',
+  AUG: 'AUGUST',
+  SEPT: 'SEPTEMBER',
+  OCT: 'OCTOBER',
+  NOV: 'NOVEMBER',
+  DEC: 'DECEMBER',
+};
+
+export default { colors, months };

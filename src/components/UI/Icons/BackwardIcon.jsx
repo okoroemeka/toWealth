@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BackwardIcon = ({ fill, className }) => {
+const BackwardIcon = ({ fill, className, handleClick }) => {
   return (
     <svg
       width='10'
@@ -9,6 +9,7 @@ const BackwardIcon = ({ fill, className }) => {
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
       className={className}
+      onClick={handleClick}
     >
       <path
         fill-rule='evenodd'
