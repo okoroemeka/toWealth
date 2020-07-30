@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import Savings from '../../../UI/Icons/Savings';
 import Networth from '../../../UI/Icons/Networth';
 import Target from '../../../UI/Icons/Target';
-import BudgetCard from '../../../Reuable/BudgetCard';
-import WorthCard from '../../../Reuable/WorthCard';
+import BudgetCard from '../../../Reusable/BudgetCard';
+import WorthCard from '../../../Reusable/WorthCard';
 import ActiveGoalCard from './ActiveGoalCard';
 import UserDashboardButton from './UserDashboardButton';
-import DashboardWrapper from '../../../Reuable/DashboardWrapper';
+import DashboardWrapper from '../../../Reusable/DashboardWrapper';
 
 import incomeArrow from '../../../../assets/images/incomeArrow.svg';
 import expensesIcon from '../../../../assets/images/expensesIcon.svg';

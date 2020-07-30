@@ -9,12 +9,12 @@ import supportIcon from '../../../assets/images/surport.svg';
 import termsOfUse from '../../../assets/images/terms.svg';
 import howtos from '../../../assets/images/howto.svg';
 import black from '../../../assets/images/black.jpg';
-import DropDown from '../../Reuable/Dropdown/DropDown';
+import DropDown from '../../Reusable/Dropdown/DropDown';
 import DropDownNavItems from './DropDownNavItems/DropNavItem';
 import DashboardItems from './DashboardItems';
 import * as displayMode from '../../../store/actions/displayMode';
 
-import Modal from '../../Reuable/Modal/Modal';
+import Modal from '../../Reusable/Modal/Modal';
 
 import './dashboard.scss';
 

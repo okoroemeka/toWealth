@@ -1,28 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import DashboardWrapper from '../../../Reuable/DashboardWrapper';
+import DashboardWrapper from '../../../Reusable/DashboardWrapper';
 import Button from '../../../UI/Button';
-import BudgetCard from '../../../Reuable/BudgetCard';
-import WorthCard from '../../../Reuable/WorthCard';
+import BudgetCard from '../../../Reusable/BudgetCard';
+import WorthCard from '../../../Reusable/WorthCard';
 import WalletIcon from '../../../UI/Icons/Wallet';
-import ForwardIcon from '../../../UI/Icons/Forward';
-import BackwardIcon from '../../../UI/Icons/BackwardIcon';
+import Calendar from '../../../Reusable/Calendar';
 
 import Table from './Table';
 
 import './budget.scss';
 
 const BudgetDashboard = (props) => {
+  const [selectedDate, setSelectedDate] = useState('');
+
   return (
     <DashboardWrapper>
       <div className='budget__details'>
         <div className='row'>
           <div className='col-l-8 top__buttons'>
-            <div className='month__picker'>
-              <BackwardIcon className='decrease__date' />
-              <h5 className='selected__month'>february 2020</h5>
-              <ForwardIcon className='increase__date' />
-            </div>
+            <Calendar handleReturnSelectedMonth={setSelectedDate} />
             <Button type='submit' className='add__newbudget'>
               + new budget
             </Button>
