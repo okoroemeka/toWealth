@@ -5,7 +5,7 @@ import Card from '../../../UI/Card';
 import plusIcon from '../../../../assets/images/plus.svg';
 import caratIcon from '../../../../assets/images/carat.svg';
 import GoalCard from '../../../UI/GoalCard';
-import Modal from '../../../Reuable/Modal/Modal';
+import Modal from '../../../Reusable/Modal/Modal';
 import EditCard from '../EditCard';
 import ViewGoal from '../ViewGoal';
 
