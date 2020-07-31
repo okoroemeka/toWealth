@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Calendar from '../../../Reusable/Calendar';
 import WorthCard from '../../../Reusable/WorthCard';
 import SavingsIcon from '../../../UI/Icons/Savings';
 import Caret from '../../../UI/Icons/Caret';
 import FloatingButton from '../../../Reusable/FloatingButton';
+import addIcon from '../../../../assets/images/addIcon.svg';
+import cancelIcon from '../../../../assets/images/cancelIcon.svg';
 
 import './Savings.scss';
 const Savings = (props) => {
+  const [showFloatingContent, setShowFloatingContent] = useState(false);
+
   return (
     <div className='savings'>
       <div className='col-l-10'>
@@ -47,7 +51,12 @@ const Savings = (props) => {
         </div>
       </div>
       <div className='floating__action'>
-        <FloatingButton>+</FloatingButton>
+        {showFloatingContent && <div className='content'></div>}
+        <FloatingButton
+          onClick={() => setShowFloatingContent(!showFloatingContent)}
+        >
+          <img src={showFloatingContent ? cancelIcon : addIcon} alt='icon' />
+        </FloatingButton>
       </div>
     </div>
   );
