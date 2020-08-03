@@ -3,14 +3,16 @@ import React, { useState } from 'react';
 import Calendar from '../../../Reusable/Calendar';
 import WorthCard from '../../../Reusable/WorthCard';
 import SavingsIcon from '../../../UI/Icons/Savings';
-import Caret from '../../../UI/Icons/Caret';
 import FloatingButton from '../../../Reusable/FloatingButton';
 import addIcon from '../../../../assets/images/addIcon.svg';
 import cancelIcon from '../../../../assets/images/cancelIcon.svg';
-
+import TableHead from '../../../Reusable/TableHead';
+import TableData from '../../../Reusable/TableData';
 import './Savings.scss';
+
 const Savings = (props) => {
   const [showFloatingContent, setShowFloatingContent] = useState(false);
+  const [displayMore, setDisplayMore] = useState(false);
 
   return (
     <div className='savings'>
@@ -21,20 +23,28 @@ const Savings = (props) => {
           </div>
         </div>
         <div className='row savings__details__area'>
-          <div className='col-l-8 table'>
-            <div className='table__wrapper'>
-              <div className='table__header'>
-                <h5 className='table__header__title'>Income</h5>
-                <Caret fill='#00fdff' className='table__header__caret' />
-                <h5 className='income__amount'>{`$ ${
-                  props.incomeAmount || '23,568.00'
-                }`}</h5>
-              </div>
+          <div className='col-l-8 savings__table'>
+            <div className='savings__table__wrapper'>
+              <TableHead />
+
               <div className='table__body'>
-                <div className='body__data'>
-                  <h5 className='data'>wages/salary</h5>
-                  <h5 className='data__amount'>$200.00</h5>
-                </div>
+                <TableData
+                  displayMore={displayMore}
+                  handleClickMore={() => setDisplayMore(!displayMore)}
+                />
+                <TableData
+                  displayMore={displayMore}
+                  handleClickMore={() => setDisplayMore(!displayMore)}
+                />
+              </div>
+            </div>
+            <div className='income__wrapper'>
+              <div className='table__body'>
+                <TableHead
+                  headerWrapperClassName='expenditure__table'
+                  firstTitle='Expenditure'
+                  secondTitle='6,365.87'
+                />
               </div>
             </div>
           </div>

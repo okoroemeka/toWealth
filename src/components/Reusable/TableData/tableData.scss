@@ -1,0 +1,22 @@
+@import '../../../styles/commons.scss';
+
+.body__data {
+  width: 100%;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  border-bottom: 1px solid $tableLine;
+  position: relative;
+
+  .data,
+  .data__amount {
+    color: $fontColor;
+    font-weight: normal;
+    font-size: 14px;
+  }
+
+  .data__amount {
+    margin-left: auto;
+  }
+}
