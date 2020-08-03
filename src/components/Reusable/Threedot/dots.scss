@@ -1,0 +1,24 @@
+@import '../../../styles/commons.scss';
+
+.more__button__wrapper {
+  text-align: center;
+  cursor: pointer;
+  margin: 0 1rem;
+  position: relative;
+  .dot {
+    width: 3px;
+    height: 3px;
+    margin: 0.1rem 0;
+    border-radius: 50%;
+    background-color: $black;
+  }
+  .action__wrapper {
+    width: 6rem;
+    height: 2rem;
+    position: absolute;
+    top: 1.5rem;
+    left: -3.5rem;
+    z-index: 20;
+    background-color: $white;
+  }
+}
