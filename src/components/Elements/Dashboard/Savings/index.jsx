@@ -8,11 +8,15 @@ import addIcon from '../../../../assets/images/addIcon.svg';
 import cancelIcon from '../../../../assets/images/cancelIcon.svg';
 import TableHead from '../../../Reusable/TableHead';
 import TableData from '../../../Reusable/TableData';
+import FloatingButtonContent from '../../../Reusable/FloatingButtonContent';
+import ContentWrapper from '../../../Reusable/FloatingButtonContentWrapper';
 import './Savings.scss';
 
 const Savings = (props) => {
   const [showFloatingContent, setShowFloatingContent] = useState(false);
   const [displayMore, setDisplayMore] = useState(false);
+  const [displayIncomeTable, setDisplayIncomeTable] = useState(false);
+  const [displayExpensesTable, setDisplayExpensesTable] = useState(false);
 
   return (
     <div className='savings'>
@@ -25,26 +29,53 @@ const Savings = (props) => {
         <div className='row savings__details__area'>
           <div className='col-l-8 savings__table'>
             <div className='savings__table__wrapper'>
-              <TableHead />
+              <TableHead
+                toggleCaret={displayIncomeTable}
+                handleShowTable={() =>
+                  setDisplayIncomeTable(!displayIncomeTable)
+                }
+              />
 
-              <div className='table__body'>
-                <TableData
-                  displayMore={displayMore}
-                  handleClickMore={() => setDisplayMore(!displayMore)}
-                />
-                <TableData
-                  displayMore={displayMore}
-                  handleClickMore={() => setDisplayMore(!displayMore)}
-                />
-              </div>
+              {displayIncomeTable ? (
+                <div className='table__body'>
+                  <TableData
+                    displayMore={displayMore}
+                    handleClickMore={() => setDisplayMore(!displayMore)}
+                  />
+                  <TableData
+                    displayMore={displayMore}
+                    handleClickMore={() => setDisplayMore(!displayMore)}
+                  />
+                </div>
+              ) : (
+                ''
+              )}
             </div>
             <div className='income__wrapper'>
+              <TableHead
+                headerWrapperClassName='expenditure__table'
+                firstTitle='Expenditure'
+                secondTitle='6,365.87'
+                toggleCaret={displayExpensesTable}
+                handleShowTable={() =>
+                  setDisplayExpensesTable(!displayExpensesTable)
+                }
+              />
               <div className='table__body'>
-                <TableHead
-                  headerWrapperClassName='expenditure__table'
-                  firstTitle='Expenditure'
-                  secondTitle='6,365.87'
-                />
+                {displayExpensesTable ? (
+                  <div className='table__body'>
+                    <TableData
+                      displayMore={displayMore}
+                      handleClickMore={() => setDisplayMore(!displayMore)}
+                    />
+                    <TableData
+                      displayMore={displayMore}
+                      handleClickMore={() => setDisplayMore(!displayMore)}
+                    />
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
             </div>
           </div>
@@ -61,7 +92,21 @@ const Savings = (props) => {
         </div>
       </div>
       <div className='floating__action'>
-        {showFloatingContent && <div className='content'></div>}
+        {showFloatingContent && (
+          <div className='content'>
+            <FloatingButtonContent onClick={() => null}>
+              <ContentWrapper buttonName='Income'>+</ContentWrapper>
+            </FloatingButtonContent>
+            <FloatingButtonContent onClick={() => null}>
+              <ContentWrapper
+                buttonName='Expenses'
+                extraClassName='add__expense'
+              >
+                -
+              </ContentWrapper>
+            </FloatingButtonContent>
+          </div>
+        )}
         <FloatingButton
           onClick={() => setShowFloatingContent(!showFloatingContent)}
         >
