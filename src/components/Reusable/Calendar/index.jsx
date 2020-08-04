@@ -10,7 +10,7 @@ import './Calendar.scss';
 
 const Calendar = (props) => {
   const [showCalendar, setShowCalendar] = useState(false);
-  const [mainCurrentDate, setCurrentDate] = useState({ month: moment() });
+  const [mainCurrentDate, _] = useState({ month: moment() });
   const [date, setDate] = useState('');
   const [year, setYear] = useState(2000);
   const [month, setMonth] = useState('');
@@ -33,20 +33,6 @@ const Calendar = (props) => {
     return setDate(selectedMonth + ' - ' + year);
   };
 
-  //   const handleIncreaseDate = () => {
-  //     setCurrentDate((prevDate) => {
-  //       const newDate = prevDate.month.add(1, 'month');
-  //       setDate(newDate.format('MMMM YYYY').split(' ').join(' - '));
-  //       return { month: newDate };
-  //     });
-  //   };
-
-  //   const handleDecreaseDate = () => {
-  //     setCurrentDate((prevDate) => ({
-  //       month: prevDate.month.subtract(1, 'month'),
-  //     }));
-  //   };
-
   const dateChangeHandler = () => {
     const currentDate = mainCurrentDate.month.format('MMMM YYYY').split(' ');
     setDate(currentDate[0].toUpperCase() + ' - ' + currentDate[1]);
@@ -63,13 +49,10 @@ const Calendar = (props) => {
   }, [date, handleReturnSelectedMonth]);
   return (
     <div className='month__picker'>
-      {/* <BackwardIcon className='decrease__date' handleClick={() => null} /> */}
       <div className='month__picker__wrapper' onClick={() => toggleCalendar()}>
         <h5 className='selected__month'>{date}</h5>
         <img src={carat} alt='dropdown icon' className='caret' />
       </div>
-
-      {/* <ForwardIcon className='increase__date' handleClick={() => null} /> */}
       {showCalendar && (
         <div className='calendar'>
           <div className='year'>

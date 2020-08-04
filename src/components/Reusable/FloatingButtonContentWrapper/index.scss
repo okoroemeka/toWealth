@@ -1,0 +1,21 @@
+@import '../../../styles/commons.scss';
+
+.button__content__wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  .floating__button__icon {
+    color: $white;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    margin-left: auto;
+    border-radius: 50%;
+    background-color: $bloodRed;
+  }
+}

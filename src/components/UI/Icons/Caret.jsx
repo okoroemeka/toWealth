@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Caret = ({ className, fill }) => {
+const Caret = ({ className, fill, handleClick = () => null }) => {
   return (
     <svg
       width='20'
@@ -9,6 +9,7 @@ const Caret = ({ className, fill }) => {
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
       className={className}
+      onClick={handleClick}
     >
       <path
         fill-rule='evenodd'
