@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@reach/router';
 
 import Dashboard from './Icons/Dashboard';
 import BudgetIcon from './Icons/BudgetIcon';
@@ -13,7 +14,7 @@ import HowToIcon from './Icons/HowToIcon';
 const dashboardData = [
   {
     id: 1,
-    name: 'Dasboard',
+    name: 'Dashboard',
     icon: Dashboard,
   },
   {
@@ -52,19 +53,22 @@ const SideNav = ({ handleSideNavItemClicked }) => {
   };
 
   return dashboardData.map(({ id, name, icon: Icon }) => (
-    <div
+    <Link
       className={`nav__item ${
         navId != 0 && navId == id ? 'nav__item__active' : ''
       }`}
-      onClick={() => handleNavitemClicked(name, id)}
       key={id}
+      to={`/dashboard/${
+        name == 'Dashboard' ? 'home' : name.replace(' ', '').toLowerCase()
+      }`}
+      onClick={() => handleNavitemClicked(name, id)}
     >
       <Icon
         fill={navId != 0 && navId == id ? '#000000' : '#75BF72'}
         className='sidenav__item__icon'
       />
       <h6 className='nav__item__name'>{name}</h6>
-    </div>
+    </Link>
   ));
 };
 

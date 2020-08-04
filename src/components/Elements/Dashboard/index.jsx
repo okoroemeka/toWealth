@@ -11,14 +11,13 @@ import howtos from '../../../assets/images/howto.svg';
 import black from '../../../assets/images/black.jpg';
 import DropDown from '../../Reusable/Dropdown/DropDown';
 import DropDownNavItems from './DropDownNavItems/DropNavItem';
-import DashboardItems from './DashboardItems';
 import * as displayMode from '../../../store/actions/displayMode';
 
 import Modal from '../../Reusable/Modal/Modal';
 
 import './dashboard.scss';
 
-const Dashboard = (props) => {
+const Dashboard = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const [sideNavItemName, setSideNavItemName] = useState('userDashBoard');
   const topNavRef = useRef(null);
@@ -139,7 +138,7 @@ const Dashboard = (props) => {
               darkMode && 'dark__mode'
             }`}
           >
-            <DashboardItems itemNameToDisplay={sideNavItemName} />
+            {children}
           </div>
         </div>
       </main>
