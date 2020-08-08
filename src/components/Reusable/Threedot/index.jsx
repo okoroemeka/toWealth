@@ -12,7 +12,7 @@ const ThreeDotsButton = ({
       <div className='dot'></div>
       <div className='dot'></div>
       <div className='dot'></div>
-      {displayMore ? <div className='action__wrapper'></div> : ''}
+      {displayMore ? <div className='action__wrapper'>{children}</div> : ''}
     </div>
   );
 };

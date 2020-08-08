@@ -1,0 +1,14 @@
+@import '../../../styles/commons.scss';
+.action {
+  display: flex;
+  padding: 0.2rem 0.5rem;
+  &__name {
+    color: $lightGray;
+    font-size: 0.7rem;
+    margin: 0.2rem 0;
+    margin-left: 0.5rem;
+  }
+  &__image {
+    width: 1.4rem;
+  }
+}

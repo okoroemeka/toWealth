@@ -42,10 +42,6 @@ const Savings = (props) => {
                     displayMore={displayMore}
                     handleClickMore={() => setDisplayMore(!displayMore)}
                   />
-                  <TableData
-                    displayMore={displayMore}
-                    handleClickMore={() => setDisplayMore(!displayMore)}
-                  />
                 </div>
               ) : (
                 ''
@@ -64,10 +60,6 @@ const Savings = (props) => {
               <div className='table__body'>
                 {displayExpensesTable ? (
                   <div className='table__body'>
-                    <TableData
-                      displayMore={displayMore}
-                      handleClickMore={() => setDisplayMore(!displayMore)}
-                    />
                     <TableData
                       displayMore={displayMore}
                       handleClickMore={() => setDisplayMore(!displayMore)}
