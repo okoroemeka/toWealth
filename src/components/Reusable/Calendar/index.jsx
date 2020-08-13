@@ -47,6 +47,7 @@ const Calendar = (props) => {
       handleReturnSelectedMonth(date);
     }
   }, [date, handleReturnSelectedMonth]);
+
   return (
     <div className='month__picker'>
       <div className='month__picker__wrapper' onClick={() => toggleCalendar()}>

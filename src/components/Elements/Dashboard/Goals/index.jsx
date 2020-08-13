@@ -64,7 +64,7 @@ const Goals = (props) => {
         <div className='col-l-12 dropdown__navigation__area'>
           <div className='dropdown__container'>
             <button
-              type='submit'
+              type='button'
               onClick={() => setShowDropdown(!showDropdown)}
             >
               {currentItem[0]}

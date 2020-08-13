@@ -36,4 +36,110 @@ const months = {
   DEC: 'DECEMBER',
 };
 
-export default { colors, months };
+const transactionDropdown = [
+  {
+    name: 'Income',
+    colorCode: '#75BF72',
+  },
+  {
+    name: ' Expenses',
+    colorCode: '#DF5060',
+  },
+  {
+    name: 'Transfers',
+    colorCode: '#32C5FF',
+  },
+];
+
+const transactionTableData = [
+  {
+    transactionType: 'income',
+    date: '02/03/2020',
+    description: 'monthly salary',
+    category: 'salary',
+    account: 'savings',
+    amount: '12,000.00',
+  },
+  {
+    transactionType: 'expense',
+    date: '02/03/2020',
+    description: 'tip',
+    category: 'salary',
+    account: 'savings',
+    amount: '12,000.00',
+  },
+  {
+    transactionType: 'income',
+    date: '02/03/2020',
+    description: 'rent',
+    category: 'salary',
+    account: 'savings',
+    amount: '12,000.00',
+  },
+  {
+    transactionType: 'expense',
+    date: '02/03/2020',
+    description: 'monthly salary',
+    category: 'salary',
+    account: 'savings',
+    amount: '12,000.00',
+  },
+  {
+    transactionType: 'income',
+    date: '02/03/2020',
+    description: 'shirt',
+    category: 'salary',
+    account: 'savings',
+    amount: '12,000.00',
+  },
+  {
+    transactionType: 'expense',
+    date: '02/03/2020',
+    description: 'gas',
+    category: 'salary',
+    account: 'savings',
+    amount: '12,000.00',
+  },
+  {
+    transactionType: 'income',
+    date: '02/03/2020',
+    description: 'gas',
+    category: 'salary',
+    account: 'savings',
+    amount: '12,000.00',
+  },
+  {
+    transactionType: 'expense',
+    date: '02/03/2020',
+    description: 'gas',
+    category: 'salary',
+    account: 'savings',
+    amount: '12,000.00',
+  },
+  {
+    transactionType: 'income',
+    date: '02/03/2020',
+    description: 'gas',
+    category: 'salary',
+    account: 'savings',
+    amount: '12,000.00',
+  },
+  {
+    transactionType: 'expense',
+    date: '02/03/2020',
+    description: 'gas',
+    category: 'salary',
+    account: 'savings',
+    amount: '12,000.00',
+  },
+  {
+    transactionType: 'income',
+    date: '02/03/2020',
+    description: 'gas',
+    category: 'salary',
+    account: 'savings',
+    amount: '12,000.00',
+  },
+];
+
+export default { colors, months, transactionDropdown, transactionTableData };
