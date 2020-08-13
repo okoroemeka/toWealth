@@ -1,0 +1,58 @@
+@import '../../../../styles/commons.scss';
+
+.networth__dashboard {
+  height: 100%;
+  padding: 3rem 2rem;
+  //   background-color: red;
+  &__card__wrapper {
+    justify-content: space-between;
+    .card__networth,
+    .card__target {
+      width: 45%;
+    }
+    .card__networth {
+      background-color: $brandRed;
+    }
+    .card__target {
+      color: $black;
+      background-color: $white;
+      .details {
+        .my__savings,
+        .amount {
+          color: $black;
+        }
+      }
+      .icon__target {
+        background-color: $brandGreen;
+        .target__icon {
+          width: 1rem;
+        }
+      }
+    }
+  }
+  .calendar__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 2rem 0;
+  }
+  .asset__table {
+    width: 100%;
+    margin-bottom: 2rem;
+    &__header {
+      background-color: #919191;
+    }
+    &__body {
+      width: 100%;
+    }
+  }
+  .liability__table {
+    width: 100%;
+    &__header {
+      background-color: #ffa500;
+    }
+    &__body {
+      width: 100%;
+    }
+  }
+}
