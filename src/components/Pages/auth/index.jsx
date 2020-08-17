@@ -1,11 +1,12 @@
 import React from 'react';
-import './auth.scss';
+
 import logo from '../../../assets/images/logo.svg';
 import googleIcon from '../../../assets/images/googleIcon.svg';
 import facebookIcon from '../../../assets/images/facebookIcon.svg';
 import Card from '../../UI/Card';
 import Login from '../../Elements/Login';
 import SignUp from '../../Elements/SignUp';
+import './auth.scss';
 
 const Auth = () => {
   const [activeAuth, setActiveAuth] = React.useState(false);

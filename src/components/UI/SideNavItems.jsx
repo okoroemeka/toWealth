@@ -7,9 +7,6 @@ import Savings from './Icons/Savings';
 import Goal from './Icons/Goal';
 import NetWorth from './Icons/Networth';
 import Transaction from './Icons/Transaction';
-import Support from './Icons/Support';
-import TermsIcon from './Icons/TermsIcon';
-import HowToIcon from './Icons/HowToIcon';
 
 const dashboardData = [
   {
