@@ -141,5 +141,16 @@ const transactionTableData = [
     amount: '12,000.00',
   },
 ];
-
-export default { colors, months, transactionDropdown, transactionTableData };
+const currency = {
+  USD: '$',
+  EUR: '€',
+  GBP: '£',
+  NGN: '₦',
+};
+export default {
+  colors,
+  months,
+  transactionDropdown,
+  transactionTableData,
+  currency,
+};
