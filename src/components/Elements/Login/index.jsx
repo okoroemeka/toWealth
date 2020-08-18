@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { navigate } from '@reach/router';
+
+import login from '../../../store/actions/login';
 import eyeIcon from '../../../assets/images/eye.svg';
 import './login.scss';
 
@@ -6,9 +10,25 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState('');
+  const dispatch = useDispatch();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      await dispatch(login({ email, password }));
+      setLoading(false);
+      navigate('/dashboard/dashboard');
+    } catch (error) {
+      setLoading(false);
+      setErr(error.message);
+    }
+  };
   return (
     <div className='login__form__wrapper'>
-      <form className='login__form'>
+      <form className='login__form' onSubmit={(e) => handleLogin(e)}>
         <input
           type='email'
           value={email}
