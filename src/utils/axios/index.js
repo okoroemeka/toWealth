@@ -1,5 +1,5 @@
 import axios from 'axios';
-import authUtils from './auth';
+import authUtils from '../auth';
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL_LOCAL || process.env.REACT_APP_API_URL,
