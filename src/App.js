@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router } from '@reach/router';
 
-import Auth from './components/Pages/Auth';
+import Auth from './components/Pages/Authentication';
 import Dashboard from './components/Elements/Dashboard';
 import UserDashboard from './components/Elements/Dashboard/UserDashboard';
 import Goals from './components/Elements/Dashboard/Goals';
