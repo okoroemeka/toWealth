@@ -15,6 +15,7 @@ const store = createStore(
 
 store.subscribe(() => {
   saveState({
+    signup: store.getState().signup,
     authLogin: store.getState().authLogin,
   });
 });

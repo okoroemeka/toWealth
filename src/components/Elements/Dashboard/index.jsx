@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { navigate, Redirect } from '@reach/router';
 
 import logo from '../../../assets/images/logo.svg';
 import notifications from '../../../assets/images/notifications.svg';
@@ -12,6 +13,7 @@ import black from '../../../assets/images/black.jpg';
 import DropDown from '../../Reusable/Dropdown/DropDown';
 import DropDownNavItems from './DropDownNavItems/DropNavItem';
 import * as displayMode from '../../../store/actions/displayMode';
+import logout from '../../../store/actions/logout';
 
 import Modal from '../../Reusable/Modal/Modal';
 
@@ -22,7 +24,11 @@ const Dashboard = ({ children }) => {
   const [sideNavItemName, setSideNavItemName] = useState('userDashBoard');
   const topNavRef = useRef(null);
   const dispatch = useDispatch();
-  const { darkMode } = useSelector((state) => state.darkMode);
+  const {
+    darkMode: { darkMode },
+    authLogin,
+    signup,
+  } = useSelector((state) => state);
 
   React.useEffect(() => {
     if (showModal) {
@@ -37,6 +43,14 @@ const Dashboard = ({ children }) => {
   const handleDisplayLightMode = () => {
     dispatch(displayMode.lightMode(false));
   };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    setShowModal(false);
+  };
+
+  if (!authLogin.isLoggedIn && !signup.isLoggedIn)
+    return <Redirect noThrow to='/' />;
 
   return (
     <div className='dashboard__wrapper'>
@@ -72,6 +86,7 @@ const Dashboard = ({ children }) => {
                   <DropDownNavItems
                     handleDarkMode={handleDisplayDarkMode}
                     handleLightMode={handleDisplayLightMode}
+                    handleLogout={handleLogout}
                   />
                 </DropDown>
               </Modal>

@@ -1,4 +1,4 @@
-import { SIGN_UP } from '../types';
+import { SIGN_UP, LOG_OUT } from '../types';
 
 function signup(state = {}, { type, payload }) {
   if (type == SIGN_UP.SUCCESS) {
@@ -18,6 +18,12 @@ function signup(state = {}, { type, payload }) {
     return {
       ...state,
       Status: payload,
+    };
+  }
+  if (type == LOG_OUT.SUCCESS) {
+    return {
+      ...state,
+      isLoggedIn: false,
     };
   }
   return state;

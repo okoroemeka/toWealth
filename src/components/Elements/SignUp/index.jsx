@@ -13,7 +13,7 @@ import {
 } from '../../../utils/Validation';
 import './index.scss';
 
-const Signup = (props) => {
+const Signup = ({ toggleAuth }) => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,13 +21,12 @@ const Signup = (props) => {
   const [fullNameTouched, setFullNameTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
   const [validForm, setValidForm] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const dispatch = useDispatch();
-  const authLogin = useSelector((store) => store.authLogin);
+  const { authLogin, signup } = useSelector((store) => store);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -37,7 +36,6 @@ const Signup = (props) => {
       setLoading(false);
       navigate('/dashboard/dashboard');
     } catch ({ message }) {
-      console.log('res', message);
       setLoading(false);
       setErrorMessage(message);
     }
@@ -55,7 +53,7 @@ const Signup = (props) => {
     }
   }, [email, fullName, password]);
 
-  if (authLogin.isLoggedIn)
+  if (authLogin.isLoggedIn || signup.isLoggedIn)
     return <Redirect noThrow to='/dashboard/dashboard' />;
 
   return (
@@ -129,6 +127,12 @@ const Signup = (props) => {
           </button>
         </div>
       </form>
+      <div className='account__wrapper'>
+        <h5 className='account__text'>Already have an account?</h5>
+        <h5 className='account__signup' onClick={toggleAuth}>
+          Login
+        </h5>
+      </div>
     </div>
   );
 };

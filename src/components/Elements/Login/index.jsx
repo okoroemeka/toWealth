@@ -10,7 +10,7 @@ import { emailValidator, passwordValidator } from '../../../utils/Validation';
 
 import './login.scss';
 
-const Login = () => {
+const Login = ({ toggleAuth }) => {
   const [email, setEmail] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
   const [password, setPassword] = useState('');
@@ -21,9 +21,8 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const dispatch = useDispatch();
-  const authLogin = useSelector((store) => store.authLogin);
+  const { authLogin, signup } = useSelector((store) => store);
 
-  console.log('authState', authLogin);
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -47,7 +46,7 @@ const Login = () => {
     }
   }, [email, password]);
 
-  if (authLogin.isLoggedIn)
+  if (authLogin.isLoggedIn || signup.isLoggedIn)
     return <Redirect noThrow to='/dashboard/dashboard' />;
 
   return (
@@ -114,7 +113,7 @@ const Login = () => {
       </form>
       <div className='no__account__wrapper'>
         <h5 className='no__account__text'>Don’t have an account?</h5>
-        <h5 className='no__account__signup' onClick={() => {}}>
+        <h5 className='no__account__signup' onClick={toggleAuth}>
           Sign Up
         </h5>
       </div>
