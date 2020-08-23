@@ -9,15 +9,27 @@
   .signup__form {
     width: 90%;
     text-align: center;
-    input {
+    .input__wrapper {
       width: 88%;
-      height: 2rem;
-      font-size: 0.9rem;
-      border: none;
-      border-bottom: 1px solid $horizontalRule;
-      margin: 1rem 0;
-      outline: none;
+      margin: 1.5rem auto;
+      position: relative;
+      input {
+        width: 100%;
+        height: 2rem;
+        font-size: 0.9rem;
+        border: none;
+        border-bottom: 1px solid $horizontalRule;
+        outline: none;
+      }
+      .input__error {
+        color: $brandError;
+        font-weight: normal;
+        font-size: 0.7rem;
+        margin: 0;
+        text-align: left;
+      }
     }
+
     .password__field__wrapper {
       width: 100%;
       position: relative;
@@ -25,8 +37,8 @@
     .eye__icon {
       width: 1.2rem;
       position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
+      top: 0.5rem;
+      right: 0rem;
       cursor: pointer;
     }
     .button__wrapper {
@@ -41,6 +53,9 @@
         border: none;
         border-radius: 16px;
         cursor: pointer;
+        &:disabled {
+          cursor: not-allowed;
+        }
       }
     }
   }

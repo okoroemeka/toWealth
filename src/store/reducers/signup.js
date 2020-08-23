@@ -13,6 +13,12 @@ function signup(state = {}, { type, payload }) {
       Status: payload,
     };
   }
+  if (type == SIGN_UP.ERROR) {
+    return {
+      ...state,
+      Status: payload,
+    };
+  }
   return state;
 }
 

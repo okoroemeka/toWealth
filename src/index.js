@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import 'fontsource-roboto';
 
 import store from './store/reducers/';
 import './styles/index.css';

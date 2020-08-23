@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { navigate } from '@reach/router';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
 import login from '../../../store/actions/login';
 import eyeIcon from '../../../assets/images/eye.svg';
 import './login.scss';
@@ -60,8 +61,12 @@ const Login = () => {
           </span>
         </div>
         <div className='button__wrapper'>
-          <button type='submit' className='login__button'>
-            Login
+          <button type='submit' className='login__button' disabled={loading}>
+            {!loading ? (
+              'Login'
+            ) : (
+              <CircularProgress color='#ffffff' size={16} />
+            )}
           </button>
         </div>
       </form>

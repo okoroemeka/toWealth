@@ -1,0 +1,12 @@
+@import '../../../styles/commons.scss';
+.error__message {
+  display: flex;
+  font-size: 0.8rem;
+  justify-content: center;
+  align-items: center;
+  color: $white;
+  width: 80%;
+  height: 2rem;
+  background: $brandError;
+  border-radius: 8px;
+}
