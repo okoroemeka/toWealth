@@ -108,6 +108,10 @@
     justify-content: flex-end;
     align-items: flex-end;
     padding-top: 1rem;
+    position: fixed;
+    bottom: 6rem;
+    right: 2rem;
+    z-index: 10;
 
     .buttons__container {
       width: 100%;
@@ -156,7 +160,7 @@
     }
     .cls__btns {
       height: inherit;
-      padding: 1rem 0rem;
+      padding: 1rem 1rem;
       animation: animate 2000ms;
 
       @keyframes animate {
@@ -169,11 +173,12 @@
       }
     }
     .toggle__button {
-      width: 3rem;
-      height: 3rem;
       color: $white;
       text-align: center;
       font-size: 1.5rem;
+      width: 3rem;
+      height: 3rem;
+      margin-right: 1rem;
       border: none;
       border-radius: 50%;
       background-color: $toggleButtonRed;
