@@ -11,6 +11,7 @@ const signup = (userData) => async (dispatch) => {
     tokenHelper.setToken(payload.token);
     dispatch({ type: SIGN_UP.SUCCESS, payload });
     dispatch({ type: SIGN_UP.STATUS, payload: status });
+    return { payload, status };
   } catch (error) {
     throw error;
   }
