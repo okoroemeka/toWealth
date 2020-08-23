@@ -3,22 +3,18 @@ const emailValidator = (email) => {
 };
 
 const passwordValidator = (password) => {
-  let minMaxLength = /^[\s\S]{8,32}$/,
+  let minMaxLength = /^[\s\S]{8,15}$/,
     upper = /[A-Z]/,
     lower = /[a-z]/,
     number = /[0-9]/,
-    special = /[ !"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/;
-  if (
+    special = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/;
+  return (
     minMaxLength.test(password) &&
     upper.test(password) &&
     lower.test(password) &&
     number.test(password) &&
     special.test(password)
-  ) {
-    return true;
-  }
-
-  return false;
+  );
 };
 
 const validateFullName = (name) => {

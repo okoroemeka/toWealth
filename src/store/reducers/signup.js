@@ -5,6 +5,7 @@ function signup(state = {}, { type, payload }) {
     return {
       ...state,
       data: payload,
+      isLoggedIn: true,
     };
   }
   if (type == SIGN_UP.STATUS) {

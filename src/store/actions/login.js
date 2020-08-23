@@ -11,7 +11,7 @@ const login = (userData) => async (dispatch) => {
     tokenHelper.setToken(payload.token);
     dispatch({ type: LOGIN.SUCCESS, payload });
     dispatch({ type: LOGIN.STATUS, payload: status });
-  } catch (error) {
+  } catch ({ response: { data: error } }) {
     throw error;
   }
 };
