@@ -1,43 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { navigate } from '@reach/router';
+import { navigate, Redirect } from '@reach/router';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import login from '../../../store/actions/login';
 import eyeIcon from '../../../assets/images/eye.svg';
+import Error from '../../Reusable/Error';
+import { emailValidator, passwordValidator } from '../../../utils/Validation';
+
 import './login.scss';
 
 const Login = () => {
   const [email, setEmail] = useState('');
+  const [emailTouched, setEmailTouched] = useState(false);
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
+  const [validForm, setValidForm] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [err, setErr] = useState('');
-  const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState('');
 
+  const dispatch = useDispatch();
+  const authLogin = useSelector((store) => store.authLogin);
+
+  console.log('authState', authLogin);
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-      await dispatch(login({ email, password }));
+      const res = await dispatch(login({ email, password }));
       setLoading(false);
+      console.log('res', res);
       navigate('/dashboard/dashboard');
-    } catch (error) {
+    } catch ({ message }) {
+      console.log('res', message);
       setLoading(false);
-      setErr(error.message);
+      setErrorMessage(message);
     }
   };
+
+  useEffect(() => {
+    if (emailValidator(email) && passwordValidator(password)) {
+      setValidForm(true);
+    } else {
+      setValidForm(false);
+    }
+  }, [email, password]);
+
+  if (authLogin.isLoggedIn)
+    return <Redirect noThrow to='/dashboard/dashboard' />;
+
   return (
     <div className='login__form__wrapper'>
+      {errorMessage ? <Error errorMessage={errorMessage} /> : null}
+
       <form className='login__form' onSubmit={(e) => handleLogin(e)}>
-        <input
-          type='email'
-          value={email}
-          placeholder='Email Address'
-          required
-          onChange={(event) => setEmail(event.target.value.trim())}
-        />
-        <div className='password__field__wrapper'>
+        <div className='input__wrapper'>
+          <input
+            type='email'
+            value={email}
+            onBlur={() => setEmailTouched(true)}
+            placeholder='Email Address'
+            required
+            onChange={(event) => setEmail(event.target.value.trim())}
+          />
+          {!emailValidator(email) && emailTouched ? (
+            <h6 className='input__error'>invalid email</h6>
+          ) : null}
+        </div>
+        <div className='input__wrapper'>
           <input
             className='password__field'
             type={showPassword ? 'text' : 'password'}
@@ -45,6 +76,7 @@ const Login = () => {
             placeholder='Password'
             value={password}
             required
+            onBlur={() => setPasswordTouched(true)}
             onChange={(event) => setPassword(event.target.value.trim())}
           />
           <img
@@ -53,6 +85,12 @@ const Login = () => {
             className='eye__icon'
             onClick={() => setShowPassword(!showPassword)}
           />
+          {!passwordValidator(password) && passwordTouched ? (
+            <h6 className='input__error'>
+              password must be between 8 and 15 characters, alhanumeric and have
+              a special charecter
+            </h6>
+          ) : null}
         </div>
 
         <div className='forgot__password__wrapper'>
@@ -61,7 +99,11 @@ const Login = () => {
           </span>
         </div>
         <div className='button__wrapper'>
-          <button type='submit' className='login__button' disabled={loading}>
+          <button
+            type='submit'
+            className='login__button'
+            disabled={loading || !validForm}
+          >
             {!loading ? (
               'Login'
             ) : (

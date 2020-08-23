@@ -7,7 +7,7 @@ import login from './login';
 const rootReducer = combineReducers({
   darkMode: displayModeReducer,
   signup,
-  login,
+  authLogin: login,
 });
 
 export default rootReducer;

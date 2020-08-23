@@ -12,7 +12,7 @@ const signup = (userData) => async (dispatch) => {
     dispatch({ type: SIGN_UP.SUCCESS, payload });
     dispatch({ type: SIGN_UP.STATUS, payload: status });
     return { payload, status };
-  } catch (error) {
+  } catch ({ response: { data: error } }) {
     throw error;
   }
 };

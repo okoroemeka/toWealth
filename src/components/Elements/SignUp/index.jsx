@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { navigate } from '@reach/router';
+import { navigate, Redirect } from '@reach/router';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Error from '../../Reusable/Error';
@@ -12,7 +12,6 @@ import {
   validateFullName,
 } from '../../../utils/Validation';
 import './index.scss';
-import { useEffect } from 'react';
 
 const Signup = (props) => {
   const [fullName, setFullName] = useState('');
@@ -28,6 +27,7 @@ const Signup = (props) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const dispatch = useDispatch();
+  const authLogin = useSelector((store) => store.authLogin);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -36,9 +36,10 @@ const Signup = (props) => {
       await dispatch(signup({ fullname: fullName.trim(), email, password }));
       setLoading(false);
       navigate('/dashboard/dashboard');
-    } catch (error) {
+    } catch ({ message }) {
+      console.log('res', message);
       setLoading(false);
-      setErrorMessage('an error occured');
+      setErrorMessage(message);
     }
   };
 
@@ -53,6 +54,9 @@ const Signup = (props) => {
       setValidForm(false);
     }
   }, [email, fullName, password]);
+
+  if (authLogin.isLoggedIn)
+    return <Redirect noThrow to='/dashboard/dashboard' />;
 
   return (
     <div className='signup__form__wrapper'>

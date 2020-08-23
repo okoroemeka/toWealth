@@ -5,6 +5,7 @@ function login(state = {}, { type, payload }) {
     return {
       ...state,
       data: payload,
+      isLoggedIn: true,
     };
   }
   if (type == LOGIN.STATUS) {
