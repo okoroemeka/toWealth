@@ -12,7 +12,7 @@ import sun from '../../../../assets/images/sun.svg';
 import Line from '../../../UI/Line';
 import './DropNavItem.scss';
 
-const DropNavItem = ({ handleDarkMode, handleLightMode }) => {
+const DropNavItem = ({ handleDarkMode, handleLightMode, handleLogout }) => {
   const { darkMode } = useSelector((state) => state.darkMode);
   return (
     <Fragment>
@@ -26,7 +26,7 @@ const DropNavItem = ({ handleDarkMode, handleLightMode }) => {
         <ul className='nav__item'>
           <li className='items__wrapper'>
             <Profile fill='#66788a' />
-            <h5>Profile</h5>
+            <h5>Edit profile</h5>
           </li>
           {!darkMode ? (
             <li className='items__wrapper' onClick={handleDarkMode}>
@@ -55,7 +55,7 @@ const DropNavItem = ({ handleDarkMode, handleLightMode }) => {
             />
             <h5 className='terms__text'>Terms of use</h5>
           </li>
-          <li className='items__wrapper'>
+          <li className='items__wrapper' onClick={handleLogout}>
             <LogoutIcon fill='#66788a' />
             <h5>Logout</h5>
           </li>

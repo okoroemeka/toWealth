@@ -10,6 +10,8 @@ import './auth.scss';
 
 const Auth = () => {
   const [activeAuth, setActiveAuth] = React.useState(false);
+
+  const toggleAuth = () => setActiveAuth(!activeAuth);
   return (
     <div className='row auth__custom__container'>
       <div className='col-sm-12 col-l-12 auth__custom'>
@@ -23,13 +25,13 @@ const Auth = () => {
               <div className='card__header'>
                 <div
                   className={`register ${activeAuth ? 'active__auth' : ''}`}
-                  onClick={() => setActiveAuth(true)}
+                  onClick={toggleAuth}
                 >
                   <h5>Register</h5>
                 </div>
                 <div
                   className={`login ${!activeAuth ? 'active__auth' : ''}`}
-                  onClick={() => setActiveAuth(false)}
+                  onClick={toggleAuth}
                 >
                   <h5>Login</h5>
                 </div>
@@ -57,7 +59,11 @@ const Auth = () => {
                 <h4 className='or'>OR</h4>
                 <div className='hr' />
               </div>
-              {!activeAuth ? <Login /> : <SignUp />}
+              {!activeAuth ? (
+                <Login toggleAuth={toggleAuth} />
+              ) : (
+                <SignUp toggleAuth={toggleAuth} />
+              )}
             </Card>
           </div>
         </div>

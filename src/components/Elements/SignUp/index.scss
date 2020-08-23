@@ -54,4 +54,22 @@
       }
     }
   }
+  .account__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    h5 {
+      font-size: 0.7rem;
+      font-weight: normal;
+      margin: 0;
+    }
+    .account__text {
+      margin-right: 0.3rem;
+    }
+    .account__signup {
+      color: $primary;
+      cursor: pointer;
+    }
+  }
 }
