@@ -5,7 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Error from '../../Reusable/Error';
 import eyeIcon from '../../../assets/images/eye.svg';
-import signup from '../../../store/actions/signup';
+import userSignup from '../../../store/actions/signup';
 import {
   emailValidator,
   passwordValidator,
@@ -32,7 +32,9 @@ const Signup = ({ toggleAuth }) => {
     e.preventDefault();
     try {
       setLoading(true);
-      await dispatch(signup({ fullname: fullName.trim(), email, password }));
+      await dispatch(
+        userSignup({ fullname: fullName.trim(), email, password })
+      );
       setLoading(false);
       navigate('/dashboard/dashboard');
     } catch ({ message }) {
