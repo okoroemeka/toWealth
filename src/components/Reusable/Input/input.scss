@@ -1,0 +1,19 @@
+@import '../../../styles/commons.scss';
+
+.input__wrapper {
+  margin: 0.8rem 0;
+  label {
+    color: $facebookBlue;
+    font-size: 0.9rem;
+  }
+  input {
+    color: $gray;
+    width: 100%;
+    height: 2rem;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 1px solid $gray;
+    border-radius: 3px;
+    outline: none;
+  }
+}

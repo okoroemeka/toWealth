@@ -1,0 +1,135 @@
+@import '../../../../styles/commons.scss';
+
+.edit__profile {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 3rem 2rem;
+  .profile__image__area {
+    width: 100%;
+    height: 19.5624rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(
+      150.66% 100% at 50% 53.82%,
+      #eeeeee 0%,
+      #a49d9d 100%
+    );
+    position: relative;
+    border-radius: 1.25rem;
+    .image__input {
+      position: absolute;
+      top: 1rem;
+      left: 54%;
+      transform: translate(55%, 1rem);
+      .file__input {
+        display: none;
+      }
+      .image__label {
+        height: auto;
+        position: relative;
+        cursor: pointer;
+        .image {
+          width: 2rem;
+        }
+        .shadow {
+          width: 1.4rem;
+          height: 0.27rem;
+          border-radius: 5px;
+          background: $lightGray;
+          position: absolute;
+          top: 0.55rem;
+          left: 0.4rem;
+        }
+      }
+    }
+    .image__container {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      background: white;
+      overflow: hidden;
+      .user__averta {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .user__details__area {
+      margin-top: 1rem;
+      text-align: center;
+      h6 {
+        margin: 0;
+      }
+      .user__name {
+        font-size: 1rem;
+        text-transform: capitalize;
+      }
+      .user__position {
+        color: #15420e;
+      }
+    }
+  }
+  .user__settings__area {
+    width: 100%;
+    display: flex;
+    padding: 3rem 1rem;
+    .user__nav__settings {
+      .settings__nav__item {
+        display: flex;
+        .edit__label__profile {
+          position: relative;
+          cursor: pointer;
+          .image {
+            width: 1.8rem;
+          }
+          .shadow {
+            width: 1.2rem;
+            height: 0.27rem;
+            border-radius: 5px;
+            background: $lightGray;
+            position: absolute;
+            top: 1.5rem;
+            left: 0.4rem;
+          }
+        }
+        .edit__profile__password,
+        .edit__profile__text {
+          margin-top: 0.3rem;
+          margin-right: 0;
+          cursor: pointer;
+        }
+        .edit__profile__text {
+          margin-top: 0.8rem;
+          margin-left: 0.7rem;
+        }
+        .edit__profile__password {
+          margin-left: 1.2rem;
+        }
+      }
+    }
+    .form__wrapper {
+      width: 75%;
+      min-height: 200px;
+      padding: 2rem 1.5rem;
+      background: #ffffff;
+      box-shadow: 0px 0px 13px 1px rgba(63, 63, 68, 0.24),
+        0px 1px 3px rgba(63, 63, 68, 0.15);
+      border-radius: 46px;
+      form {
+        width: 100%;
+        .update__profile {
+          color: $white;
+          padding: 0.9rem 2.2rem;
+          margin: 1rem 0;
+          border: none;
+          border-radius: 1rem;
+          background: $primary;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
