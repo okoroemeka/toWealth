@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
+import { navigate } from '@reach/router';
 
 import Profile from '../../../UI/Icons/Profile';
 import LogoutIcon from '../../../UI/Icons/LogoutIcon';
@@ -24,7 +25,10 @@ const DropNavItem = ({ handleDarkMode, handleLightMode, handleLogout }) => {
           <h5>My Account</h5>
         </div>
         <ul className='nav__item'>
-          <li className='items__wrapper'>
+          <li
+            className='items__wrapper'
+            onClick={() => navigate('/dashboard/settings')}
+          >
             <Profile fill='#66788a' />
             <h5>Edit profile</h5>
           </li>
