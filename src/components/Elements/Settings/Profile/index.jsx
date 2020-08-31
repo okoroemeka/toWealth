@@ -51,16 +51,30 @@ const Profile = (props) => {
                 <img src={editIcon} alt='edit icon' className='image' />
                 <div className='shadow'></div>
               </div>
-              <h5 className='edit__profile__text'>Edit Profile</h5>
+              <h5
+                className='edit__profile__text'
+                style={{
+                  color: !isEditProfile ? '#66788A' : null,
+                }}
+              >
+                Edit Profile
+              </h5>
             </div>
             <div
               className='settings__nav__item'
-              onClick={() => toggleChangePassword(!isEditProfile)}
+              onClick={() => toggleChangePassword()}
             >
               <div className='edit__label__profile'>
                 <img src={lock} alt='edit icon' className='password__icon' />
               </div>
-              <h5 className='edit__profile__password'>Password</h5>
+              <h5
+                className='edit__profile__password'
+                style={{
+                  color: !isChangePassword ? '#66788A' : null,
+                }}
+              >
+                Password
+              </h5>
             </div>
           </div>
           <div className='col-l-7 form__area'>

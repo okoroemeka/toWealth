@@ -7,6 +7,7 @@ const Input = ({ inputType, title, handleChange = () => null }) => {
       <label htmlFor={title}>
         {title}
         <input
+          className='input__profile'
           type={inputType}
           name={title?.toLowerCase()}
           onChange={handleChange}
