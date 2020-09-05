@@ -27,7 +27,7 @@ const DropNavItem = ({ handleDarkMode, handleLightMode, handleLogout }) => {
         <ul className='nav__item'>
           <li
             className='items__wrapper'
-            onClick={() => navigate('/dashboard/settings')}
+            onClick={() => navigate('/dashboard/profile')}
           >
             <Profile fill='#66788a' />
             <h5>Edit profile</h5>
@@ -43,7 +43,11 @@ const DropNavItem = ({ handleDarkMode, handleLightMode, handleLogout }) => {
               <h5>Disable dark mode</h5>
             </li>
           )}
-          <li className='items__wrapper'>
+
+          <li
+            className='items__wrapper'
+            onClick={() => navigate('/dashboard/settings')}
+          >
             <SettingIcon fill='#66788a' />
             <h5>Settings</h5>
           </li>

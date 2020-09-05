@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import editIcon from '../../../../assets/images/editIcon.svg';
 import lock from '../../../../assets/images/Lock.svg';
 import user from '../../../../assets/images/black.jpg';
-import EditProfile from './EditProfile';
+import EditProfile from './EditProifle';
 import ChangePassword from './ChangePassword/ChangePassword';
 
 import './profile.scss';

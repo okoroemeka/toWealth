@@ -1,7 +1,8 @@
 import React from 'react';
 import './input.scss';
 
-const Input = ({ inputType, title, value, handleChange = () => null }) => {
+const Input = (props) => {
+  const { inputType, title, value, handleChange = () => null } = props;
   return (
     <div className='input__wrapper'>
       <label htmlFor={title}>
@@ -12,6 +13,7 @@ const Input = ({ inputType, title, value, handleChange = () => null }) => {
           value={value}
           name={title?.toLowerCase()}
           onChange={handleChange}
+          min={inputType == 'number' ? 0 : ''}
         />
       </label>
     </div>

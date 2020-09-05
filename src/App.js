@@ -10,6 +10,7 @@ import Savings from './components/Elements/Dashboard/Savings';
 import Transactions from './components/Elements/Dashboard/Transactions';
 import Networth from './components/Elements/Dashboard/Networth';
 import Profile from './components/Elements/Settings/Profile';
+import GeneralSettings from './components/Elements/Settings/GeneralSettings';
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
           <Savings path='savings' />
           <Transactions path='transaction' />
           <Networth path='/networth' />
-          <Profile path='/settings' />
+          <Profile path='/profile' />
+          <GeneralSettings path='/settings' />
         </Dashboard>
       </Router>
     </div>

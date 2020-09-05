@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Line = ({ className, width, borderColor }) => {
+const Line = ({ className = '', width, borderColor }) => {
   return (
     <div
       className={className}

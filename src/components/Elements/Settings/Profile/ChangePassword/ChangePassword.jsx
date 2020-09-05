@@ -5,7 +5,7 @@ import Input from '../../../../Reusable/Input';
 import eyeIcon from '../../../../../assets/images/eye.svg';
 import './changepassword.scss';
 
-const ChangePassword = ({ handleSubmit }) => {
+const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -29,7 +29,9 @@ const ChangePassword = ({ handleSubmit }) => {
       setShowConfirmNewPassword(!showNewConfirmPassword);
     }
   };
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
   return (
     <>
       <form onSubmit={handleSubmit}>
