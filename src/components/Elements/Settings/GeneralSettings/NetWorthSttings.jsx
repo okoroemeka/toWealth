@@ -6,8 +6,13 @@ import Input from '../../../Reusable/Input';
 const NetworthSettings = (props) => {
   const [interest, setInterest] = useState(5);
   const [monthlyIncome, setMonthlyIncome] = useState(0);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className='form__item'>
         <Input
           value={interest}
