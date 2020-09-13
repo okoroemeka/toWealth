@@ -1,0 +1,54 @@
+@import '../../../styles/commons.scss';
+
+.color__tool {
+  width: 100%;
+  display: flex;
+  margin-top: 1.9rem;
+  .color__bar,
+  .color__icon {
+    width: 50%;
+    padding: 0 1.8rem;
+    h4 {
+      color: $secondaryBlue;
+      font-weight: normal;
+      font-size: 0.8rem;
+      margin: 0px;
+    }
+    .color__area,
+    .icon {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+      .color__bar__item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 0.8rem;
+        position: relative;
+        cursor: pointer;
+        .bar__icon {
+          width: 0.8rem;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        .mark {
+          width: 0.8rem;
+        }
+      }
+      .others__button {
+        width: auto;
+        padding: 0rem 0.7rem;
+        border-radius: 12px;
+        .others__text {
+          color: $white;
+          font-size: 0.7rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

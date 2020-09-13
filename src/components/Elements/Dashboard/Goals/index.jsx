@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 
 import Card from '../../../UI/Card';
 import plusIcon from '../../../../assets/images/plus.svg';
-import caratIcon from '../../../../assets/images/carat.svg';
 import GoalCard from '../../../UI/GoalCard';
 import Modal from '../../../Reusable/Modal/Modal';
-import EditCard from '../EditCard';
+import GoalForm from '../GoalForm';
 import ViewGoal from '../ViewGoal';
+import ActiveGoalDropDown from './ActiveGoalDropDown';
 
 import './Goals.scss';
 
@@ -62,36 +62,22 @@ const Goals = (props) => {
     <React.Fragment>
       <div className='row body'>
         <div className='col-l-12 dropdown__navigation__area'>
-          <div className='dropdown__container'>
-            <button
-              type='button'
-              onClick={() => setShowDropdown(!showDropdown)}
-            >
-              {currentItem[0]}
-              <img src={caratIcon} alt='carat' className='carat__icon' />
-            </button>
-            <ul
-              className={`dropdown__items ${
-                showDropdown ? 'toggle__dropdown' : null
-              }`}
-            >
-              {currentItem.map((item, index) => {
-                if (item != currentItem[0]) {
-                  return (
-                    <li key={index} onClick={(e) => handleOnchange(e)}>
-                      {item}
-                    </li>
-                  );
-                }
-              })}
-            </ul>
-          </div>
+          <ActiveGoalDropDown
+            currentItem={currentItem}
+            handleShowDropDown={() => setShowDropdown(!showDropdown)}
+            handleSelectItem={handleOnchange}
+            showDropdown={showDropdown}
+          />
         </div>
         <div className='row main__content__area'>
           <Card
             classname={`add__goals__card ${darkMode && 'card__dark__mode'}`}
           >
-            <button type='submit' className='add__goal__button'>
+            <button
+              type='submit'
+              className='add__goal__button'
+              onClick={() => handleSelectModalContent('addGoal')}
+            >
               <img src={plusIcon} alt='plus icon' className='plus__icon' />
               <h5
                 className={`add__newgoal__text ${darkMode && 'darkmode__text'}`}
@@ -123,10 +109,18 @@ const Goals = (props) => {
       {displayModal && (
         <Modal>
           {clickedIconName == 'edit' ? (
-            <EditCard
+            <GoalForm
               handleCancel={() => setDispalyModal(!displayModal)}
               cardRef={editCardRef}
               handleBlur={toggleModal}
+              formTitle='Edit Goal'
+            />
+          ) : clickedIconName == 'addGoal' ? (
+            <GoalForm
+              handleCancel={() => setDispalyModal(!displayModal)}
+              cardRef={editCardRef}
+              handleBlur={toggleModal}
+              formTitle='Add Goal'
             />
           ) : (
             <ViewGoal
