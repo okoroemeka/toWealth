@@ -12,7 +12,7 @@ import staticData from '../../../../utils/data/staticData';
 import CardHeader from '../../../UI/CardHeader';
 import Input from '../../../Reusable/GoalInput/Input';
 import ColorTool from '../../../Reusable/ColorTool';
-import goal from '../../../../store/actions/goal';
+import { goal } from '../../../../store/actions/goal';
 import './editCard.scss';
 
 const { colors: colorsInitialState } = staticData;
@@ -73,6 +73,8 @@ const EditCard = ({
   handleBlur,
   formTitle,
   handleSubmit,
+  toggleModal,
+  goalActivityToggler,
 }) => {
   const [colorsState, dispatchUpdateColorState] = useReducer(
     chooseColorReducer,
@@ -115,11 +117,12 @@ const EditCard = ({
           color: chosedColor || '#b620e0',
         })
       );
+      goalActivityToggler(true);
       setLoading(false);
+      toggleModal();
     } catch ({ message }) {
       setLoading(false);
       setErr(message);
-      console.log('message==>>', message);
     }
   };
 

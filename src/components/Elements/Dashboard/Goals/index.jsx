@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Card from '../../../UI/Card';
 import plusIcon from '../../../../assets/images/plus.svg';
@@ -8,10 +8,12 @@ import Modal from '../../../Reusable/Modal/Modal';
 import GoalForm from '../GoalForm';
 import ViewGoal from '../ViewGoal';
 import ActiveGoalDropDown from './ActiveGoalDropDown';
+import { getAllGoal } from '../../../../store/actions/goal';
 
 import './Goals.scss';
 
 const Goals = (props) => {
+  const [goals, setGoals] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [currentItem, setCurrentItem] = useState([
     'ACTIVE GOALS',
@@ -20,9 +22,13 @@ const Goals = (props) => {
   ]);
   const [displayModal, setDispalyModal] = useState(false);
   const [clickedIconName, setClickedIconName] = useState('');
+  const [goalActivity, setGoalActivity] = useState(false);
   const { darkMode } = useSelector((state) => state.darkMode);
   const editCardRef = useRef(null);
 
+  const dispatch = useDispatch();
+
+  console.log('store', goals);
   /**
    * Handles select goal
    * @param {object} e
@@ -58,6 +64,17 @@ const Goals = (props) => {
     }
   }, [displayModal]);
 
+  useEffect(() => {
+    async function fetchGoals() {
+      const userGoals = await dispatch(getAllGoal());
+      setGoals(userGoals);
+    }
+    fetchGoals();
+    if (goalActivity) {
+      setGoalActivity(false);
+    }
+  }, [dispatch, goalActivity]);
+
   return (
     <React.Fragment>
       <div className='row body'>
@@ -86,24 +103,21 @@ const Goals = (props) => {
               </h5>
             </button>
           </Card>
-          <GoalCard
-            goal='New Car'
-            deadLine='Sep 30, 2020'
-            rate='4.00%'
-            progress='5%'
-            targetFraction='$200,000.00/$500,000.00'
-            isDarkMode={darkMode}
-            toggleModal={handleSelectModalContent}
-          />
-          <GoalCard
-            goal='New Car'
-            deadLine='Sep 30, 2020'
-            rate='4.00%'
-            progress='5%'
-            targetFraction='$200,000.00/$500,000.00'
-            isDarkMode={darkMode}
-            toggleModal={toggleModal}
-          />
+          {Boolean(goals)
+            ? goals
+                .slice(0, 5)
+                .map((goal) => (
+                  <GoalCard
+                    goal={goal.goalName}
+                    deadLine={goal.timeline}
+                    rate={`${goal.completionRate}%`}
+                    progress={`${goal.completionRate}%`}
+                    targetFraction={`$${goal.totalSaved}/$${goal.goalValue}`}
+                    isDarkMode={darkMode}
+                    toggleModal={handleSelectModalContent}
+                  />
+                ))
+            : null}
         </div>
       </div>
       {displayModal && (
@@ -114,6 +128,8 @@ const Goals = (props) => {
               cardRef={editCardRef}
               handleBlur={toggleModal}
               formTitle='Edit Goal'
+              toggleModal={toggleModal}
+              goalActivityToggler={setGoalActivity}
             />
           ) : clickedIconName == 'addGoal' ? (
             <GoalForm
@@ -121,6 +137,8 @@ const Goals = (props) => {
               cardRef={editCardRef}
               handleBlur={toggleModal}
               formTitle='Add Goal'
+              toggleModal={toggleModal}
+              goalActivityToggler={setGoalActivity}
             />
           ) : (
             <ViewGoal

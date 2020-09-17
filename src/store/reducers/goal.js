@@ -7,11 +7,6 @@ function createGoal(state = {}, { type, payload }) {
         ...state,
         data: payload,
       };
-    //   case CREATE_GOAL.ERROR:
-    //       return {
-    //           ...state,
-    //           data:
-    //       }
     default:
       return state;
   }
