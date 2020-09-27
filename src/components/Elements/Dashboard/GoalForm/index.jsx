@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import goalIcon from '../../../../assets/images/chat.svg';
@@ -13,6 +14,13 @@ import CardHeader from '../../../UI/CardHeader';
 import Input from '../../../Reusable/GoalInput/Input';
 import ColorTool from '../../../Reusable/ColorTool';
 import { goal } from '../../../../store/actions/goal';
+import axios from '../../../../utils/axios';
+
+import {
+  chooseColorReducer,
+  formReducer,
+  goalTypes,
+} from '../../../../helper/Reducers/goal';
 import './editCard.scss';
 
 const { colors: colorsInitialState } = staticData;
@@ -26,75 +34,46 @@ const initialGoalState = {
   timeline: '',
 };
 
-const goalTypes = {
-  addGoal: 'ADD__GOAL__INPUT',
-  editGoal: 'EDIT__GOAL__INPUT',
-  selectColor: 'SELECT__COLOR',
-};
-
-function chooseColorReducer(state = [], { type, payload }) {
-  switch (type) {
-    case goalTypes.selectColor:
-      return state.map((colorItem) => {
-        if (colorItem.colorId == payload.colorId) {
-          colorItem.active = true;
-        } else {
-          colorItem.active = false;
-        }
-        return colorItem;
-      });
-    default:
-      return state;
-  }
-}
-
-function formReducer(state = {}, { type, payload }) {
-  switch (type) {
-    case goalTypes.addGoal:
-      return {
-        ...state,
-        [payload.name]: payload.value,
-      };
-
-    case goalTypes.editGoal:
-      return {
-        ...state,
-        [payload.name]: payload.value,
-      };
-
-    default:
-      return state;
-  }
-}
-
-const EditCard = ({
+const GoalForm = ({
+  edit,
+  itemId = null,
   handleCancel,
   cardRef,
   handleBlur,
   formTitle,
-  handleSubmit,
   toggleModal,
   goalActivityToggler,
+  initialStateAsProps = initialGoalState,
 }) => {
   const [colorsState, dispatchUpdateColorState] = useReducer(
     chooseColorReducer,
     colorsInitialState
   );
+
   const [goalFormParameters, dispatchAddGoal] = useReducer(
     formReducer,
-    initialGoalState
+    initialStateAsProps
   );
+
   const [chosedColor, setChosedColor] = useState('');
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState('');
 
   const dispatch = useDispatch();
 
+  /**
+   * @returns {function} call
+   * @param {object} data
+   */
   const handleSelectColor = (data) => {
     setChosedColor(data.payload.color);
     return dispatchUpdateColorState(data);
   };
 
+  /**
+   * @returns {function} call
+   * @param {object} e
+   */
   const handleChange = (e) => {
     const { name, value } = e.target;
     return dispatchAddGoal({
@@ -106,7 +85,11 @@ const EditCard = ({
     });
   };
 
-  handleSubmit = async (e) => {
+  /**
+   * @returns {function} call
+   * @param {object} e
+   */
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErr(null);
     try {
@@ -126,11 +109,28 @@ const EditCard = ({
     }
   };
 
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    setErr(null);
+    try {
+      setLoading(true);
+      await axios.patch(`/goal/${itemId}`, goalFormParameters);
+      goalActivityToggler(true);
+      setLoading(false);
+      toggleModal();
+      toast.success('Goal edited successfully');
+    } catch ({ message }) {
+      setLoading(false);
+      setErr(message);
+    }
+  };
+
   return (
     <Card classname='col-sm-12 col-l-4 edit__goal__card'>
       <div ref={cardRef} className='card__content' onBlur={() => null}>
         <CardHeader handleCancel={handleCancel} cardTitle={formTitle} />
-        <form onSubmit={handleSubmit}>
+
+        <form onSubmit={!edit ? handleSubmit : handleEditSubmit}>
           <fieldset className='fieldset' disabled={false}>
             <div className='wrap__input'>
               <Input
@@ -142,6 +142,7 @@ const EditCard = ({
                 inputName='goalName'
                 inputValue={goalFormParameters.goalName}
                 handleChange={handleChange}
+                required
               />
               <Input
                 labelTitle='goal value'
@@ -152,6 +153,7 @@ const EditCard = ({
                 inputName='goalValue'
                 inputValue={goalFormParameters.goalValue}
                 handleChange={handleChange}
+                required
               />
             </div>
             <div className='wrap__input'>
@@ -164,6 +166,7 @@ const EditCard = ({
                 inputName='totalSaved'
                 inputValue={goalFormParameters.totalSaved}
                 handleChange={handleChange}
+                required
               />
               <Input
                 labelTitle='timeline'
@@ -174,6 +177,7 @@ const EditCard = ({
                 inputName='timeline'
                 inputValue={goalFormParameters.timeline}
                 handleChange={handleChange}
+                required
               />
             </div>
             <div className='wrap__input'>
@@ -188,6 +192,7 @@ const EditCard = ({
                 inputWrapperClassName='input__wrapper__description'
                 inputValue={goalFormParameters.description}
                 handleChange={handleChange}
+                required
               />
             </div>
           </fieldset>
@@ -210,4 +215,4 @@ const EditCard = ({
   );
 };
 
-export default EditCard;
+export default GoalForm;

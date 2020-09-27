@@ -3,6 +3,7 @@
 .body {
   height: 100%;
   background-color: transparent;
+
   .dropdown__navigation__area {
     height: 12rem;
     padding: 4rem 2rem;
@@ -24,6 +25,7 @@
         box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2),
           0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14);
         outline: none;
+
         .carat__icon {
           width: 1rem;
           margin-left: auto;
@@ -41,12 +43,14 @@
         border-bottom-right-radius: 10px;
         list-style-type: none;
         background-color: $white;
+
         li {
           font-size: 0.8rem;
           margin: 0.5rem 0;
           cursor: pointer;
         }
       }
+
       .toggle__dropdown {
         display: block;
       }
@@ -56,6 +60,7 @@
     height: 100%;
     padding: 1rem 2rem;
     justify-content: space-between;
+
     .add__goals__card {
       display: flex;
       width: 32.33%;
@@ -65,12 +70,14 @@
       margin-bottom: 1rem;
       background: $white;
       box-shadow: $cardBoxShadow;
+
       .add__goal__button {
         margin: auto;
         border: none;
         background-color: transparent;
         outline: none;
         cursor: pointer;
+
         .plus__icon {
           width: 1.5rem;
         }
@@ -84,6 +91,7 @@
         letter-spacing: -0.06px;
         color: $cardFontColor;
       }
+
       .darkmode__text {
         color: $white;
       }
@@ -99,15 +107,18 @@
       border-radius: 13px;
       background: $white;
       box-shadow: $cardBoxShadow;
+
       .goals__container {
         height: 4rem;
         align-items: center;
+
         .color__box {
           width: 4rem;
           height: 4rem;
           border-radius: 2rem;
           background-color: $brandViolet;
         }
+
         .goal {
           font-family: $brandFontFamily;
           font-style: normal;
@@ -118,6 +129,7 @@
           margin: 0;
           margin-left: 1rem;
         }
+
         .darkmode__goal__text {
           color: $white;
         }
@@ -125,6 +137,7 @@
       .goal__details__wrapper {
         height: 2.3rem;
         justify-content: space-between;
+
         .goal__deadline {
           h6 {
             color: #66788a;
@@ -136,11 +149,13 @@
             margin: 0;
           }
         }
+
         .goal__deadline__dark {
           h6 {
             color: $white;
           }
         }
+
         .rate {
           h4 {
             text-align: right;
@@ -152,6 +167,7 @@
             letter-spacing: -0.06px;
             color: #212529;
           }
+
           .darkmode__rate__text {
             color: $white;
           }
@@ -163,6 +179,7 @@
         background-color: #e4e7eb;
         border-radius: 0.4rem;
         position: relative;
+
         .progress {
           height: 100%;
           border-radius: 0.4rem;
@@ -173,12 +190,15 @@
         }
       }
     }
+
     .card__dark__mode {
       background-color: $darkModeCardColor;
     }
+
     .target__fraction {
       width: 100%;
       height: 1.5rem;
+
       h5 {
         color: $black;
         margin: 0;
@@ -189,27 +209,33 @@
         font-size: $normalFontSize;
         text-align: right;
       }
+
       .target__fraction__dark {
         color: $white;
       }
     }
+
     .line__goal {
       width: 100%;
       height: 0.1rem;
       background-color: #edeff2;
     }
+
     .actions__container {
       width: 100%;
       flex-grow: 1;
+
       .icons__wrapper {
         display: flex;
         justify-content: space-between;
         width: 40%;
         margin-left: auto;
+
         .icon {
           width: 0.9rem;
           cursor: pointer;
         }
+
         .pause-icon {
           width: 0.7rem;
         }

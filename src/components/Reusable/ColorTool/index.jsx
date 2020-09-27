@@ -5,6 +5,7 @@ import jet from '../../../assets/images/jet.svg';
 import computer from '../../../assets/images/computer.svg';
 import tick from '../../../assets/images/tick1.svg';
 import ColorBar from '../../UI/ColorBar';
+import { goalTypes } from '../../../helper/Reducers/goal';
 import './colorTool.scss';
 
 const ColorTool = ({ colorsState = [], handleSelectColor = () => null }) => {
@@ -19,7 +20,7 @@ const ColorTool = ({ colorsState = [], handleSelectColor = () => null }) => {
               color={color}
               handleClick={() =>
                 handleSelectColor({
-                  type: 'SELECT__COLOR',
+                  type: goalTypes.selectColor,
                   payload: { colorId, color },
                 })
               }
