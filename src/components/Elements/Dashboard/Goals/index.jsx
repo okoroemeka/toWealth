@@ -9,6 +9,7 @@ import GoalForm from '../GoalForm';
 import ViewGoal from '../ViewGoal';
 import ActiveGoalDropDown from './ActiveGoalDropDown';
 import { getAllGoal } from '../../../../store/actions/goal';
+import GetGoal from '../../../hooks/GetGoal';
 
 import './Goals.scss';
 
@@ -24,11 +25,12 @@ const Goals = (props) => {
   const [clickedIconName, setClickedIconName] = useState('');
   const [goalActivity, setGoalActivity] = useState(false);
   const { darkMode } = useSelector((state) => state.darkMode);
+  const [goalId, setGoalId] = useState(null);
+  const [selectedGoal, setSelectedGoal] = useState({});
   const editCardRef = useRef(null);
 
   const dispatch = useDispatch();
 
-  console.log('store', goals);
   /**
    * Handles select goal
    * @param {object} e
@@ -46,8 +48,11 @@ const Goals = (props) => {
    * Handles which modal content to display
    * @param {string} iconName
    */
-  const handleSelectModalContent = (iconName) => {
+  const handleSelectModalContent = (iconName, goalIdParam) => {
     setClickedIconName(iconName);
+    if (goalIdParam && !Number.isNaN(goalIdParam)) {
+      setGoalId(goalIdParam);
+    }
     return toggleModal();
   };
 
@@ -108,6 +113,7 @@ const Goals = (props) => {
                 .slice(0, 5)
                 .map((goal) => (
                   <GoalCard
+                    id={goal.id}
                     goal={goal.goalName}
                     deadLine={goal.timeline}
                     rate={`${goal.completionRate}%`}
@@ -123,14 +129,29 @@ const Goals = (props) => {
       {displayModal && (
         <Modal>
           {clickedIconName == 'edit' ? (
-            <GoalForm
-              handleCancel={() => setDispalyModal(!displayModal)}
-              cardRef={editCardRef}
-              handleBlur={toggleModal}
-              formTitle='Edit Goal'
-              toggleModal={toggleModal}
-              goalActivityToggler={setGoalActivity}
-            />
+            <GetGoal itemId={goalId} url='/goal/'>
+              {(err, loading, item) => {
+                if (err) {
+                  return 'An error occured';
+                }
+                if (loading) {
+                  return 'loading...';
+                }
+                return (
+                  <GoalForm
+                    edit
+                    itemId={goalId}
+                    handleCancel={() => setDispalyModal(!displayModal)}
+                    cardRef={editCardRef}
+                    handleBlur={toggleModal}
+                    formTitle='Edit Goal'
+                    toggleModal={toggleModal}
+                    goalActivityToggler={setGoalActivity}
+                    initialStateAsProps={item}
+                  />
+                );
+              }}
+            </GetGoal>
           ) : clickedIconName == 'addGoal' ? (
             <GoalForm
               handleCancel={() => setDispalyModal(!displayModal)}

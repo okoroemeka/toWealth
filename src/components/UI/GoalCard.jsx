@@ -9,6 +9,7 @@ import penIcon from '../../assets/images/penIcon.svg';
 import { darkMode } from '../../store/actions/displayMode';
 
 const GaolCard = ({
+  id,
   goal,
   deadLine,
   rate,
@@ -16,11 +17,17 @@ const GaolCard = ({
   targetFraction,
   isDarkMode,
   toggleModal,
+  colorBoxBackground = '#b620e0',
 }) => {
   return (
     <Card classname={`goal__card ${isDarkMode ? 'card__dark__mode' : ''}`}>
       <div className='row goals__container'>
-        <div className='color__box'></div>
+        <div
+          className='color__box'
+          style={{
+            backgroundColor: colorBoxBackground,
+          }}
+        ></div>
         <h5 className={`goal ${isDarkMode && 'darkmode__goal__text'}`}>
           {goal}
         </h5>
@@ -61,7 +68,7 @@ const GaolCard = ({
             src={penIcon}
             alt='edit'
             className='icon'
-            onClick={() => toggleModal('edit')}
+            onClick={() => toggleModal('edit', id)}
           />
           <img src={markIcon} alt='mark' className='icon' />
           <img src={deleteIcon} alt='delete' className='icon' />
@@ -69,7 +76,7 @@ const GaolCard = ({
             src={moreIcon}
             alt='more'
             className='icon'
-            onClick={() => toggleModal('more')}
+            onClick={() => toggleModal('more', id)}
           />
         </div>
       </div>

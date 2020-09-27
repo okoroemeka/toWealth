@@ -13,6 +13,7 @@ const Input = ({
   labelClassName = '',
   inputWrapperClassName = '',
   inputValue = '',
+  required,
 }) => {
   return (
     <label
@@ -31,6 +32,7 @@ const Input = ({
           onChange={handleChange}
           value={inputValue}
           min='0'
+          required={required}
         />
       </div>
     </label>
