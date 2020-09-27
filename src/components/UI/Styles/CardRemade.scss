@@ -1,0 +1,47 @@
+@import '../.../../../../styles/commons.scss';
+
+.card__remade {
+  display: flex;
+  flex-direction: column;
+  min-height: 15rem;
+  border-radius: $cardBorderRadius;
+  background-color: $white;
+  padding-bottom: 1.3rem;
+  position: relative;
+
+  .card__title {
+    display: flex;
+    width: 100%;
+    min-height: 4rem;
+    color: $lightGray;
+    font-size: 1.2rem;
+    font-weight: normal;
+    text-transform: capitalize;
+    margin: 0;
+    align-items: center;
+    padding-left: 0.5rem;
+    border-bottom: 1px solid $inputBorderColor;
+  }
+  .card__body {
+    width: 100%;
+    min-height: 7rem;
+    text-align: left;
+    padding: 0.5rem;
+    padding-bottom: 1.3rem;
+    margin: 0;
+  }
+  .actions__container {
+    display: flex;
+    width: 100%;
+    padding-right: 1rem;
+    // background-color: ;
+  }
+  .cancle__button {
+    color: $lightGray;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+}

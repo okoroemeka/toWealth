@@ -15,6 +15,7 @@ const GaolCard = ({
   rate,
   progress,
   targetFraction,
+  handleDeleteGoal = () => null,
   isDarkMode,
   toggleModal,
   colorBoxBackground = '#b620e0',
@@ -71,7 +72,12 @@ const GaolCard = ({
             onClick={() => toggleModal('edit', id)}
           />
           <img src={markIcon} alt='mark' className='icon' />
-          <img src={deleteIcon} alt='delete' className='icon' />
+          <img
+            src={deleteIcon}
+            alt='delete'
+            className='icon'
+            onClick={() => toggleModal('delete', id)}
+          />
           <img
             src={moreIcon}
             alt='more'

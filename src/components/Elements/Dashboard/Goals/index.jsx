@@ -10,8 +10,11 @@ import ViewGoal from '../ViewGoal';
 import ActiveGoalDropDown from './ActiveGoalDropDown';
 import { getAllGoal } from '../../../../store/actions/goal';
 import GetGoal from '../../../hooks/GetGoal';
-
+import axios from '../../../../utils/axios';
+import { toast } from 'react-toastify';
 import './Goals.scss';
+import CardRemade from '../../../UI/CardRemade';
+import UtilButton from '../../../UI/UtilButton';
 
 const Goals = (props) => {
   const [goals, setGoals] = useState([]);
@@ -27,7 +30,8 @@ const Goals = (props) => {
   const { darkMode } = useSelector((state) => state.darkMode);
   const [goalId, setGoalId] = useState(null);
   const [selectedGoal, setSelectedGoal] = useState({});
-  const editCardRef = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState('');
 
   const dispatch = useDispatch();
 
@@ -62,12 +66,92 @@ const Goals = (props) => {
   const toggleModal = () => {
     return setDispalyModal(!displayModal);
   };
-
-  useEffect(() => {
-    if (displayModal) {
-      editCardRef.current.focus();
+  /**
+   * Handles deleting of goal
+   * @param {number} id
+   */
+  const handleDeleteGoal = async (id) => {
+    setErr(null);
+    try {
+      setLoading(true);
+      await axios.delete(`/goal/${id}`);
+      setLoading(false);
+      toggleModal();
+      setGoalActivity(true);
+    } catch ({ message }) {
+      setLoading(false);
+      toast.info(message);
+      setErr(message);
     }
-  }, [displayModal]);
+  };
+
+  /**
+   * Display modal content
+   */
+  const handleDispayModalContent = () => {
+    let modalContent;
+    if (clickedIconName == 'edit') {
+      modalContent = (
+        <GetGoal itemId={goalId} url='/goal/'>
+          {(err, loading, item) => {
+            if (err) {
+              return 'An error occured';
+            }
+            if (loading) {
+              return 'loading...';
+            }
+            return (
+              <GoalForm
+                edit
+                itemId={goalId}
+                handleCancel={() => setDispalyModal(!displayModal)}
+                handleBlur={toggleModal}
+                formTitle='Edit Goal'
+                toggleModal={toggleModal}
+                goalActivityToggler={setGoalActivity}
+                initialStateAsProps={item}
+              />
+            );
+          }}
+        </GetGoal>
+      );
+    } else if (clickedIconName == 'addGoal') {
+      modalContent = (
+        <GoalForm
+          handleCancel={() => setDispalyModal(!displayModal)}
+          handleBlur={toggleModal}
+          formTitle='Add Goal'
+          toggleModal={toggleModal}
+          goalActivityToggler={setGoalActivity}
+        />
+      );
+    } else if (clickedIconName == 'delete') {
+      let actionButtons = (
+        <UtilButton
+          buttonText='delete'
+          disabled={loading}
+          handleClick={!loading ? () => handleDeleteGoal(goalId) : null}
+        />
+      );
+
+      modalContent = (
+        <CardRemade
+          cardTitle='delete goal'
+          handleCloseCard={toggleModal}
+          actions={actionButtons}
+          cardBody='Are you sure you wnat to delete this goal.'
+        />
+      );
+    } else {
+      modalContent = (
+        <ViewGoal
+          handleCancel={() => setDispalyModal(!displayModal)}
+          handleBlur={toggleModal}
+        />
+      );
+    }
+    return modalContent;
+  };
 
   useEffect(() => {
     async function fetchGoals() {
@@ -126,50 +210,7 @@ const Goals = (props) => {
             : null}
         </div>
       </div>
-      {displayModal && (
-        <Modal>
-          {clickedIconName == 'edit' ? (
-            <GetGoal itemId={goalId} url='/goal/'>
-              {(err, loading, item) => {
-                if (err) {
-                  return 'An error occured';
-                }
-                if (loading) {
-                  return 'loading...';
-                }
-                return (
-                  <GoalForm
-                    edit
-                    itemId={goalId}
-                    handleCancel={() => setDispalyModal(!displayModal)}
-                    cardRef={editCardRef}
-                    handleBlur={toggleModal}
-                    formTitle='Edit Goal'
-                    toggleModal={toggleModal}
-                    goalActivityToggler={setGoalActivity}
-                    initialStateAsProps={item}
-                  />
-                );
-              }}
-            </GetGoal>
-          ) : clickedIconName == 'addGoal' ? (
-            <GoalForm
-              handleCancel={() => setDispalyModal(!displayModal)}
-              cardRef={editCardRef}
-              handleBlur={toggleModal}
-              formTitle='Add Goal'
-              toggleModal={toggleModal}
-              goalActivityToggler={setGoalActivity}
-            />
-          ) : (
-            <ViewGoal
-              cardRef={editCardRef}
-              handleCancel={() => setDispalyModal(!displayModal)}
-              handleBlur={toggleModal}
-            />
-          )}
-        </Modal>
-      )}
+      {displayModal && <Modal>{handleDispayModalContent()}</Modal>}
     </React.Fragment>
   );
 };
