@@ -27,12 +27,10 @@ const Login = ({ toggleAuth }) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await dispatch(login({ email, password }));
+      await dispatch(login({ email, password }));
       setLoading(false);
-      console.log('res', res);
       navigate('/dashboard/dashboard');
     } catch ({ message }) {
-      console.log('res', message);
       setLoading(false);
       setErrorMessage(message);
     }

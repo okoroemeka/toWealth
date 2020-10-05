@@ -55,8 +55,8 @@ const Signup = ({ toggleAuth }) => {
     }
   }, [email, fullName, password]);
 
-  if (authLogin.isLoggedIn || signup.isLoggedIn)
-    return <Redirect noThrow to='/dashboard/dashboard' />;
+  // if (authLogin.isLoggedIn || signup.isLoggedIn)
+  //   return <Redirect noThrow to='/dashboard/dashboard' />;
 
   return (
     <div className='signup__form__wrapper'>

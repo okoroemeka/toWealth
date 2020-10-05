@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { navigate, Redirect } from '@reach/router';
+import { Redirect } from '@reach/router';
 
 import logo from '../../../assets/images/logo.svg';
 import notifications from '../../../assets/images/notifications.svg';
@@ -14,7 +14,6 @@ import DropDown from '../../Reusable/Dropdown/DropDown';
 import DropDownNavItems from './DropDownNavItems/DropNavItem';
 import * as displayMode from '../../../store/actions/displayMode';
 import logout from '../../../store/actions/logout';
-
 import Modal from '../../Reusable/Modal/Modal';
 
 import './dashboard.scss';
@@ -24,6 +23,7 @@ const Dashboard = ({ children }) => {
   const [sideNavItemName, setSideNavItemName] = useState('userDashBoard');
   const topNavRef = useRef(null);
   const dispatch = useDispatch();
+
   const {
     darkMode: { darkMode },
     authLogin,
