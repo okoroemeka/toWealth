@@ -24,7 +24,7 @@ const Goals = (props) => {
     'PAUSED GOALS',
     'REACHED GOALS',
   ]);
-  const [displayModal, setDispalyModal] = useState(false);
+  const [displayModal, setDispalyModal] = useState(true);
   const [clickedIconName, setClickedIconName] = useState('');
   const [goalActivity, setGoalActivity] = useState(false);
   const { darkMode } = useSelector((state) => state.darkMode);
@@ -127,11 +127,20 @@ const Goals = (props) => {
       );
     } else if (clickedIconName == 'delete') {
       let actionButtons = (
-        <UtilButton
-          buttonText='delete'
-          disabled={loading}
-          handleClick={!loading ? () => handleDeleteGoal(goalId) : null}
-        />
+        <>
+          <UtilButton
+            buttonText='cancel'
+            color='#212b36'
+            disabled={loading}
+            backgroundColor='white'
+            handleClick={toggleModal}
+          />
+          <UtilButton
+            buttonText='delete'
+            disabled={loading}
+            handleClick={!loading ? () => handleDeleteGoal(goalId) : null}
+          />
+        </>
       );
 
       modalContent = (
@@ -139,7 +148,7 @@ const Goals = (props) => {
           cardTitle='delete goal'
           handleCloseCard={toggleModal}
           actions={actionButtons}
-          cardBody='Are you sure you wnat to delete this goal.'
+          cardBody='Are you sure you want to delete this goal.'
         />
       );
     } else {
@@ -197,6 +206,7 @@ const Goals = (props) => {
                 .slice(0, 5)
                 .map((goal) => (
                   <GoalCard
+                    colorBoxBackground={goal.color}
                     id={goal.id}
                     goal={goal.goalName}
                     deadLine={goal.timeline}
