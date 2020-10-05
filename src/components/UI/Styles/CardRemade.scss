@@ -3,7 +3,7 @@
 .card__remade {
   display: flex;
   flex-direction: column;
-  min-height: 15rem;
+  min-height: 10rem;
   border-radius: $cardBorderRadius;
   background-color: $white;
   padding-bottom: 1.3rem;
@@ -12,35 +12,36 @@
   .card__title {
     display: flex;
     width: 100%;
-    min-height: 4rem;
+    min-height: 3rem;
     color: $lightGray;
     font-size: 1.2rem;
     font-weight: normal;
     text-transform: capitalize;
     margin: 0;
     align-items: center;
-    padding-left: 0.5rem;
+    padding-left: 1rem;
     border-bottom: 1px solid $inputBorderColor;
   }
   .card__body {
+    color: $lightGray;
     width: 100%;
     min-height: 7rem;
-    text-align: left;
     padding: 0.5rem;
+    padding-left: 1rem;
     padding-bottom: 1.3rem;
     margin: 0;
   }
   .actions__container {
     display: flex;
+    justify-content: flex-end;
     width: 100%;
-    padding-right: 1rem;
-    // background-color: ;
+    padding: 0 1rem;
   }
   .cancle__button {
     color: $lightGray;
     font-size: 1.5rem;
     position: absolute;
-    top: 1rem;
+    top: 0.5rem;
     right: 1rem;
     cursor: pointer;
   }

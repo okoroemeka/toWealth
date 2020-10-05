@@ -14,11 +14,9 @@ const CardRemade = ({
     <Card classname='col-l-4 card__remade'>
       <h4 className='card__title'>{cardTitle}</h4>
       <span className='cancle__button' onClick={handleCloseCard}>
-        x
+        &times;
       </span>
-      <p className='card__body'>
-        {cardBody || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'}
-      </p>
+      <p className='card__body'>{cardBody}</p>
       <div className='actions__container'>{actions}</div>
     </Card>
   );
