@@ -114,7 +114,10 @@ const GoalForm = ({
     setErr(null);
     try {
       setLoading(true);
-      await axios.patch(`/goal/${itemId}`, goalFormParameters);
+      await axios.patch(`/goal/${itemId}`, {
+        ...goalFormParameters,
+        color: chosedColor || '#b620e0',
+      });
       goalActivityToggler(true);
       setLoading(false);
       toggleModal();

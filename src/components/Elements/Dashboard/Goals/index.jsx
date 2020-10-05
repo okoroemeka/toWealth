@@ -197,6 +197,7 @@ const Goals = (props) => {
                 .slice(0, 5)
                 .map((goal) => (
                   <GoalCard
+                    colorBoxBackground={goal.color}
                     id={goal.id}
                     goal={goal.goalName}
                     deadLine={goal.timeline}
