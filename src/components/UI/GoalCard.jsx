@@ -23,6 +23,7 @@ const GaolCard = ({
   paused = false,
   colorBoxBackground = '#b620e0',
   handlePauseOrContinueGoal = () => null,
+  handleMarkGoalAsComplete = () => null,
 }) => {
   return (
     <Card classname={`goal__card ${isDarkMode ? 'card__dark__mode' : ''}`}>
@@ -91,7 +92,12 @@ const GaolCard = ({
             className='icon'
             onClick={() => toggleModal('edit', id)}
           />
-          <img src={markIcon} alt='mark' className='icon' />
+          <img
+            src={markIcon}
+            alt='mark'
+            className='icon'
+            onClick={() => handleMarkGoalAsComplete(id)}
+          />
           <img
             src={deleteIcon}
             alt='delete'
