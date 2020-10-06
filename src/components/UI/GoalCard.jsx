@@ -1,11 +1,14 @@
 import React from 'react';
 
 import Card from './Card';
+
 import deleteIcon from '../../assets/images/deleteIcon.svg';
 import markIcon from '../../assets/images/markIcon.svg';
 import moreIcon from '../../assets/images/moreIcon.svg';
 import pauseIcon from '../../assets/images/pauseIcon.svg';
+import playIcon from '../../assets/images/playIcon.svg';
 import penIcon from '../../assets/images/penIcon.svg';
+
 import { darkMode } from '../../store/actions/displayMode';
 
 const GaolCard = ({
@@ -15,10 +18,11 @@ const GaolCard = ({
   rate,
   progress,
   targetFraction,
-  handleDeleteGoal = () => null,
   isDarkMode,
   toggleModal,
+  paused = false,
   colorBoxBackground = '#b620e0',
+  handlePauseOrContinueGoal = () => null,
 }) => {
   return (
     <Card classname={`goal__card ${isDarkMode ? 'card__dark__mode' : ''}`}>
@@ -64,7 +68,23 @@ const GaolCard = ({
       <div className='line__goal'></div>
       <div className='actions__container'>
         <div className='icons__wrapper'>
-          <img src={pauseIcon} alt='pause' className='icon pause-icon' />
+          {paused ? (
+            <img
+              id='continue'
+              src={playIcon}
+              alt='continue goal'
+              className='icon play_icon'
+              onClick={(e) => handlePauseOrContinueGoal(e, id)}
+            />
+          ) : (
+            <img
+              id='pause'
+              src={pauseIcon}
+              alt='pause'
+              className='icon pause-icon'
+              onClick={(e) => handlePauseOrContinueGoal(e, id)}
+            />
+          )}
           <img
             src={penIcon}
             alt='edit'

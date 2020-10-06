@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Card from '../../../UI/Card';
@@ -8,7 +8,10 @@ import Modal from '../../../Reusable/Modal/Modal';
 import GoalForm from '../GoalForm';
 import ViewGoal from '../ViewGoal';
 import ActiveGoalDropDown from './ActiveGoalDropDown';
-import { getAllGoal } from '../../../../store/actions/goal';
+import {
+  getAllGoal,
+  pauseOrContinueGoal,
+} from '../../../../store/actions/goal';
 import GetGoal from '../../../hooks/GetGoal';
 import axios from '../../../../utils/axios';
 import { toast } from 'react-toastify';
@@ -24,7 +27,7 @@ const Goals = (props) => {
     'PAUSED GOALS',
     'REACHED GOALS',
   ]);
-  const [displayModal, setDispalyModal] = useState(true);
+  const [displayModal, setDispalyModal] = useState(false);
   const [clickedIconName, setClickedIconName] = useState('');
   const [goalActivity, setGoalActivity] = useState(false);
   const { darkMode } = useSelector((state) => state.darkMode);
@@ -82,6 +85,22 @@ const Goals = (props) => {
       setLoading(false);
       toast.info(message);
       setErr(message);
+    }
+  };
+
+  const handlePauseOrContinueGoal = async (e, goalId) => {
+    const {
+      target: { id },
+    } = e;
+    try {
+      if (id == 'pause') {
+        await dispatch(pauseOrContinueGoal({ goalId, paused: true }));
+      } else {
+        await dispatch(pauseOrContinueGoal({ goalId, paused: false }));
+      }
+      setGoalActivity(true);
+    } catch (error) {
+      toast.info(error.message);
     }
   };
 
@@ -215,6 +234,8 @@ const Goals = (props) => {
                     targetFraction={`$${goal.totalSaved}/$${goal.goalValue}`}
                     isDarkMode={darkMode}
                     toggleModal={handleSelectModalContent}
+                    paused={goal.paused}
+                    handlePauseOrContinueGoal={handlePauseOrContinueGoal}
                   />
                 ))
             : null}
