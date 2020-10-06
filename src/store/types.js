@@ -7,5 +7,15 @@ const CREATE_GOAL = actionCreator('CREATE_GOAL', 'GOAL');
 const GET_GOAL = actionCreator('GET_GOAL', 'GOAL');
 const USER = actionCreator('USER', 'USER');
 const PAUSE_GOAL = actionCreator('PAUSE_GOAL', 'GOAL');
+const COMPLETE_GOAL = actionCreator('COMPLETE_GOAL', 'GOAL');
 
-export { SIGN_UP, LOGIN, LOG_OUT, CREATE_GOAL, GET_GOAL, USER, PAUSE_GOAL };
+export {
+  SIGN_UP,
+  LOGIN,
+  LOG_OUT,
+  CREATE_GOAL,
+  GET_GOAL,
+  USER,
+  PAUSE_GOAL,
+  COMPLETE_GOAL,
+};

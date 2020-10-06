@@ -11,6 +11,7 @@ import ActiveGoalDropDown from './ActiveGoalDropDown';
 import {
   getAllGoal,
   pauseOrContinueGoal,
+  markGoalAsComplete,
 } from '../../../../store/actions/goal';
 import GetGoal from '../../../hooks/GetGoal';
 import axios from '../../../../utils/axios';
@@ -88,6 +89,11 @@ const Goals = (props) => {
     }
   };
 
+  /**
+   * @returns {} void
+   * @param {object} e
+   * @param {number} goalId
+   */
   const handlePauseOrContinueGoal = async (e, goalId) => {
     const {
       target: { id },
@@ -104,6 +110,16 @@ const Goals = (props) => {
     }
   };
 
+  const handleMarkGoalAsComplete = async (goalId) => {
+    try {
+      await dispatch(markGoalAsComplete({ goalId, completed: true }));
+
+      toast.info('goal completed successfully');
+      setGoalActivity(true);
+    } catch (error) {
+      toast.info(error.message);
+    }
+  };
   /**
    * Display modal content
    */
@@ -236,6 +252,7 @@ const Goals = (props) => {
                     toggleModal={handleSelectModalContent}
                     paused={goal.paused}
                     handlePauseOrContinueGoal={handlePauseOrContinueGoal}
+                    handleMarkGoalAsComplete={handleMarkGoalAsComplete}
                   />
                 ))
             : null}

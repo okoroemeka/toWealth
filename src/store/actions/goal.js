@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import axios from '../../utils/axios';
 
-import { CREATE_GOAL, GET_GOAL, PAUSE_GOAL } from '../types';
+import { CREATE_GOAL, GET_GOAL, PAUSE_GOAL, COMPLETE_GOAL } from '../types';
 
 export const goal = (goalParameter) => async (dispatch) => {
   try {
@@ -42,6 +42,24 @@ export const pauseOrContinueGoal = ({ goalId, paused }) => async (dispatch) => {
     return payload;
   } catch ({ response: { data: error } }) {
     dispatch({ type: PAUSE_GOAL.ERROR, payload: error });
+    throw new error('could not update your goal, please try again later');
+  }
+};
+
+export const markGoalAsComplete = ({ goalId, completed }) => async (
+  dispatch
+) => {
+  try {
+    const {
+      data: { payload },
+    } = await axios.patch(`/goal/completeGoal/${goalId}`, {
+      completed,
+    });
+
+    dispatch({ type: COMPLETE_GOAL.SUCCESS, payload });
+    return payload;
+  } catch ({ response: { data: error } }) {
+    dispatch({ type: COMPLETE_GOAL.ERROR, payload: error });
     throw new error('could not update your goal, please try again later');
   }
 };
