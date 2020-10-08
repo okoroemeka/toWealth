@@ -16,11 +16,11 @@ export const goal = (goalParameter) => async (dispatch) => {
   }
 };
 
-export const getAllGoal = () => async (dispatch) => {
+export const getAllGoal = (queryParam = '') => async (dispatch) => {
   try {
     const {
       data: { payload },
-    } = await axios.get('/goal');
+    } = await axios.get(`/goal?goalQueryParam=${queryParam}`);
     dispatch({ type: GET_GOAL.SUCCESS, payload });
 
     return payload;

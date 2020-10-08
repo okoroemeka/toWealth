@@ -20,6 +20,14 @@ import './Goals.scss';
 import CardRemade from '../../../UI/CardRemade';
 import UtilButton from '../../../UI/UtilButton';
 
+const enums = {
+  'ACTIVE GOALS': 'active',
+  'REACHED GOALS': 'completed',
+  'PAUSED GOALS': 'paused',
+};
+
+Object.freeze(enums);
+
 const Goals = (props) => {
   const [goals, setGoals] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -33,7 +41,6 @@ const Goals = (props) => {
   const [goalActivity, setGoalActivity] = useState(false);
   const { darkMode } = useSelector((state) => state.darkMode);
   const [goalId, setGoalId] = useState(null);
-  const [selectedGoal, setSelectedGoal] = useState({});
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState('');
 
@@ -120,6 +127,7 @@ const Goals = (props) => {
       toast.info(error.message);
     }
   };
+
   /**
    * Display modal content
    */
@@ -199,14 +207,14 @@ const Goals = (props) => {
 
   useEffect(() => {
     async function fetchGoals() {
-      const userGoals = await dispatch(getAllGoal());
+      const userGoals = await dispatch(getAllGoal(enums[currentItem[0]]));
       setGoals(userGoals);
     }
     fetchGoals();
     if (goalActivity) {
       setGoalActivity(false);
     }
-  }, [dispatch, goalActivity]);
+  }, [dispatch, goalActivity, currentItem]);
 
   return (
     <React.Fragment>
