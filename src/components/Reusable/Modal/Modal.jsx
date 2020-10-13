@@ -2,7 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import './modal.scss';
 
-const Modal = ({ className = '', children }) => {
+const Modal = (props) => {
+  const { className = '', children } = props;
+
   const modalRef = useRef(null);
   if (!modalRef.current) {
     const div = document.createElement('div');
@@ -14,7 +16,7 @@ const Modal = ({ className = '', children }) => {
     return () => modalRoot.removeChild(modalRef.current);
   }, []);
   return createPortal(
-    <div className={`modal_container ${className}`}>{children}</div>,
+    <div className={`modal_container ${className}`} {...props}>{children}</div>,
     modalRef.current
   );
 };

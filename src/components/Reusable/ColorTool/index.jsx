@@ -8,13 +8,13 @@ import ColorBar from '../../UI/ColorBar';
 import { goalTypes } from '../../../helper/Reducers/goal';
 import './colorTool.scss';
 
-const ColorTool = ({ colorsState = [], handleSelectColor = () => null }) => {
+const ColorTool = ({ colorsState = [], handleSelectColor = () => null, handleShowMoreColors }) => {
   return (
     <div className='color__tool'>
       <div className='color__bar'>
         <h4>Color</h4>
         <div className='color__area'>
-          {colorsState.map(({ colorId, color, active }) => (
+          {colorsState.slice(0,4).map(({ colorId, color, active }) => (
             <ColorBar
               key={colorId}
               color={color}
@@ -29,7 +29,7 @@ const ColorTool = ({ colorsState = [], handleSelectColor = () => null }) => {
             </ColorBar>
           ))}
           <ColorBar color='#d8d8d8' className='others__button'>
-            <span className='others__text'>Others</span>
+            <span className='others__text' onClick={handleShowMoreColors}>Others</span>
           </ColorBar>
         </div>
       </div>

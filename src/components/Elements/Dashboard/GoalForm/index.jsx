@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, Fragment } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -13,7 +13,9 @@ import staticData from '../../../../utils/data/staticData';
 import CardHeader from '../../../UI/CardHeader';
 import Input from '../../../Reusable/GoalInput/Input';
 import ColorTool from '../../../Reusable/ColorTool';
+import Modal from '../../../Reusable/Modal/Modal';
 import { goal } from '../../../../store/actions/goal';
+import ColorPallete from "./ColorPallete";
 import axios from '../../../../utils/axios';
 
 import {
@@ -56,6 +58,7 @@ const GoalForm = ({
   );
 
   const [chosedColor, setChosedColor] = useState('');
+  const [displayModal, setDispalyModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState('');
 
@@ -83,6 +86,13 @@ const GoalForm = ({
         value,
       },
     });
+  };
+
+  /**
+   * Toggles the modal
+   */
+  const toggleColorPalleteModal = () => {
+    return setDispalyModal(!displayModal);
   };
 
   /**
@@ -200,6 +210,7 @@ const GoalForm = ({
             </div>
           </fieldset>
           <ColorTool
+            handleShowMoreColors={toggleColorPalleteModal}
             colorsState={colorsState}
             handleSelectColor={handleSelectColor}
           />
@@ -214,6 +225,11 @@ const GoalForm = ({
           </div>
         </form>
       </div>
+      <Fragment>
+        {displayModal && <Modal style={{ zIndex: 34 }}>
+          <ColorPallete handleCancel={toggleColorPalleteModal} colorsState={colorsState} handleSelectColor={handleSelectColor}/>
+        </Modal>}
+      </Fragment>
     </Card>
   );
 };

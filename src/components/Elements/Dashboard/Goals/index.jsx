@@ -77,6 +77,7 @@ const Goals = (props) => {
   const toggleModal = () => {
     return setDispalyModal(!displayModal);
   };
+
   /**
    * Handles deleting of goal
    * @param {number} id
