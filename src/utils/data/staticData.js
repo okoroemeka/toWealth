@@ -19,6 +19,48 @@ const colors = [
     color: '#44D7B6',
     active: false,
   },
+
+  //add more colors here
+  {
+    colorId: 4,
+    color: '#b620e0',
+    active: false,
+  },
+  {
+    colorId: 5,
+    color: '#F7B500',
+    active: false,
+  },
+  {
+    colorId: 6,
+    color: '#FA6400',
+    active: false,
+  },
+  {
+    colorId: 7,
+    color: '#44D7B6',
+    active: false,
+  },
+  {
+    colorId: 8,
+    color: '#b620e0',
+    active: false,
+  },
+  {
+    colorId: 9,
+    color: '#F7B500',
+    active: false,
+  },
+  {
+    colorId: 10,
+    color: '#FA6400',
+    active: false,
+  },
+  {
+    colorId: 11,
+    color: '#44D7B6',
+    active: false,
+  },
 ];
 
 const months = {
