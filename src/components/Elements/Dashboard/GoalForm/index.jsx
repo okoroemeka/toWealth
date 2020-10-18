@@ -58,7 +58,7 @@ const GoalForm = ({
   );
 
   const [chosedColor, setChosedColor] = useState('');
-  const [displayModal, setDispalyModal] = useState(false);
+  const [displayModal, setDisplayModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState('');
 
@@ -92,7 +92,7 @@ const GoalForm = ({
    * Toggles the modal
    */
   const toggleColorPalleteModal = () => {
-    return setDispalyModal(!displayModal);
+    return setDisplayModal(!displayModal);
   };
 
   /**

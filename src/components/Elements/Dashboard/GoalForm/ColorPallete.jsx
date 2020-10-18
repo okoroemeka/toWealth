@@ -8,9 +8,10 @@ import CustomButton from "../../../UI/CustomButton";
 import tick from '../../../../assets/images/tick1.svg';
 
 const ColorContainer = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
-  height: 9rem;
+  height: auto;
+  padding-top: 1rem;
 `;
 
 const CustomButtonWrapper = styled.div`
