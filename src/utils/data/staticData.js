@@ -21,22 +21,22 @@ const colors = [
   },
   {
     colorId: 4,
-    color: '#b620e0',
+    color: '#4287f5',
     active: false,
   },
   {
     colorId: 5,
-    color: '#F7B500',
+    color: '#948e23',
     active: false,
   },
   {
     colorId: 6,
-    color: '#FA6400',
+    color: '#8dade0',
     active: false,
   },
   {
     colorId: 7,
-    color: '#44D7B6',
+    color: '#384252',
     active: false,
   },
   {
@@ -46,17 +46,77 @@ const colors = [
   },
   {
     colorId: 9,
-    color: '#F7B500',
+    color: '#7929ba',
     active: false,
   },
   {
     colorId: 10,
-    color: '#FA6400',
+    color: '#513f61',
     active: false,
   },
   {
     colorId: 11,
-    color: '#44D7B6',
+    color: '#db1ac2',
+    active: false,
+  },
+  {
+    colorId: 12,
+    color: '#b620e0',
+    active: false,
+  },
+  {
+    colorId: 13,
+    color: '#ed133f',
+    active: false,
+  },
+  {
+    colorId: 14,
+    color: '#570f1d',
+    active: false,
+  },
+  {
+    colorId: 15,
+    color: '#db93a1',
+    active: false,
+  },
+  {
+    colorId: 17,
+    color: '#a5db93',
+    active: false,
+  },
+  {
+    colorId: 18,
+    color: '#2e611d',
+    active: false,
+  },
+  {
+    colorId: 19,
+    color: '#8dade0',
+    active: false,
+  },
+  {
+    colorId: 20,
+    color: '#16f033',
+    active: false,
+  },
+  {
+    colorId: 20,
+    color: '#b620e0',
+    active: false,
+  },
+  {
+    colorId: 21,
+    color: '#7929ba',
+    active: false,
+  },
+  {
+    colorId: 22,
+    color: '#031a06',
+    active: false,
+  },
+  {
+    colorId: 23,
+    color: '#f5e918',
     active: false,
   },
 ];
