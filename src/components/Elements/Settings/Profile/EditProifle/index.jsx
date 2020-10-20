@@ -40,7 +40,7 @@ const EditForm = ({userData, imageUrl}) => {
     setName(userData?.fullname||'')
     setPosition(userData?.position || '')
     setEmail(userData?.email || '')
-    setDate(userData?.birthday.split('T')[0]||'')
+    setDate(userData?.birthday?.split('T')[0]||'')
   }, [userData]);
 
   return (
