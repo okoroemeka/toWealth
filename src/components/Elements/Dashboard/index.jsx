@@ -3,19 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from '@reach/router';
 
 import logo from '../../../assets/images/logo.svg';
+import userAvatar from '../../../assets/images/userAvatar.svg';
+
 import notifications from '../../../assets/images/notifications.svg';
 import DrawerIcon from '../../UI/DrawerIcon';
 import SideNavItems from '../../UI/SideNavItems';
 import supportIcon from '../../../assets/images/surport.svg';
 import termsOfUse from '../../../assets/images/terms.svg';
 import howtos from '../../../assets/images/howto.svg';
-import black from '../../../assets/images/black.jpg';
 import DropDown from '../../Reusable/Dropdown/DropDown';
 import DropDownNavItems from './DropDownNavItems/DropNavItem';
 import * as displayMode from '../../../store/actions/displayMode';
 import logout from '../../../store/actions/logout';
 import Modal from '../../Reusable/Modal/Modal';
-
 import './dashboard.scss';
 
 const Dashboard = ({ children }) => {
@@ -24,12 +24,14 @@ const Dashboard = ({ children }) => {
   const topNavRef = useRef(null);
   const dispatch = useDispatch();
 
+
   const {
     darkMode: { darkMode },
     authLogin,
     signup,
   } = useSelector((state) => state);
 
+  const fullname = authLogin?.data?.fullname?.split(' ').map(name=>name[0].toUpperCase() + name.slice(1)).join(' ');
   React.useEffect(() => {
     if (showModal) {
       topNavRef.current.focus();
@@ -63,9 +65,9 @@ const Dashboard = ({ children }) => {
           <div className='col-sm-7 col-l-2 notificaton__area'>
             <div className='user__averta__area'>
               <div className='user__image__wrapper'>
-                <img src={authLogin?.data?.image||black} alt='user' className='user__image' />
+                <img src={authLogin?.data?.image||userAvatar} alt='user' className='user__image' />
               </div>
-              <h5 className='user__name'>Amaka</h5>
+              <h5 className='user__name'>{fullname?.split(' ')[0]}</h5>
             </div>
             <span className='notifications__wrapper'>
               <img
@@ -105,14 +107,14 @@ const Dashboard = ({ children }) => {
               <div className='col-l-11 user__details'>
                 <div className='sidenav__userimage__wrapper'>
                   <img
-                    src={authLogin?.data?.image||black}
+                    src={authLogin?.data?.image||userAvatar}
                     alt='user'
                     className='user__sidenav__image'
                   />
                 </div>
-                <h5 className='sidenav__user__name'>Chinwe Ezenwa-Onuaku</h5>
+                <h5 className='sidenav__user__name'>{fullname}</h5>
                 <h6 className='side__nav__user__position'>
-                  Executive Director
+                  {authLogin?.data?.position?.split(' ').map(name=>name[0].toUpperCase() + name.slice(1)).join(' ')}
                 </h6>
               </div>
               <div className='col-l-12 nav__items__wrapper'>

@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import editIcon from '../../../../assets/images/editIcon.svg';
 import lock from '../../../../assets/images/Lock.svg';
-import user from '../../../../assets/images/black.jpg';
+import user from '../../../../assets/images/userAvatar.svg';
 import EditProfile from './EditProifle';
 import ChangePassword from './ChangePassword/ChangePassword';
 import getUser from "../../../../store/actions/user";
@@ -15,6 +15,10 @@ const Profile = (props) => {
   const [isChangePassword, setIsChangePassword] = useState(false);
   const [userDetails, setUserDetail] = useState(null);
   const [imageUrl, setImageUrl] = useState('');
+
+  const {
+    authLogin,
+  } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -34,7 +38,6 @@ const Profile = (props) => {
 
     data.append('file', files[0]);
     data.append('upload_preset', 'to-wealth');
-    console.log('data', files[0])
     const { data: newdata } = await axios.post(
       `https://api.cloudinary.com/v1_1/dejndvrjd/upload`,
       data
@@ -71,8 +74,8 @@ const Profile = (props) => {
             <img src={imageUrl||user} alt='avater' className='user__averta' />
           </div>
           <div className='user__details__area'>
-            <h6 className='user__name'>charity Ezenwa-Onuaku</h6>
-            <h6 className='user__position'>Executive director</h6>
+            <h6 className='user__name'>{authLogin?.data?.fullname?.split(' ').map(name=>name[0].toUpperCase() + name.slice(1)).join(' ')}</h6>
+            <h6 className='user__position'>{authLogin?.data?.position?.split(' ').map(name=>name[0].toUpperCase() + name.slice(1)).join(' ')}</h6>
           </div>
         </div>
         <div className='user__settings__area'>
