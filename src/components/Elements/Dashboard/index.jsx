@@ -63,7 +63,7 @@ const Dashboard = ({ children }) => {
           <div className='col-sm-7 col-l-2 notificaton__area'>
             <div className='user__averta__area'>
               <div className='user__image__wrapper'>
-                <img src={black} alt='user' className='user__image' />
+                <img src={authLogin.data.image||black} alt='user' className='user__image' />
               </div>
               <h5 className='user__name'>Amaka</h5>
             </div>
@@ -105,7 +105,7 @@ const Dashboard = ({ children }) => {
               <div className='col-l-11 user__details'>
                 <div className='sidenav__userimage__wrapper'>
                   <img
-                    src={black}
+                    src={authLogin.data.image||black}
                     alt='user'
                     className='user__sidenav__image'
                   />

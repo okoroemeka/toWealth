@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios'
 
 import editIcon from '../../../../assets/images/editIcon.svg';
 import lock from '../../../../assets/images/Lock.svg';
 import user from '../../../../assets/images/black.jpg';
 import EditProfile from './EditProifle';
 import ChangePassword from './ChangePassword/ChangePassword';
-
+import getUser from "../../../../store/actions/user";
 import './profile.scss';
 
 const Profile = (props) => {
   const [isEditProfile, setIsEditProfile] = useState(true);
   const [isChangePassword, setIsChangePassword] = useState(false);
+  const [userDetails, setUserDetail] = useState(null);
+  const [imageUrl, setImageUrl] = useState('');
+
+  const dispatch = useDispatch();
 
   const toggleEditForm = () => {
     setIsEditProfile(true);
@@ -22,19 +28,47 @@ const Profile = (props) => {
     setIsChangePassword(true);
   };
 
+  const handleImageUpload = async(e) =>{
+    const files = e.target.files;
+    const data = new FormData();
+
+    data.append('file', files[0]);
+    data.append('upload_preset', 'to-wealth');
+    console.log('data', files[0])
+    const { data: newdata } = await axios.post(
+      `https://api.cloudinary.com/v1_1/dejndvrjd/upload`,
+      data
+    );
+    setImageUrl(newdata.secure_url);
+  }
+
+  useEffect(() => {
+    async function getUserDetails() {
+      const details = await dispatch(getUser());
+      setUserDetail(details);
+    }
+    getUserDetails()
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (userDetails) {
+      setImageUrl(userDetails.image)
+    }
+  }, [userDetails]);
+
   return (
     <div className='edit__profile'>
       <div className='col-l-10'>
         <div className='profile__image__area'>
           <div className='image__input'>
             <label htmlFor='file-upload' className='image__label'>
-              <img src={editIcon} alt='edit icon' className='image' />
+              <img src={editIcon} alt='edit icon' className='image'/>
               <div className='shadow'></div>
             </label>
-            <input type='file' className='file__input' id='file-upload'></input>
+            <input type='file' className='file__input' id='file-upload' onChange={handleImageUpload}></input>
           </div>
           <div className='image__container'>
-            <img src={user} alt='avater' className='user__averta' />
+            <img src={imageUrl||user} alt='avater' className='user__averta' />
           </div>
           <div className='user__details__area'>
             <h6 className='user__name'>charity Ezenwa-Onuaku</h6>
@@ -79,7 +113,7 @@ const Profile = (props) => {
           </div>
           <div className='col-l-7 form__area'>
             <div className='form__wrapper'>
-              {isEditProfile ? <EditProfile /> : null}
+              {isEditProfile ? <EditProfile userData={userDetails} imageUrl={imageUrl} /> : null}
               {isChangePassword ? <ChangePassword /> : null}
             </div>
           </div>
