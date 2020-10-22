@@ -6,6 +6,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import login from '../../../store/actions/login';
 import eyeIcon from '../../../assets/images/eye.svg';
 import Error from '../../Reusable/Error';
+import InputError from "../../Reusable/Error/InputError";
+
 import { emailValidator, passwordValidator } from '../../../utils/Validation';
 
 import './login.scss';
@@ -49,7 +51,7 @@ const Login = ({ toggleAuth }) => {
 
   return (
     <div className='login__form__wrapper'>
-      {errorMessage ? <Error errorMessage={errorMessage} /> : null}
+      {errorMessage ? <InputError errorText={errorMessage} /> : null}
 
       <form className='login__form' onSubmit={(e) => handleLogin(e)}>
         <div className='input__wrapper'>
@@ -62,7 +64,7 @@ const Login = ({ toggleAuth }) => {
             onChange={(event) => setEmail(event.target.value.trim())}
           />
           {!emailValidator(email) && emailTouched ? (
-            <h6 className='input__error'>invalid email</h6>
+            <InputError errorText='invalid email'/>
           ) : null}
         </div>
         <div className='input__wrapper'>
@@ -83,10 +85,8 @@ const Login = ({ toggleAuth }) => {
             onClick={() => setShowPassword(!showPassword)}
           />
           {!passwordValidator(password) && passwordTouched ? (
-            <h6 className='input__error'>
-              password must be between 8 and 15 characters, alhanumeric and have
-              a special charecter
-            </h6>
+            <InputError errorText="password must be between 8 and 15 characters, alhanumeric and have
+              a special charecter"/>
           ) : null}
         </div>
 
