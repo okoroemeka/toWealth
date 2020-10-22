@@ -1,4 +1,6 @@
 import axios from '../../utils/axios';
+import { toast } from 'react-toastify';
+
 import tokenHelper from '../../utils/auth';
 
 import { USER } from '../types';
@@ -24,9 +26,21 @@ export const updateUser = (userDetails) => async (dispatch) => {
    } = await axios.patch('/user/profile', userDetails);
     dispatch({ type: USER.SUCCESS, payload });
     dispatch({ type: USER.STATUS, payload: status });
+    toast.success('Profile updated successfully');
     return payload;
  } catch (error) {
-    console.log('error :>> ', error);
+    throw error;
+ }
+}
+
+export const changePassword = (userDetails) => async (dispatch) => {
+  try {
+   const {
+      data: { payload},
+   } = await axios.patch('/user/passwordUpdate', userDetails);
+    toast.success('Password updated successfully');
+    return payload;
+ } catch (error) {
     throw error;
  }
 }

@@ -1,0 +1,85 @@
+@import '../../../../styles/commons.scss';
+
+.side__nav {
+  height: calc(100vh - 7rem);
+  border: 1px solid #e4e7eb;
+  background-color: $white;
+  .user__details__wrapper {
+    justify-content: center;
+    .user__details {
+      text-align: center;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #e4e7eb;
+      .sidenav__userimage__wrapper {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        background-color: $primary;
+        overflow: hidden;
+        margin: 0 auto;
+        .user__sidenav__image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .sidenav__user__name {
+        font-weight: normal;
+        margin-top: 1rem;
+        margin-bottom: 0.2rem;
+      }
+      .side__nav__user__position {
+        color: #9ea0a5;
+        font-weight: normal;
+        margin: 0.2rem 0;
+      }
+    }
+    .nav__items__wrapper {
+      padding-top: 1rem;
+      .nav__items__conatainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .nav__item {
+          width: 100%;
+          height: 2.5rem;
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          padding-left: 0.5rem;
+          margin: 0.5rem;
+          cursor: pointer;
+
+          .sidenav__item__icon {
+            width: 1rem;
+          }
+          .terms__icon {
+            width: 0.8rem;
+          }
+          .nav__item__name {
+            color: #66788a;
+            font-size: 0.7rem;
+            font-weight: normal;
+            text-transform: capitalize;
+            margin: 0;
+            margin-left: 0.5rem;
+          }
+        }
+        .nav__item__active {
+          border-left: 2.5px solid $primary;
+          border-radius: 5px;
+          font-weight: bold;
+          background-color: #e4e7eb;
+          .nav__item__name {
+            color: $black;
+          }
+        }
+      }
+      .settings {
+        width: 100%;
+        border-top: 1px solid #e4e7eb;
+      }
+    }
+  }
+}
