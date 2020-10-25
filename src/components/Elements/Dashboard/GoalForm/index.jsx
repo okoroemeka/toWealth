@@ -191,6 +191,7 @@ const GoalForm = ({
                 inputValue={goalFormParameters.timeline}
                 handleChange={handleChange}
                 required
+                minValue={new Date().toISOString().split('T')[0]}
               />
             </div>
             <div className='wrap__input'>

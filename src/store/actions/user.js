@@ -1,8 +1,5 @@
 import axios from '../../utils/axios';
 import { toast } from 'react-toastify';
-
-import tokenHelper from '../../utils/auth';
-
 import { USER } from '../types';
 
 export const getUser = () => async (dispatch) => {
