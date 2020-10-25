@@ -63,3 +63,13 @@ export const markGoalAsComplete = ({ goalId, completed }) => async (
     throw new error('could not update your goal, please try again later');
   }
 };
+
+export const getGoal = (goalId) => async () => {
+  try {
+    const { data: { payload } } = await axios.get(`/goal/${goalId}`);
+    return payload;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}

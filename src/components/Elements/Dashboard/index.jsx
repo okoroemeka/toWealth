@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from '@reach/router';
 
@@ -6,7 +6,7 @@ import * as displayMode from '../../../store/actions/displayMode';
 import logout from '../../../store/actions/logout';
 import TopNav from "../Navs/TopNav/TopNav";
 import SideNav from "../Navs/SideNav/SideNav";
-
+import { getUser } from "../../../store/actions/user";
 import './dashboard.scss';
 
 const Dashboard = ({ children }) => {
@@ -23,11 +23,6 @@ const Dashboard = ({ children }) => {
   } = useSelector((state) => state);
 
   const fullname = authLogin?.data?.fullname?.split(' ').map(name=>name[0].toUpperCase() + name.slice(1)).join(' ');
-  React.useEffect(() => {
-    if (showModal) {
-      topNavRef.current.focus();
-    }
-  }, [showModal]);
 
   const handleDisplayDarkMode = () => {
     dispatch(displayMode.darkMode(true));
@@ -42,12 +37,24 @@ const Dashboard = ({ children }) => {
     setShowModal(false);
   };
 
-  if (!authLogin.isLoggedIn && !signup.isLoggedIn)
-    return <Redirect noThrow to='/' />;
+  useEffect(() => {
+      if (showModal) {
+        topNavRef.current.focus();
+      }
+  }, [showModal]);
+  useEffect(() => {
+    async function user() {
+      await dispatch(getUser())
+    }
+    user();
+  }, [dispatch])
+
+  if (!authLogin.isLoggedIn && !signup.isLoggedIn) return <Redirect noThrow to='/' />;
 
   return (
     <div className='dashboard__wrapper'>
-      <TopNav userImage={authLogin?.data?.image}
+      <TopNav
+        userImage={authLogin?.data?.image}
         authLogin={authLogin}
         fullname={fullname}
         showModal={showModal}

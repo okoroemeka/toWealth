@@ -40,7 +40,8 @@ const TopNav = ({userImage, fullname, showModal, setShowModal,topNavRef,handleDi
                       setShowModal(!showModal);
                     }}
                   >
-                    <DropDownNavItems
+                  <DropDownNavItems
+                      userImage={userImage||userAvatar}
                       handleDarkMode={handleDisplayDarkMode}
                       handleLightMode={handleDisplayLightMode}
                       handleLogout={handleLogout}

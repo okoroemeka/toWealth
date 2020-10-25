@@ -197,10 +197,24 @@ const Goals = (props) => {
       );
     } else {
       modalContent = (
-        <ViewGoal
-          handleCancel={() => setDispalyModal(!displayModal)}
-          handleBlur={toggleModal}
-        />
+        <GetGoal itemId={goalId} url='/goal/'>
+          {(err, loading, item) => {
+            if (err) {
+              return <div>error...</div>
+            } if (loading) {
+              return <div>loading ...</div>
+            }
+            return (
+              <ViewGoal
+                item={item}
+                handleCancel={() => setDispalyModal(!displayModal)}
+                handleBlur={toggleModal}
+              />
+            )
+          }}
+
+        </GetGoal>
+
       );
     }
     return modalContent;
@@ -254,7 +268,7 @@ const Goals = (props) => {
                     id={goal.id}
                     goal={goal.goalName}
                     deadLine={goal.timeline}
-                    rate={`${goal.completionRate}%`}
+                    rate={`${Math.floor(goal.completionRate)}%`}
                     progress={`${goal.completionRate}%`}
                     targetFraction={`$${goal.totalSaved}/$${goal.goalValue}`}
                     isDarkMode={darkMode}

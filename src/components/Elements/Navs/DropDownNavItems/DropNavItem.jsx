@@ -7,20 +7,19 @@ import LogoutIcon from '../../../UI/Icons/LogoutIcon';
 import SettingIcon from '../../../UI/Icons/SettingIcon';
 import HowToIcon from '../../../UI/Icons/HowToIcon';
 import termsOfUse from '../../../../assets/images/terms.svg';
-import black from '../../../../assets/images/black.jpg';
 import moon from '../../../../assets/images/moon.svg';
 import sun from '../../../../assets/images/sun.svg';
 import Line from '../../../UI/Line';
 import './DropNavItem.scss';
 
-const DropNavItem = ({ handleDarkMode, handleLightMode, handleLogout }) => {
+const DropNavItem = ({userImage, handleDarkMode, handleLightMode, handleLogout }) => {
   const { darkMode } = useSelector((state) => state.darkMode);
   return (
     <Fragment>
       <div className='dropdown__nav__item'>
         <div className='user__details'>
           <div className='user__image__wrapper'>
-            <img src={black} alt='user' className='user__image' />
+            <img src={userImage} alt='user' className='user__image' />
           </div>
           <h5>My Account</h5>
         </div>
