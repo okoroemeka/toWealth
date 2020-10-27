@@ -59,7 +59,6 @@
   .main__content__area {
     height: 100%;
     padding: 1rem 2rem;
-    justify-content: space-between;
 
     .add__goals__card {
       display: flex;
@@ -68,6 +67,7 @@
       text-align: center;
       border-radius: 13px;
       margin-bottom: 1rem;
+      margin-right: 0.5rem;
       background: $white;
       box-shadow: $cardBoxShadow;
 
@@ -105,6 +105,7 @@
       height: 13rem;
       padding: 0.5rem 1.2rem;
       border-radius: 13px;
+      margin-right: 0.5rem;
       background: $white;
       box-shadow: $cardBoxShadow;
 
