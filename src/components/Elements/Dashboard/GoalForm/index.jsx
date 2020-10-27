@@ -188,7 +188,7 @@ const GoalForm = ({
                 iconClassName='goal__icon'
                 inputType='date'
                 inputName='timeline'
-                inputValue={goalFormParameters.timeline}
+                inputValue={goalFormParameters.timeline?.split('T')[0]}
                 handleChange={handleChange}
                 required
                 minValue={new Date().toISOString().split('T')[0]}
