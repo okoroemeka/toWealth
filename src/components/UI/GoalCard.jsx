@@ -21,6 +21,8 @@ const GaolCard = ({
   isDarkMode,
   toggleModal,
   paused = false,
+  icon,
+  iconName,
   colorBoxBackground = '#b620e0',
   handlePauseOrContinueGoal = () => null,
   handleMarkGoalAsComplete = () => null,
@@ -33,7 +35,9 @@ const GaolCard = ({
           style={{
             backgroundColor: colorBoxBackground,
           }}
-        ></div>
+        >
+          <img src={icon} alt={iconName} />
+        </div>
         <h5 className={`goal ${isDarkMode && 'darkmode__goal__text'}`}>
           {goal}
         </h5>

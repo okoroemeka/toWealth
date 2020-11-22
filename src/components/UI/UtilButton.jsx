@@ -11,7 +11,7 @@ const StyleButton = styled.button`
   align-items: center;
   margin-left: ${(props) => props.marginLeft || '1rem'};
   border: ${(props) => props.border || 'none'};
-  border-radius: 10px;
+  border-radius: ${(props) => props.borderRadius || '10px'};
   text-transform: ${(props) => props.textTransform || 'capitalize'};
   background-color: ${(props) => props.backgroundColor || '#ff0000'};
   background-position: center;

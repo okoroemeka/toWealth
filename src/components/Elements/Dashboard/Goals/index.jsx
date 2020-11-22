@@ -12,6 +12,7 @@ import {
   getAllGoal,
   pauseOrContinueGoal,
   markGoalAsComplete,
+  topUpGoal,
 } from '../../../../store/actions/goal';
 import GetGoal from '../../../hooks/GetGoal';
 import axios from '../../../../utils/axios';
@@ -19,6 +20,10 @@ import { toast } from 'react-toastify';
 import './Goals.scss';
 import CardRemade from '../../../UI/CardRemade';
 import UtilButton from '../../../UI/UtilButton';
+import staticData from '../../../../utils/data/staticData';
+import TopUpForm from '../TopUpForm';
+
+const { category } = staticData;
 
 const enums = {
   'ACTIVE GOALS': 'active',
@@ -37,11 +42,12 @@ const Goals = (props) => {
     'REACHED GOALS',
   ]);
   const [displayModal, setDispalyModal] = useState(false);
-  const [clickedIconName, setClickedIconName] = useState('');
+  const [clickedIconName, setClickedIconName] = useState('addGoal');
   const [goalActivity, setGoalActivity] = useState(false);
   const { darkMode } = useSelector((state) => state.darkMode);
   const [goalId, setGoalId] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showAddDeposite, setShowAddDeposite] = useState(false);
   const [err, setErr] = useState('');
 
   const dispatch = useDispatch();
@@ -78,6 +84,12 @@ const Goals = (props) => {
     return setDispalyModal(!displayModal);
   };
 
+  /**
+   * Toggle add deposite modal
+   */
+  const handleToggleAddDepositForm = () => {
+    setShowAddDeposite(!showAddDeposite);
+  };
   /**
    * Handles deleting of goal
    * @param {number} id
@@ -121,11 +133,23 @@ const Goals = (props) => {
   const handleMarkGoalAsComplete = async (goalId) => {
     try {
       await dispatch(markGoalAsComplete({ goalId, completed: true }));
-
       toast.info('goal completed successfully');
+
       setGoalActivity(true);
     } catch (error) {
       toast.info(error.message);
+    }
+  };
+
+  const handleTopUpGoal = async (amount) => {
+    try {
+      await dispatch(topUpGoal(goalId, amount));
+      toast.success('goal topup was successfull');
+      setGoalActivity(true);
+      handleToggleAddDepositForm();
+      toggleModal();
+    } catch ({ message }) {
+      toast.error(message);
     }
   };
 
@@ -200,21 +224,21 @@ const Goals = (props) => {
         <GetGoal itemId={goalId} url='/goal/'>
           {(err, loading, item) => {
             if (err) {
-              return <div>error...</div>
-            } if (loading) {
-              return <div>loading ...</div>
+              return <div>error...</div>;
+            }
+            if (loading) {
+              return <div>loading ...</div>;
             }
             return (
               <ViewGoal
                 item={item}
                 handleCancel={() => setDispalyModal(!displayModal)}
                 handleBlur={toggleModal}
+                toggleAddDepositForm={handleToggleAddDepositForm}
               />
-            )
+            );
           }}
-
         </GetGoal>
-
       );
     }
     return modalContent;
@@ -260,11 +284,13 @@ const Goals = (props) => {
             </button>
           </Card>
           {Boolean(goals)
-            ? goals
-                .slice(0, 5)
-                .map((goal) => (
+            ? goals.slice(0, 5).map((goal) => {
+                const { img, name, color: goalColor } = category.filter(
+                  (item) => item.name === goal.category
+                )[0];
+                return (
                   <GoalCard
-                    colorBoxBackground={goal.color}
+                    colorBoxBackground={goalColor}
                     id={goal.id}
                     goal={goal.goalName}
                     deadLine={goal.timeline}
@@ -274,14 +300,25 @@ const Goals = (props) => {
                     isDarkMode={darkMode}
                     toggleModal={handleSelectModalContent}
                     paused={goal.paused}
+                    icon={img}
+                    iconName={name}
                     handlePauseOrContinueGoal={handlePauseOrContinueGoal}
                     handleMarkGoalAsComplete={handleMarkGoalAsComplete}
                   />
-                ))
+                );
+              })
             : null}
         </div>
       </div>
       {displayModal && <Modal>{handleDispayModalContent()}</Modal>}
+      {showAddDeposite ? (
+        <Modal>
+          <TopUpForm
+            handleCloseModal={handleToggleAddDepositForm}
+            handleTopUp={handleTopUpGoal}
+          />
+        </Modal>
+      ) : null}
     </React.Fragment>
   );
 };

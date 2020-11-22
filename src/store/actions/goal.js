@@ -66,10 +66,25 @@ export const markGoalAsComplete = ({ goalId, completed }) => async (
 
 export const getGoal = (goalId) => async () => {
   try {
-    const { data: { payload } } = await axios.get(`/goal/${goalId}`);
+    const {
+      data: { payload },
+    } = await axios.get(`/goal/${goalId}`);
     return payload;
   } catch (error) {
     console.log(error);
     throw error;
   }
-}
+};
+
+export const topUpGoal = (goalId, amount) => async () => {
+  try {
+    const {
+      data: { payload },
+    } = await axios.patch(`goal/topup/${goalId}`, {
+      topUpValue: amount,
+    });
+    return payload;
+  } catch ({ response: { data: error } }) {
+    throw error;
+  }
+};

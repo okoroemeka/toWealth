@@ -2,20 +2,35 @@ import React from 'react';
 
 import './goalInput.scss';
 
-const Input = ({
+interface InputProps {
+   labelTitle: string,
+  icon: any,
+  iconName ?: string,
+  iconClassName ?: string,
+  inputType : string,
+  inputName : string,
+  handleChange(e?:any): void,
+  labelClassName?: string,
+  inputWrapperClassName?:string,
+  inputValue?:string|number,
+  required?:boolean,
+  minValue?: number
+}
+
+const Input:React.FC<InputProps> = ({
   labelTitle = '',
   icon,
   iconName = '',
   iconClassName = '',
   inputType = 'text',
   inputName = '',
-  handleChange = () => null,
+  handleChange,
   labelClassName = '',
   inputWrapperClassName = '',
   inputValue = '',
   required,
   minValue = 0
-}) => {
+}:InputProps):JSX.Element=> {
   return (
     <label
       htmlFor={labelTitle.toLowerCase()}
