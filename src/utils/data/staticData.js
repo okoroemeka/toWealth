@@ -1,3 +1,6 @@
+import education from '../../assets/images/education.svg';
+import drinks from '../../assets/images/drinks.svg';
+import clothing from '../../assets/images/clothing.svg';
 const colors = [
   {
     colorId: 0,
@@ -247,10 +250,30 @@ const currency = {
   GBP: '£',
   NGN: '₦',
 };
+
+const category = [
+  {
+    color: '#DD9701',
+    name: 'education',
+    img: education,
+  },
+  {
+    color: '#35116B',
+    name: 'Food and Drinks',
+    img: drinks,
+  },
+  {
+    color: '#3308E2',
+    name: 'clothing',
+    img: clothing,
+  },
+];
+
 export default {
   colors,
   months,
   transactionDropdown,
   transactionTableData,
   currency,
+  category,
 };

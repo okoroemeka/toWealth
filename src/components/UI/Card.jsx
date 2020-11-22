@@ -1,8 +1,9 @@
 import React from 'react';
 
-const Card = ({ classname, children, cardRef = null }) => {
+const Card = (props) => {
+  const { classname, children, cardRef = null } = props;
   return (
-    <div ref={cardRef} className={classname}>
+    <div ref={cardRef} className={classname} {...props}>
       {children}
     </div>
   );

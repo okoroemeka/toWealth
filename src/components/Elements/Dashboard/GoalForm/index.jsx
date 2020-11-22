@@ -12,10 +12,10 @@ import Button from '../../../UI/Button';
 import staticData from '../../../../utils/data/staticData';
 import CardHeader from '../../../UI/CardHeader';
 import Input from '../../../Reusable/GoalInput/Input';
-import ColorTool from '../../../Reusable/ColorTool';
 import Modal from '../../../Reusable/Modal/Modal';
 import { goal } from '../../../../store/actions/goal';
-import ColorPallete from "./ColorPallete";
+import ColorPallete from './ColorPallete';
+import GoalFormDropdown from '../../../Reusable/GoalFormDropdown';
 import axios from '../../../../utils/axios';
 
 import {
@@ -31,7 +31,6 @@ const initialGoalState = {
   goalName: '',
   goalValue: null,
   totalSaved: null,
-  calender: '',
   description: '',
   timeline: '',
 };
@@ -47,10 +46,10 @@ const GoalForm = ({
   goalActivityToggler,
   initialStateAsProps = initialGoalState,
 }) => {
-  const [colorsState, dispatchUpdateColorState] = useReducer(
-    chooseColorReducer,
-    colorsInitialState
-  );
+  // const [colorsState, dispatchUpdateColorState] = useReducer(
+  //   chooseColorReducer,
+  //   colorsInitialState
+  // );
 
   const [goalFormParameters, dispatchAddGoal] = useReducer(
     formReducer,
@@ -58,20 +57,11 @@ const GoalForm = ({
   );
 
   const [chosedColor, setChosedColor] = useState('');
-  const [displayModal, setDisplayModal] = useState(false);
+  const [category, setCategory] = useState('');
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState('');
 
   const dispatch = useDispatch();
-
-  /**
-   * @returns {function} call
-   * @param {object} data
-   */
-  const handleSelectColor = (data) => {
-    setChosedColor(data.payload.color);
-    return dispatchUpdateColorState(data);
-  };
 
   /**
    * @returns {function} call
@@ -89,13 +79,6 @@ const GoalForm = ({
   };
 
   /**
-   * Toggles the modal
-   */
-  const toggleColorPalleteModal = () => {
-    return setDisplayModal(!displayModal);
-  };
-
-  /**
    * @returns {function} call
    * @param {object} e
    */
@@ -107,7 +90,7 @@ const GoalForm = ({
       await dispatch(
         goal({
           ...goalFormParameters,
-          color: chosedColor || '#b620e0',
+          category,
         })
       );
       goalActivityToggler(true);
@@ -126,7 +109,7 @@ const GoalForm = ({
       setLoading(true);
       await axios.patch(`/goal/${itemId}`, {
         ...goalFormParameters,
-        color: chosedColor || '#b620e0',
+        category,
       });
       goalActivityToggler(true);
       setLoading(false);
@@ -136,6 +119,11 @@ const GoalForm = ({
       setLoading(false);
       setErr(message);
     }
+  };
+
+  const handleSelectCategory = ({ color, category }) => {
+    setCategory(category);
+    setChosedColor(color);
   };
 
   return (
@@ -209,12 +197,10 @@ const GoalForm = ({
                 required
               />
             </div>
+            <div className='wrap__input'>
+              <GoalFormDropdown handleSelectCategory={handleSelectCategory} />
+            </div>
           </fieldset>
-          <ColorTool
-            handleShowMoreColors={toggleColorPalleteModal}
-            colorsState={colorsState}
-            handleSelectColor={handleSelectColor}
-          />
           <div className='button__wrapper'>
             <Button className='submit__button' disabled={loading}>
               {!loading ? (
@@ -227,9 +213,15 @@ const GoalForm = ({
         </form>
       </div>
       <Fragment>
-        {displayModal && <Modal style={{ zIndex: 34 }}>
-          <ColorPallete handleCancel={toggleColorPalleteModal} colorsState={colorsState} handleSelectColor={handleSelectColor}/>
-        </Modal>}
+        {/* {displayModal && (
+          <Modal style={{ zIndex: 34 }}>
+            <ColorPallete
+              handleCancel={toggleColorPalleteModal}
+              colorsState={colorsState}
+              handleSelectColor={handleSelectColor}
+            />
+          </Modal>
+        )} */}
       </Fragment>
     </Card>
   );
