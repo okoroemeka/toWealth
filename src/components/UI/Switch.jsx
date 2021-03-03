@@ -3,7 +3,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
 const SwitchButton = ({
-  checked = false,
+  checked,
   handleChange = () => null,
   color,
 }) => (
@@ -11,15 +11,15 @@ const SwitchButton = ({
     control={
       <Switch
         checked={checked}
-        onChange={handleChange}
-        color='black'
+        onChange={e => { handleChange(e) }}
+        color={color ? color : 'primary'}
         inputProps={{ 'aria-label': 'primary checkbox' }}
         name='darkMode'
         labelPlacement='top'
       />
     }
     label={checked ? 'On' : 'Off'}
-    // color={color}
+  // color={color}
   />
 );
 

@@ -73,9 +73,8 @@ const Calendar = (props) => {
             {Object.keys(utils.months).map((item, index) => (
               <div
                 key={index}
-                className={`months__item ${
-                  utils.months[item] == month ? 'months__active' : ''
-                }`}
+                className={`months__item ${utils.months[item] === month ? 'months__active' : ''
+                  }`}
                 onClick={(e) => handleSelectMonth(e)}
               >
                 {item}
