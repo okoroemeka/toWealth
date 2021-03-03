@@ -2,7 +2,7 @@ import React from 'react';
 import './input.scss';
 
 const Input = (props) => {
-  const { inputType, title, value, handleChange = () => null, handleBlur = () => null } = props;
+  const { inputType, title, value, required, handleChange = () => null, handleBlur = () => null } = props;
   return (
     <div className='input__wrapper'>
       <label htmlFor={title}>
@@ -15,6 +15,7 @@ const Input = (props) => {
           onChange={(e) => handleChange(e)}
           onBlur={handleBlur}
           min={inputType === 'number' ? 0 : ''}
+          required={required}
         />
       </label>
     </div>
