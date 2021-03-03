@@ -6,7 +6,7 @@ import Button from '../../../../UI/Button';
 import Input from '../../../../Reusable/Input';
 import { updateUser } from "../../../../../store/actions/user";
 
-const EditForm = ({userData, imageUrl}) => {
+const EditForm = ({ userData, imageUrl }) => {
   const [name, setName] = useState('');
   const [position, setPosition] = useState('');
   const [email, setEmail] = useState('');
@@ -19,12 +19,13 @@ const EditForm = ({userData, imageUrl}) => {
     event.preventDefault();
 
     const userDetails = {
-      imageUrl,
       email,
       fullname: name,
       occupation: position,
-      birthday:date
+      birthday: date
     }
+
+    console.log(userDetails);
 
     try {
       setLoading(true)
@@ -37,10 +38,10 @@ const EditForm = ({userData, imageUrl}) => {
   };
 
   useEffect(() => {
-    setName(userData?.fullname||'')
+    setName(userData?.fullname || '')
     setPosition(userData?.position || '')
     setEmail(userData?.email || '')
-    setDate(userData?.birthday?.split('T')[0]||'')
+    setDate(userData?.birthday?.split('T')[0] || '')
   }, [userData]);
 
   return (
@@ -51,27 +52,31 @@ const EditForm = ({userData, imageUrl}) => {
           inputType='text'
           value={name}
           handleChange={(event) => setName(event.target.value)}
+          required={true}
         />
         <Input
           title='Position/Occupation'
           inputType='text'
           value={position}
           handleChange={(event) => setPosition(event.target.value)}
+          required={true}
         />
         <Input
           title='Email Address'
           inputType='email'
           value={email}
           handleChange={(event) => setEmail(event.target.value)}
+          required={true}
         />
         <Input
           title='Date of Birth'
           inputType='date'
           value={date}
           handleChange={(event) => setDate(event.target.value)}
+          required={true}
         />
         <Button type='submit' className='update__profile' disabled={loading}>
-          {loading ? <CircularProgress color='#ffffff' size={16}/> : 'Update Profile'}
+          {loading ? <CircularProgress color='#ffffff' size={16} /> : 'Update Profile'}
         </Button>
       </form>
     </>
