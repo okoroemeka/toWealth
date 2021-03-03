@@ -119,7 +119,7 @@ const Goals = (props) => {
       target: { id },
     } = e;
     try {
-      if (id == 'pause') {
+      if (id === 'pause') {
         await dispatch(pauseOrContinueGoal({ goalId, paused: true }));
       } else {
         await dispatch(pauseOrContinueGoal({ goalId, paused: false }));
@@ -158,7 +158,7 @@ const Goals = (props) => {
    */
   const handleDispayModalContent = () => {
     let modalContent;
-    if (clickedIconName == 'edit') {
+    if (clickedIconName === 'edit') {
       modalContent = (
         <GetGoal itemId={goalId} url='/goal/'>
           {(err, loading, item) => {
@@ -183,7 +183,7 @@ const Goals = (props) => {
           }}
         </GetGoal>
       );
-    } else if (clickedIconName == 'addGoal') {
+    } else if (clickedIconName === 'addGoal') {
       modalContent = (
         <GoalForm
           handleCancel={() => setDispalyModal(!displayModal)}
@@ -193,7 +193,7 @@ const Goals = (props) => {
           goalActivityToggler={setGoalActivity}
         />
       );
-    } else if (clickedIconName == 'delete') {
+    } else if (clickedIconName === 'delete') {
       let actionButtons = (
         <>
           <UtilButton
@@ -285,28 +285,28 @@ const Goals = (props) => {
           </Card>
           {Boolean(goals)
             ? goals.slice(0, 5).map((goal) => {
-                const { img, name, color: goalColor } = category.filter(
-                  (item) => item.name === goal.category
-                )[0];
-                return (
-                  <GoalCard
-                    colorBoxBackground={goalColor}
-                    id={goal.id}
-                    goal={goal.goalName}
-                    deadLine={goal.timeline}
-                    rate={`${Math.floor(goal.completionRate)}%`}
-                    progress={`${goal.completionRate}%`}
-                    targetFraction={`$${goal.totalSaved}/$${goal.goalValue}`}
-                    isDarkMode={darkMode}
-                    toggleModal={handleSelectModalContent}
-                    paused={goal.paused}
-                    icon={img}
-                    iconName={name}
-                    handlePauseOrContinueGoal={handlePauseOrContinueGoal}
-                    handleMarkGoalAsComplete={handleMarkGoalAsComplete}
-                  />
-                );
-              })
+              const { img, name, color: goalColor } = category.filter(
+                (item) => item.name === goal.category
+              )[0];
+              return (
+                <GoalCard
+                  colorBoxBackground={goalColor}
+                  id={goal.id}
+                  goal={goal.goalName}
+                  deadLine={goal.timeline}
+                  rate={`${Math.floor(goal.completionRate)}%`}
+                  progress={`${goal.completionRate}%`}
+                  targetFraction={`$${goal.totalSaved}/$${goal.goalValue}`}
+                  isDarkMode={darkMode}
+                  toggleModal={handleSelectModalContent}
+                  paused={goal.paused}
+                  icon={img}
+                  iconName={name}
+                  handlePauseOrContinueGoal={handlePauseOrContinueGoal}
+                  handleMarkGoalAsComplete={handleMarkGoalAsComplete}
+                />
+              );
+            })
             : null}
         </div>
       </div>

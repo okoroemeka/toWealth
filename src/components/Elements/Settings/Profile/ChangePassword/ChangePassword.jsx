@@ -31,18 +31,18 @@ const ChangePassword = () => {
       target: { id },
     } = event;
 
-    if (id == 'oldPassword') {
+    if (id === 'oldPassword') {
       setShowOldPassword(!showOldPassword);
     }
-    if (id == 'newPassword') {
+    if (id === 'newPassword') {
       setShowNewPassword(!showNewPassword);
     }
-    if (id == 'confirmPassword') {
+    if (id === 'confirmPassword') {
       setShowConfirmNewPassword(!showNewConfirmPassword);
     }
   };
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       setErrorMessage(null)
@@ -51,14 +51,14 @@ const ChangePassword = () => {
       setOldPassword('');
       setNewPassword('');
       setConfirmPassword('');
-    } catch ({response:{data:{status, message}}}) {
-      setErrorMessage(status === 'Fail' ? message:'An error occured')
+    } catch ({ response: { data: { status, message } } }) {
+      setErrorMessage(status === 'Fail' ? message : 'An error occured')
     }
     setLoading(false)
   };
 
   useEffect(() => {
-    if (passwordValidator(newPassword) && newPassword=== confirmPassword) {
+    if (passwordValidator(newPassword) && newPassword === confirmPassword) {
       setValidForm(true);
     } else {
       setValidForm(false);
@@ -68,7 +68,7 @@ const ChangePassword = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-         {errorMessage ? <Error errorMessage={errorMessage} width="100%"/> : null}
+        {errorMessage ? <Error errorMessage={errorMessage} width="100%" /> : null}
         <div className='change__password__input__wrapper'>
           <Input
             value={oldPassword}
@@ -123,8 +123,8 @@ const ChangePassword = () => {
             onClick={handleShowPassword}
           />
         </div>
-        <Button type='submit' className='update__profile' disabled={loading||!validForm}>
-          {loading ? <CircularProgress color='#ffffff' size={16}/>:'Update Password'}
+        <Button type='submit' className='update__profile' disabled={loading || !validForm}>
+          {loading ? <CircularProgress color='#ffffff' size={16} /> : 'Update Password'}
         </Button>
       </form>
     </>

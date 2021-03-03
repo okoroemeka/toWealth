@@ -81,12 +81,12 @@ const Transaction = (props) => {
               {transactionTableData.map((item) => (
                 <TableData
                   imageUrl={
-                    item.transactionType == 'income'
+                    item.transactionType === 'income'
                       ? incomeArrow
                       : expensesIcon
                   }
                   backgroundColor={
-                    item.transactionType == 'income' ? '#75BF72' : '#DF5060'
+                    item.transactionType === 'income' ? '#75BF72' : '#DF5060'
                   }
                   date='04/02/2020'
                   description='monthly salary'

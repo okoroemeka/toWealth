@@ -46,13 +46,12 @@ const SideNav = ({ handleSideNavItemClicked }) => {
 
   return dashboardData.map(({ id, name, icon: Icon }) => (
     <Link
-      className={`nav__item ${
-        name.replace(' ', '').toLowerCase() == pathName
-          ? 'nav__item__active'
-          : ''
-      }`}
+      className={`nav__item ${name.replace(' ', '').toLowerCase() === pathName
+        ? 'nav__item__active'
+        : ''
+        }`}
       key={id}
-      to={`/dashboard/${name.replace(' ', '').toLowerCase()}`}
+      to={`/ dashboard / ${name.replace(' ', '').toLowerCase()}`}
     >
       <Icon
         fill={

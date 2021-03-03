@@ -1,38 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Select from '../../../UI/Select';
 import Button from '../../../UI/CustomButton';
 import Switch from '../../../UI/Switch';
 import Line from '../../../UI/Line';
+import ApiCall from '../../../../helper/Api';
+import { toast } from 'react-toastify';
 
 const GeneralSettingsSub = (props) => {
-  const [languages, setLanguages] = React.useState('English');
-  const [country, setCountry] = React.useState('US');
-  const [currency, setCurrency] = React.useState('USD');
-  const [darkMode, setDarkMode] = React.useState(false);
+  const [generalSettings, setGeneralSettings] = useState({
+    language: '',
+    darkMode: false,
+    currency: '',
+    country: ''
+  })
 
-  const handleSelectLanguage = (event) => {
-    const { value } = event.target;
-    setLanguages(value);
-  };
+  useEffect(() => {
+    ApiCall.getCall('settings/get-general-settings').then(res => {
+      setGeneralSettings(res.payload)
+    }, err => {
+      console.log(err);
+    })
+  }, [])
 
-  const handleSelectCountry = (event) => {
-    const { value } = event.target;
-    setCountry(value);
-  };
-
-  const handleSelectCurrency = (event) => {
-    const { value } = event.target;
-    setCurrency(value);
-  };
-
-  const handleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  const handleChange = (e, name) => {
+    console.log(generalSettings.darkMode);
+    setGeneralSettings(prev => {
+      return { ...prev, [name]: e.target.value }
+    })
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    return null;
+    ApiCall.putCall('settings/update-general-settings', generalSettings).then(() => {
+      toast.success('General Settings Updated')
+    }, err => {
+      console.log(err);
+    })
   };
 
   return (
@@ -40,17 +44,19 @@ const GeneralSettingsSub = (props) => {
       <div className='form__item'>
         <h5 className='general__settings__item__title'>Dark mode</h5>
         <Switch
-          handleChange={handleDarkMode}
-          checked={darkMode}
-          color={darkMode ? '#347af0' : 'primary'}
+          handleChange={(e) => setGeneralSettings(prev => {
+            return { ...prev, darkMode: e.target.checked }
+          })}
+          checked={generalSettings.darkMode}
+          color={generalSettings.darkMode ? '#347af0' : 'secondary'}
         />
         <Line borderColor='#E4E7EB' />
       </div>
       <div className='form__item'>
         <Select
           id='languages'
-          handleChange={handleSelectLanguage}
-          selectedValue={languages}
+          handleChange={(e) => handleChange(e, 'language')}
+          selectedValue={generalSettings.language}
           label='Languages'
           options={[
             { name: 'English', value: 'English' },
@@ -62,12 +68,13 @@ const GeneralSettingsSub = (props) => {
       <div className='form__item'>
         <Select
           id='country'
-          selectedValue={country}
-          handleChange={handleSelectCountry}
+          selectedValue={generalSettings.country}
+          handleChange={e => handleChange(e, 'country')}
           label='Country'
           options={[
-            { name: 'US', value: 'US' },
+            { name: 'United States', value: 'United States' },
             { name: 'France', value: 'France' },
+            { name: 'Nigeria', value: 'Nigeria' },
             { name: 'Germany', value: 'Germany' },
           ]}
         />
@@ -75,11 +82,12 @@ const GeneralSettingsSub = (props) => {
       <div className='form__item'>
         <Select
           id='currency'
-          selectedValue={currency}
-          handleChange={handleSelectCurrency}
+          selectedValue={generalSettings.currency}
+          handleChange={(e) => handleChange(e, 'currency')}
           label='Currency'
           options={[
             { name: 'USD', value: 'USD' },
+            { name: 'NGN', value: 'NGN' },
             { name: 'Euro', value: 'Euro' },
           ]}
         />

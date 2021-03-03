@@ -12,9 +12,9 @@ const Input = (props) => {
           type={inputType}
           value={value}
           name={title?.toLowerCase()}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
           onBlur={handleBlur}
-          min={inputType == 'number' ? 0 : ''}
+          min={inputType === 'number' ? 0 : ''}
         />
       </label>
     </div>

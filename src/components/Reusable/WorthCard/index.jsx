@@ -26,7 +26,7 @@ const WorthCard = ({
           </div>
         </div>
       </div>
-      {className == 'savigns__card' && (
+      {className === 'savigns__card' && (
         <div className='progress__rate'>
           <img src={carat} alt='up carat' className='carat' />
           <div className='percentage'>16%</div>

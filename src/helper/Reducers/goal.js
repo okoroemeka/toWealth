@@ -8,7 +8,7 @@ export function chooseColorReducer(state = [], { type, payload }) {
   switch (type) {
     case goalTypes.selectColor:
       return state.map((colorItem) => {
-        if (colorItem.colorId == payload.colorId) {
+        if (colorItem.colorId === payload.colorId) {
           colorItem.active = true;
         } else {
           colorItem.active = false;
