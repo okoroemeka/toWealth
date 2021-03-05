@@ -1,4 +1,4 @@
-import React, { useState, useRef,useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from '@reach/router';
 
@@ -8,6 +8,9 @@ import TopNav from "../Navs/TopNav/TopNav";
 import SideNav from "../Navs/SideNav/SideNav";
 import { getUser } from "../../../store/actions/user";
 import './dashboard.scss';
+import { SettingsContext } from '../../../helper/Contexts/SettingsContext';
+import ApiCall from '../../../helper/Api';
+import { toast } from 'react-toastify';
 
 const Dashboard = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
@@ -15,6 +18,7 @@ const Dashboard = ({ children }) => {
   const topNavRef = useRef(null);
   const dispatch = useDispatch();
 
+  const { setSettings } = useContext(SettingsContext);
 
   const {
     darkMode: { darkMode },
@@ -22,7 +26,7 @@ const Dashboard = ({ children }) => {
     signup,
   } = useSelector((state) => state);
 
-  const fullname = authLogin?.data?.fullname?.split(' ').map(name=>name[0].toUpperCase() + name.slice(1)).join(' ');
+  const fullname = authLogin?.data?.fullname?.split(' ').map(name => name[0].toUpperCase() + name.slice(1)).join(' ');
 
   const handleDisplayDarkMode = () => {
     dispatch(displayMode.darkMode(true));
@@ -38,9 +42,9 @@ const Dashboard = ({ children }) => {
   };
 
   useEffect(() => {
-      if (showModal) {
-        topNavRef.current.focus();
-      }
+    if (showModal) {
+      topNavRef.current.focus();
+    }
   }, [showModal]);
   useEffect(() => {
     async function user() {
@@ -74,9 +78,8 @@ const Dashboard = ({ children }) => {
             position={authLogin?.data?.position}
           />
           <div
-            className={`col-sm-12 col-l-10 main__content ${
-              darkMode && 'dark__mode'
-            }`}
+            className={`col-sm-12 col-l-10 main__content ${darkMode && 'dark__mode'
+              }`}
           >
             {children}
           </div>

@@ -51,7 +51,7 @@ const SideNav = ({ handleSideNavItemClicked }) => {
         : ''
         }`}
       key={id}
-      to={`/ dashboard / ${name.replace(' ', '').toLowerCase()}`}
+      to={`/dashboard/${name.replace(' ', '').toLowerCase()}`}
     >
       <Icon
         fill={
