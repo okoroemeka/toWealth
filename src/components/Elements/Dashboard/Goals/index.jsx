@@ -258,7 +258,6 @@ const Goals = (props) => {
     }
     ApiCall.getCall('settings/get-general-settings').then(res => {
       const { payload } = res
-      console.log(res);
       setSettings(prev => {
         return { ...prev, ...payload }
       }, err => {

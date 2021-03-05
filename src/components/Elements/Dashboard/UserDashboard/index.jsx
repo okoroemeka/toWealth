@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Savings from '../../../UI/Icons/Savings';
 import Networth from '../../../UI/Icons/Networth';
@@ -19,9 +19,37 @@ import liabilities from '../../../../assets/images/liabilities.svg';
 import goals from '../../../../assets/images/goals.svg';
 
 import './userDashboard.scss';
+import ApiCall from '../../../../helper/Api';
+import { toast } from 'react-toastify';
+import convertToCurrency from '../../../../helper/convertToCurrency';
 
 const UserDashbord = (props) => {
+  const [goals, setGoals] = useState([]);
+  const [settings, setSettings] = useState({})
   const [toggleSideButtons, setToggleSideButtons] = useState(false);
+
+  useEffect(() => {
+    ApiCall.getCall('settings/get-general-settings').then(res => {
+      const { payload } = res
+      setSettings(prev => {
+        return { ...prev, ...payload }
+      }, err => {
+        toast.error(err.message);
+      })
+    })
+    ApiCall.getCall('goal').then(res => {
+      setGoals(res.payload);
+    }, err => toast.error(err.message));
+
+  }, [])
+
+  const goalGrid = goals.map((goal, index) => (<div className='col-l-5' key={index} style={{ marginRight: 6 }}>
+    <ActiveGoalCard
+      goal={goal.goalName}
+      percent={goal.completionRate + "%"}
+      progressWidth={goal.completionRate + "%"}
+      fraction={convertToCurrency(goal.totalSaved, settings.currency) + "/" + convertToCurrency(goal.goalValue, settings.currency)} />
+  </div>))
   return (
     <DashboardWrapper>
       <div className='savings__datails'>
@@ -68,9 +96,7 @@ const UserDashbord = (props) => {
           </div>
           <h5 className='active__goals__header'>My Active Goals</h5>
           <div className='row active__goal'>
-            <div className='col-l-5'>
-              <ActiveGoalCard />
-            </div>
+            {goalGrid.length < 1 ? <p>No Goals Found</p> : goalGrid}
           </div>
         </div>
         <div className='col-l-3 toggle__button__wrapper'>
