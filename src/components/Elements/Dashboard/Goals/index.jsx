@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Card from '../../../UI/Card';
@@ -22,6 +22,8 @@ import CardRemade from '../../../UI/CardRemade';
 import UtilButton from '../../../UI/UtilButton';
 import staticData from '../../../../utils/data/staticData';
 import TopUpForm from '../TopUpForm';
+import convertToCurrency from '../../../../helper/convertToCurrency';
+import ApiCall from '../../../../helper/Api';
 
 const { category } = staticData;
 
@@ -49,6 +51,7 @@ const Goals = (props) => {
   const [loading, setLoading] = useState(false);
   const [showAddDeposite, setShowAddDeposite] = useState(false);
   const [err, setErr] = useState('');
+  const [settings, setSettings] = useState({});
 
   const dispatch = useDispatch();
 
@@ -253,6 +256,15 @@ const Goals = (props) => {
     if (goalActivity) {
       setGoalActivity(false);
     }
+    ApiCall.getCall('settings/get-general-settings').then(res => {
+      const { payload } = res
+      console.log(res);
+      setSettings(prev => {
+        return { ...prev, ...payload }
+      }, err => {
+        toast.error(err.message);
+      })
+    })
   }, [dispatch, goalActivity, currentItem]);
 
   return (
@@ -284,19 +296,20 @@ const Goals = (props) => {
             </button>
           </Card>
           {Boolean(goals)
-            ? goals.slice(0, 5).map((goal) => {
+            ? goals.slice(0, 5).map((goal, index) => {
               const { img, name, color: goalColor } = category.filter(
                 (item) => item.name === goal.category
               )[0];
               return (
                 <GoalCard
+                  key={index}
                   colorBoxBackground={goalColor}
                   id={goal.id}
                   goal={goal.goalName}
                   deadLine={goal.timeline}
                   rate={`${Math.floor(goal.completionRate)}%`}
                   progress={`${goal.completionRate}%`}
-                  targetFraction={`$${goal.totalSaved}/$${goal.goalValue}`}
+                  targetFraction={settings.currency && `${convertToCurrency(goal.totalSaved, settings.currency)}/${convertToCurrency(goal.goalValue, settings.currency)}`}
                   isDarkMode={darkMode}
                   toggleModal={handleSelectModalContent}
                   paused={goal.paused}

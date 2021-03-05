@@ -44,9 +44,8 @@ const GaolCard = ({
       </div>
       <div className='row goal__details__wrapper'>
         <div
-          className={`col-l-4 goal__deadline ${
-            darkMode && 'goal__deadline__dark'
-          }`}
+          className={`col-l-4 goal__deadline ${darkMode && 'goal__deadline__dark'
+            }`}
         >
           <h6>Goal deadline</h6>
           <h6>{deadLine}</h6>
@@ -66,7 +65,7 @@ const GaolCard = ({
         ></div>
       </div>
       <div className='target__fraction'>
-        <h5 className={isDarkMode && 'target__fraction__dark'}>
+        <h5 className={isDarkMode ? 'target__fraction__dark' : ''}>
           {targetFraction}
         </h5>
       </div>
@@ -82,14 +81,14 @@ const GaolCard = ({
               onClick={(e) => handlePauseOrContinueGoal(e, id)}
             />
           ) : (
-            <img
-              id='pause'
-              src={pauseIcon}
-              alt='pause'
-              className='icon pause-icon'
-              onClick={(e) => handlePauseOrContinueGoal(e, id)}
-            />
-          )}
+              <img
+                id='pause'
+                src={pauseIcon}
+                alt='pause'
+                className='icon pause-icon'
+                onClick={(e) => handlePauseOrContinueGoal(e, id)}
+              />
+            )}
           <img
             src={penIcon}
             alt='edit'

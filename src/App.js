@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Router } from '@reach/router';
 
 import Auth from './components/Pages/Authentication';
@@ -14,6 +14,7 @@ import GeneralSettings from './components/Elements/Settings/GeneralSettings';
 import Protected from './components/HOC/Protected';
 
 function App() {
+
   return (
     <div className='container'>
       <Router>
