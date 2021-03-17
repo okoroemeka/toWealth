@@ -48,7 +48,7 @@ const UserDashbord = (props) => {
       goal={goal.goalName}
       percent={goal.completionRate + "%"}
       progressWidth={goal.completionRate + "%"}
-      fraction={convertToCurrency(goal.totalSaved, settings.currency) + "/" + convertToCurrency(goal.goalValue, settings.currency)} />
+      fraction={settings.currency && convertToCurrency(goal.totalSaved, settings.currency) + "/" + convertToCurrency(goal.goalValue, settings.currency)} />
   </div>))
   return (
     <DashboardWrapper>
