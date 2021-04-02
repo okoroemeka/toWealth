@@ -13,49 +13,50 @@ import ContentWrapper from "../../../Reusable/FloatingButtonContentWrapper";
 import "./Savings.scss";
 // import Modal from "../../../Reusable/Modal/Modal";
 import SavingsForm from "../SavingsForm";
-import { Modal } from "@material-ui/core";
+import ModalUI from "../../../Reusable/ModalUI";
 
 const Savings = (props) => {
   const [showFloatingContent, setShowFloatingContent] = useState(false);
   const [displayMore, setDisplayMore] = useState(false);
   const [displayIncomeTable, setDisplayIncomeTable] = useState(false);
   const [displayExpensesTable, setDisplayExpensesTable] = useState(false);
-  const [clickedItem, setClickedItem] = useState("income");
+  const [clickedItem, setClickedItem] = useState("Income");
   const [displayModal, setDisplayModal] = useState(false);
+  const [date, setDate] = useState({ year: "", month: "" });
 
   const handleSetDisplayContent = (item) => {
     setClickedItem(item);
     return setDisplayModal(!displayModal);
   };
-  const handleDisplayModalContent = () => {
-    console.log("display");
-    let modalContent;
-    if (clickedItem === "income") {
-      modalContent = (
-        <SavingsForm
-          cardTitle="New Income"
-          type="income"
-          toggleModal={setDisplayModal(!displayModal)}
-        />
-      );
-    } else {
-      modalContent = (
-        <SavingsForm
-          cardTitle="New Expense"
-          type="expense"
-          toggleModal={setDisplayModal(!displayModal)}
-        />
-      );
-    }
-    return modalContent;
-  };
-
+  // const handleDisplayModalContent = () => {
+  //   console.log("display");
+  //   let modalContent;
+  //   if (clickedItem === "income") {
+  //     modalContent = (
+  //       <SavingsForm
+  //         cardTitle="New Income"
+  //         type="income"
+  //         toggleModal={setDisplayModal(!displayModal)}
+  //       />
+  //     );
+  //   } else {
+  //     modalContent = (
+  //       <SavingsForm
+  //         cardTitle="New Expense"
+  //         type="expense"
+  //         toggleModal={setDisplayModal(!displayModal)}
+  //       />
+  //     );
+  //   }
+  //   return modalContent;
+  // };
+  console.log(date);
   return (
     <div className="savings">
       <div className="col-l-10">
         <div className="row calender__wrapper">
           <div className="col-l-4 ">
-            <Calendar />
+            <Calendar handleReturnSelectedMonth={setDate} />
           </div>
         </div>
         <div className="row savings__details__area">
@@ -137,15 +138,24 @@ const Savings = (props) => {
                 -
               </ContentWrapper>
             </FloatingButtonContent>
-            {displayModal && (
-              <Modal
-                open={displayModal}
-                onClose={setDisplayModal(!displayModal)}
-                ariaLabelledBy={clickedItem}
-              >
-                {handleDisplayModalContent()}
-              </Modal>
-            )}
+
+            <ModalUI
+              onOpen={displayModal}
+              onClose={() => setDisplayModal(!displayModal)}
+              title={clickedItem === "income" ? "New Income" : "New Expense"}
+            >
+              {clickedItem === "income" ? (
+                <SavingsForm
+                  type={clickedItem}
+                  onClose={() => setDisplayModal(!displayModal)}
+                />
+              ) : (
+                <SavingsForm
+                  type={clickedItem}
+                  onClose={() => setDisplayModal(!displayModal)}
+                />
+              )}
+            </ModalUI>
           </div>
         )}
         <FloatingButton

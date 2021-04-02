@@ -25,6 +25,7 @@ export default function index({
   label,
   options,
   required,
+  createCategory,
 }) {
   return (
     <FormControl fullWidth margin="normal" variant="standard">
@@ -37,17 +38,29 @@ export default function index({
         onChange={onChange}
         MenuProps={MenuProps}
         required={required}
-        renderValue={(selected) => (
-          <div>
-            <Chip label={new String(selected).toUpperCase()} />
-          </div>
-        )}
+        renderValue={(selected) => {
+          let label;
+          if (typeof selected === "number") {
+            const opt = options.find((el) => el.id === selected);
+            label = opt.name;
+          } else {
+            label = selected;
+          }
+          return (
+            <div>
+              <Chip label={label.toUpperCase()} />
+            </div>
+          );
+        }}
       >
-        {options.map((name) => (
-          <MenuItem key={name} value={name}>
-            {new String(name).toLocaleUpperCase()}
+        {options.map((opt, i) => (
+          <MenuItem key={i} value={opt.id}>
+            {opt.name.toLocaleUpperCase()}
           </MenuItem>
         ))}
+        {createCategory && (
+          <MenuItem onClick={() => createCategory()}>Add Category</MenuItem>
+        )}
       </Select>
     </FormControl>
   );

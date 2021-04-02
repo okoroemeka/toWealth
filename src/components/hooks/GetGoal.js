@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import axios from '../../utils/axios';
+import axios from "../../utils/axios";
 
 const GetGoal = ({ itemId, url, children }) => {
   const [item, setItem] = useState({});
@@ -8,7 +8,7 @@ const GetGoal = ({ itemId, url, children }) => {
   const [err, setErr] = useState(null);
 
   useEffect(() => {
-    let result;
+    // let result;
     if (itemId && url.length) {
       async function getGoal() {
         setErr(null);

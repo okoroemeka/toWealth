@@ -1,38 +1,38 @@
-import React, { useReducer, useState, Fragment } from 'react';
-import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import React, { useReducer, useState, Fragment } from "react";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-import goalIcon from '../../../../assets/images/chat.svg';
-import totalSavedIcon from '../../../../assets/images/totalSavedIcon.svg';
-import calenderIcon from '../../../../assets/images/calenderIcon.svg';
-import description from '../../../../assets/images/description.svg';
-import Card from '../../../UI/Card';
-import Button from '../../../UI/Button';
-import staticData from '../../../../utils/data/staticData';
-import CardHeader from '../../../UI/CardHeader';
-import Input from '../../../Reusable/GoalInput/Input';
-import Modal from '../../../Reusable/Modal/Modal';
-import { goal } from '../../../../store/actions/goal';
-import ColorPallete from './ColorPallete';
-import GoalFormDropdown from '../../../Reusable/GoalFormDropdown';
-import axios from '../../../../utils/axios';
+import goalIcon from "../../../../assets/images/chat.svg";
+import totalSavedIcon from "../../../../assets/images/totalSavedIcon.svg";
+import calenderIcon from "../../../../assets/images/calenderIcon.svg";
+import description from "../../../../assets/images/description.svg";
+import Card from "../../../UI/Card";
+import Button from "../../../UI/Button";
+// import staticData from "../../../../utils/data/staticData";
+import CardHeader from "../../../UI/CardHeader";
+import Input from "../../../Reusable/GoalInput/Input";
+// import Modal from '../../../Reusable/Modal/Modal';
+import { goal } from "../../../../store/actions/goal";
+// import ColorPallete from './ColorPallete';
+import GoalFormDropdown from "../../../Reusable/GoalFormDropdown";
+import axios from "../../../../utils/axios";
 
 import {
-  chooseColorReducer,
+  // chooseColorReducer,
   formReducer,
   goalTypes,
-} from '../../../../helper/Reducers/goal';
-import './editCard.scss';
+} from "../../../../helper/Reducers/goal";
+import "./editCard.scss";
 
-const { colors: colorsInitialState } = staticData;
+// const { colors: colorsInitialState } = staticData;
 
 const initialGoalState = {
-  goalName: '',
+  goalName: "",
   goalValue: null,
   totalSaved: null,
-  description: '',
-  timeline: '',
+  description: "",
+  timeline: "",
 };
 
 const GoalForm = ({
@@ -40,7 +40,7 @@ const GoalForm = ({
   itemId = null,
   handleCancel,
   cardRef,
-  handleBlur,
+  // handleBlur,
   formTitle,
   toggleModal,
   goalActivityToggler,
@@ -56,10 +56,16 @@ const GoalForm = ({
     initialStateAsProps
   );
 
-  const [chosedColor, setChosedColor] = useState('');
-  const [category, setCategory] = useState('');
+  const [
+    // chosedColor,
+    setChosedColor,
+  ] = useState("");
+  const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
-  const [err, setErr] = useState('');
+  const [
+    // err,
+    setErr,
+  ] = useState("");
 
   const dispatch = useDispatch();
 
@@ -114,7 +120,7 @@ const GoalForm = ({
       goalActivityToggler(true);
       setLoading(false);
       toggleModal();
-      toast.success('Goal edited successfully');
+      toast.success("Goal edited successfully");
     } catch ({ message }) {
       setLoading(false);
       setErr(message);
@@ -127,86 +133,86 @@ const GoalForm = ({
   };
 
   return (
-    <Card classname='col-sm-12 col-l-4 edit__goal__card'>
-      <div ref={cardRef} className='card__content' onBlur={() => null}>
+    <Card classname="col-sm-12 col-l-4 edit__goal__card">
+      <div ref={cardRef} className="card__content" onBlur={() => null}>
         <CardHeader handleCancel={handleCancel} cardTitle={formTitle} />
 
         <form onSubmit={!edit ? handleSubmit : handleEditSubmit}>
-          <fieldset className='fieldset' disabled={false}>
-            <div className='wrap__input'>
+          <fieldset className="fieldset" disabled={false}>
+            <div className="wrap__input">
               <Input
-                labelTitle='goal name'
+                labelTitle="goal name"
                 icon={goalIcon}
-                iconName='goal'
-                iconClassName='goal__icon'
-                inputType='text'
-                inputName='goalName'
+                iconName="goal"
+                iconClassName="goal__icon"
+                inputType="text"
+                inputName="goalName"
                 inputValue={goalFormParameters.goalName}
                 handleChange={handleChange}
                 required
               />
               <Input
-                labelTitle='goal value'
+                labelTitle="goal value"
                 icon={goalIcon}
-                iconName='goal value'
-                iconClassName='goal__icon'
-                inputType='number'
-                inputName='goalValue'
+                iconName="goal value"
+                iconClassName="goal__icon"
+                inputType="number"
+                inputName="goalValue"
                 inputValue={goalFormParameters.goalValue}
                 handleChange={handleChange}
                 required
               />
             </div>
-            <div className='wrap__input'>
+            <div className="wrap__input">
               <Input
-                labelTitle='total saved'
+                labelTitle="total saved"
                 icon={totalSavedIcon}
-                iconName='total saved'
-                iconClassName='goal__icon'
-                inputType='number'
-                inputName='totalSaved'
+                iconName="total saved"
+                iconClassName="goal__icon"
+                inputType="number"
+                inputName="totalSaved"
                 inputValue={goalFormParameters.totalSaved}
                 handleChange={handleChange}
                 required
               />
               <Input
-                labelTitle='timeline'
+                labelTitle="timeline"
                 icon={calenderIcon}
-                iconName='date'
-                iconClassName='goal__icon'
-                inputType='date'
-                inputName='timeline'
-                inputValue={goalFormParameters.timeline?.split('T')[0]}
+                iconName="date"
+                iconClassName="goal__icon"
+                inputType="date"
+                inputName="timeline"
+                inputValue={goalFormParameters.timeline?.split("T")[0]}
                 handleChange={handleChange}
                 required
-                minValue={new Date().toISOString().split('T')[0]}
+                minValue={new Date().toISOString().split("T")[0]}
               />
             </div>
-            <div className='wrap__input'>
+            <div className="wrap__input">
               <Input
-                labelTitle='description'
+                labelTitle="description"
                 icon={description}
-                labelClassName='lable__description'
-                iconName='date'
-                iconClassName='delete__icon'
-                inputType='text'
-                inputName='description'
-                inputWrapperClassName='input__wrapper__description'
+                labelClassName="lable__description"
+                iconName="date"
+                iconClassName="delete__icon"
+                inputType="text"
+                inputName="description"
+                inputWrapperClassName="input__wrapper__description"
                 inputValue={goalFormParameters.description}
                 handleChange={handleChange}
                 required
               />
             </div>
-            <div className='wrap__input'>
+            <div className="wrap__input">
               <GoalFormDropdown handleSelectCategory={handleSelectCategory} />
             </div>
           </fieldset>
-          <div className='button__wrapper'>
-            <Button className='submit__button' disabled={loading}>
+          <div className="button__wrapper">
+            <Button className="submit__button" disabled={loading}>
               {!loading ? (
-                'Save'
+                "Save"
               ) : (
-                <CircularProgress color='#ffffff' size={16} />
+                <CircularProgress color="#ffffff" size={16} />
               )}
             </Button>
           </div>

@@ -1,15 +1,14 @@
+import { Box, Button } from "@material-ui/core";
 import React, { useState } from "react";
-import Input from "../../../Reusable/Input";
-import Card from "../../../UI/Card";
-import CardHeader from "../../../UI/CardHeader";
+import ChipSelect from "../../../Reusable/ChipSelect";
+import InputUI from "../../../Reusable/InputUI";
 
-export default function SavingsForm({ formTitle, type, toggleModal, cardRef }) {
+export default function SavingsForm({ type, onClose }) {
   const [formDetails, setFormDetails] = useState({
     amount: "",
     date: "",
     description: "",
     category: "",
-    wallet: "",
   });
 
   const handleChange = (e) => {
@@ -18,23 +17,59 @@ export default function SavingsForm({ formTitle, type, toggleModal, cardRef }) {
       return { ...prev, [name]: value };
     });
   };
+
   return (
-    <Card classname="col-sm-12 col-l-4">
-      <div ref={cardRef} className="card__content" onBlur={() => null}>
-        <CardHeader handleCancel={toggleModal} cardTitle={formTitle} />
-        <form>
-          <fieldset className="fieldset" disabled={false}>
-            <Input
-              labelTitle="Amount"
-              inputType="number"
-              inputName="amount"
-              inputValue={formDetails.amount}
-              handleChange={handleChange}
-              required
-            />
-          </fieldset>
-        </form>
-      </div>
-    </Card>
+    <>
+      <form>
+        <InputUI
+          name="amount"
+          label="Amount"
+          required={true}
+          value={formDetails.amount}
+          onChange={(e) => {
+            handleChange(e);
+          }}
+        />
+        <InputUI
+          name="date"
+          required={true}
+          type="date"
+          value={formDetails.date}
+          onChange={(e) => {
+            handleChange(e);
+          }}
+        />
+        <InputUI
+          name="description"
+          label="Description"
+          required={true}
+          value={formDetails.description}
+          onChange={(e) => {
+            handleChange(e);
+          }}
+        />
+        <ChipSelect
+          name="category"
+          value={formDetails.category}
+          label="Category"
+          onChange={(e) => handleChange(e)}
+          options={["food", "education", "miscellaneous"]}
+          required={true}
+        />
+        <Box
+          marginTop={2}
+          marginBottom={2}
+          display="flex"
+          justifyContent="flex-end"
+        >
+          <Button type="button" variant="text" onClick={() => onClose()}>
+            Cancel
+          </Button>
+          <Button type="submit" variant="outlined" color="primary">
+            Save
+          </Button>
+        </Box>
+      </form>
+    </>
   );
 }

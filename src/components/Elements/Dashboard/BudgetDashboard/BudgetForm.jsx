@@ -1,18 +1,21 @@
-import { Box, Button, CardHeader } from "@material-ui/core";
-import React, { useState } from "react";
+import { Box, Button } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
 import InputUI from "../../../Reusable/InputUI/index";
 import ChipSelect from "../../../Reusable/ChipSelect";
 import ApiCall from "../../../../helper/Api";
 import { toast } from "react-toastify";
+import ModalUI from "../../../Reusable/ModalUI";
+import CategoryForm from "./CategoryForm";
 // import "../GoalForm/editCard.scss";
 
 export default function BudgetForm({ onClose }) {
+  const [categories, setCategories] = useState([]);
   const [formDetails, setFormDetails] = useState({
-    category: "",
+    categoryId: "",
     description: "",
     budget: "",
-    actual: "",
   });
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -23,23 +26,54 @@ export default function BudgetForm({ onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    ApiCall.postCall("budget", formDetails).then(() => {
-      toast.success("Budget Created");
-      onClose();
-    });
+    ApiCall.postCall("budget", formDetails).then(
+      () => {
+        toast.success("Budget Created");
+        onClose();
+      },
+      (err) => console.log(err)
+    );
   };
+
+  useEffect(() => {
+    ApiCall.getCall("category").then((res) => {
+      setCategories(res.payload);
+    });
+  }, []);
+
+  const categoryOptions = categories.map((cat) => {
+    return {
+      name: cat.categoryName,
+      id: cat.id,
+    };
+  });
 
   return (
     <>
       <form onSubmit={(e) => handleSubmit(e)}>
         <ChipSelect
-          name="category"
-          value={formDetails.category}
+          name="categoryId"
+          value={formDetails.categoryId}
           label="Category"
           onChange={(e) => handleChange(e)}
-          options={["food", "education", "miscellaneous"]}
+          options={categoryOptions}
+          createCategory={() => setShowCategoryModal(true)}
           required={true}
         />
+        <ModalUI
+          onOpen={showCategoryModal}
+          onClose={async () => {
+            await ApiCall.getCall("category").then((res) => {
+              setCategories(res.payload);
+            });
+            setShowCategoryModal(!showCategoryModal);
+          }}
+          title="New Category"
+        >
+          <CategoryForm
+            onClose={() => setShowCategoryModal(!showCategoryModal)}
+          />
+        </ModalUI>
         <InputUI
           name="description"
           label="Description"
@@ -59,21 +93,15 @@ export default function BudgetForm({ onClose }) {
             handleChange(e);
           }}
         />
-        <InputUI
-          name="actual"
-          label="Actual"
-          required={true}
-          value={formDetails.actual}
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        />
         <Box
           marginTop={2}
           marginBottom={2}
           display="flex"
           justifyContent="flex-end"
         >
+          <Button type="button" variant="text" onClick={() => onClose()}>
+            Cancel
+          </Button>
           <Button type="submit" variant="outlined" color="primary">
             Save Budget
           </Button>
