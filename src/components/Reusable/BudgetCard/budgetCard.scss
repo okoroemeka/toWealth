@@ -1,4 +1,4 @@
-@import '../../../styles/commons.scss';
+@import "../../../styles/commons.scss";
 .chart {
   display: flex;
   justify-content: center;
@@ -56,6 +56,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      border-radius: 50%;
       .top__icon__wrapper {
         display: flex;
         justify-content: center;

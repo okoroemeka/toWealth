@@ -1,0 +1,12 @@
+@import "../../../styles/commons.scss";
+
+.table {
+  width: 100%;
+  border-radius: $cardBorderRadius;
+  background-color: $white;
+  .table__row {
+    color: $secondaryBlue;
+    font-size: 0.8rem;
+    text-transform: capitalize;
+  }
+}

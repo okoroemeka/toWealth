@@ -1,4 +1,4 @@
-@import '../../../../styles/commons.scss';
+@import "../../../../styles/commons.scss";
 
 .budget__details {
   width: 100%;
@@ -6,6 +6,7 @@
     display: flex;
     padding-top: 4rem;
     padding-bottom: 2rem;
+    justify-content: space-between;
     .add__newbudget {
       color: $white;
       font-size: 0.6rem;
@@ -32,26 +33,26 @@
         padding-right: 0.5rem;
         margin-bottom: 1.5rem;
       }
-      .personal__savings {
-        width: 85%;
-        height: auto;
-        background-color: $white;
-        h6,
-        p {
-          color: $lightGray;
-        }
-        h6 {
-          text-transform: uppercase;
-        }
+    }
+  }
+  .personal__savings {
+    width: 90%;
+    height: auto;
+    background-color: $white;
+    h6,
+    p {
+      color: $lightGray;
+    }
+    h6 {
+      text-transform: uppercase;
+    }
 
-        .icon {
-          .wallet__icon__wrapper {
-            margin-left: 1rem;
-            background-color: $brandRed;
-            .wallet_icon {
-              width: 1rem;
-            }
-          }
+    .icon {
+      .wallet__icon__wrapper {
+        margin-left: 1rem;
+        background-color: $brandRed;
+        .wallet_icon {
+          width: 1rem;
         }
       }
     }

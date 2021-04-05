@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { navigate, Redirect } from '@reach/router';
-
-import CircularProgress from '@material-ui/core/CircularProgress';
-import login from '../../../store/actions/login';
-import eyeIcon from '../../../assets/images/eye.svg';
-import Error from '../../Reusable/Error';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { navigate, Redirect } from "@reach/router";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import login from "../../../store/actions/login";
+import eyeIcon from "../../../assets/images/eye.svg";
 import InputError from "../../Reusable/Error/InputError";
 
-import { emailValidator, passwordValidator } from '../../../utils/Validation';
+import { emailValidator, passwordValidator } from "../../../utils/Validation";
 
-import './login.scss';
+import "./login.scss";
 
 const Login = ({ toggleAuth }) => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [emailTouched, setEmailTouched] = useState(false);
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
   const [validForm, setValidForm] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   const dispatch = useDispatch();
   const { authLogin, signup } = useSelector((store) => store);
@@ -31,7 +29,7 @@ const Login = ({ toggleAuth }) => {
       setLoading(true);
       await dispatch(login({ email, password }));
       setLoading(false);
-      navigate('/dashboard/dashboard');
+      navigate("/dashboard/dashboard");
     } catch ({ message }) {
       setLoading(false);
       setErrorMessage(message);
@@ -47,32 +45,32 @@ const Login = ({ toggleAuth }) => {
   }, [email, password]);
 
   if (authLogin.isLoggedIn || signup.isLoggedIn)
-    return <Redirect noThrow to='/dashboard/dashboard' />;
+    return <Redirect noThrow to="/dashboard/dashboard" />;
 
   return (
-    <div className='login__form__wrapper'>
+    <div className="login__form__wrapper">
       {errorMessage ? <InputError errorText={errorMessage} /> : null}
 
-      <form className='login__form' onSubmit={(e) => handleLogin(e)}>
-        <div className='input__wrapper'>
+      <form className="login__form" onSubmit={(e) => handleLogin(e)}>
+        <div className="input__wrapper">
           <input
-            type='email'
+            type="email"
             value={email}
             onBlur={() => setEmailTouched(true)}
-            placeholder='Email Address'
+            placeholder="Email Address"
             required
             onChange={(event) => setEmail(event.target.value.trim())}
           />
           {!emailValidator(email) && emailTouched ? (
-            <InputError errorText='invalid email'/>
+            <InputError errorText="invalid email" />
           ) : null}
         </div>
-        <div className='input__wrapper'>
+        <div className="input__wrapper">
           <input
-            className='password__field'
-            type={showPassword ? 'text' : 'password'}
-            name='password'
-            placeholder='Password'
+            className="password__field"
+            type={showPassword ? "text" : "password"}
+            name="password"
+            placeholder="Password"
             value={password}
             required
             onBlur={() => setPasswordTouched(true)}
@@ -80,38 +78,40 @@ const Login = ({ toggleAuth }) => {
           />
           <img
             src={eyeIcon}
-            alt='eye icon'
-            className='eye__icon'
+            alt="eye icon"
+            className="eye__icon"
             onClick={() => setShowPassword(!showPassword)}
           />
           {!passwordValidator(password) && passwordTouched ? (
-            <InputError errorText="password must be between 8 and 15 characters, alhanumeric and have
-              a special charecter"/>
+            <InputError
+              errorText="password must be between 8 and 15 characters, alhanumeric and have
+              a special charecter"
+            />
           ) : null}
         </div>
 
-        <div className='forgot__password__wrapper'>
-          <span className='forgot__password' onClick={() => {}}>
+        <div className="forgot__password__wrapper">
+          <span className="forgot__password" onClick={() => {}}>
             Forgot your password?
           </span>
         </div>
-        <div className='button__wrapper'>
+        <div className="button__wrapper">
           <button
-            type='submit'
-            className='login__button'
+            type="submit"
+            className="login__button"
             disabled={loading || !validForm}
           >
             {!loading ? (
-              'Login'
+              "Login"
             ) : (
-              <CircularProgress color='#ffffff' size={16} />
+              <CircularProgress color="#ffffff" size={16} />
             )}
           </button>
         </div>
       </form>
-      <div className='no__account__wrapper'>
-        <h5 className='no__account__text'>Don’t have an account?</h5>
-        <h5 className='no__account__signup' onClick={toggleAuth}>
+      <div className="no__account__wrapper">
+        <h5 className="no__account__text">Don’t have an account?</h5>
+        <h5 className="no__account__signup" onClick={toggleAuth}>
           Sign Up
         </h5>
       </div>
