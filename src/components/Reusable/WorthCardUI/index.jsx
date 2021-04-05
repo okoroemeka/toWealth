@@ -2,6 +2,7 @@ import { Avatar, Box, Card, CardContent, Typography } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { pink } from "@material-ui/core/colors";
+import convertToCurrency from "../../../helper/convertToCurrency";
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -46,7 +47,7 @@ export default function WorthCardUI({
           <Box>
             <Typography className={classes.title}>{title}</Typography>
             <Typography className={classes.value} component="h2" variant="h5">
-              {value}
+              {convertToCurrency(value)}
             </Typography>
             {secondaryData ? (
               <Typography className={classes.secondary}>
