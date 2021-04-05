@@ -78,7 +78,7 @@ const UserDashbord = (props) => {
           <Grid item md={4} sm={6} xs={12}>
             <WorthCardUI
               title="My Savings"
-              value="35,000"
+              value={35000}
               color="#3f51b5"
               icon={<SaveAlt />}
             />
@@ -86,7 +86,7 @@ const UserDashbord = (props) => {
           <Grid item md={4} sm={6} xs={12}>
             <WorthCardUI
               title="My Networth"
-              value="35,000"
+              value={35000}
               iconColor="#3f51b5"
               icon={<MonetizationOnOutlined />}
             />
@@ -94,7 +94,7 @@ const UserDashbord = (props) => {
           <Grid item md={4} sm={6} xs={12}>
             <WorthCardUI
               title="Target Networth"
-              value="35,000"
+              value={35000}
               icon={<InsertChartOutlined />}
               iconColor={green[500]}
             />
