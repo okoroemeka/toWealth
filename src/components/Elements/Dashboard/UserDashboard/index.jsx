@@ -5,6 +5,7 @@ import Networth from "../../../UI/Icons/Networth";
 import Target from "../../../UI/Icons/Target";
 import BudgetCard from "../../../Reusable/BudgetCard";
 import WorthCard from "../../../Reusable/WorthCard";
+import WorthCardUI from "../../../Reusable/WorthCardUI";
 import ActiveGoalCard from "./ActiveGoalCard";
 import UserDashboardButton from "./UserDashboardButton";
 import DashboardWrapper from "../../../Reusable/DashboardWrapper";
@@ -22,6 +23,13 @@ import "./userDashboard.scss";
 import ApiCall from "../../../../helper/Api";
 import { toast } from "react-toastify";
 import convertToCurrency from "../../../../helper/convertToCurrency";
+import { Grid, Typography } from "@material-ui/core";
+import {
+  InsertChartOutlined,
+  MonetizationOnOutlined,
+  SaveAlt,
+} from "@material-ui/icons";
+import { green } from "@material-ui/core/colors";
 
 const UserDashbord = (props) => {
   const [goals, setGoals] = useState([]);
@@ -64,99 +72,108 @@ const UserDashbord = (props) => {
     </div>
   ));
   return (
-    <DashboardWrapper>
-      <div className="savings__datails">
-        <div className="col-l-9">
-          <div className="row card__wrapper">
-            <WorthCard
-              className="savigns__card"
-              cardTitle="MY SAVINGS"
-              iconClassName="savings__icon"
-              Icon={Savings}
-              iconColor="#000000"
+    <>
+      <DashboardWrapper>
+        <Grid container spacing={2} style={{ marginBottom: "10px" }}>
+          <Grid item md={4} sm={6} xs={12}>
+            <WorthCardUI
+              title="My Savings"
+              value="35,000"
+              color="#3f51b5"
+              icon={<SaveAlt />}
             />
-            <WorthCard
-              className="card__networth"
-              cardTitle="MY NET WORTH"
-              iconButtonClassName="icon__networth"
-              iconClassName="savings__icon"
-              Icon={Networth}
+          </Grid>
+          <Grid item md={4} sm={6} xs={12}>
+            <WorthCardUI
+              title="My Networth"
+              value="35,000"
+              iconColor="#3f51b5"
+              icon={<MonetizationOnOutlined />}
             />
-            <WorthCard
-              className="card__target"
-              cardTitle="TARGET WORTH"
-              iconButtonClassName="icon__target"
-              iconClassName="target__icon"
-              Icon={Target}
+          </Grid>
+          <Grid item md={4} sm={6} xs={12}>
+            <WorthCardUI
+              title="Target Networth"
+              value="35,000"
+              icon={<InsertChartOutlined />}
+              iconColor={green[500]}
             />
-          </div>
-          <h5 className="my__budget__header">My Budget</h5>
-          <div className="row">
+          </Grid>
+        </Grid>
+        <Typography variant="h5" component="h2">
+          My Budget
+        </Typography>
+        <Grid container spacing={2} style={{ margin: "10px 0" }}>
+          <Grid item xs={6} sm={4} md={4}>
             <BudgetCard
-              className="col-l-5"
               arrowIcon={incomeArrow}
               iconButtonColor="#47b881"
               chartTitle="INCOME"
               displayTopIcon
             />
+          </Grid>
+          <Grid item xs={6} sm={4} md={4}>
             <BudgetCard
-              className="col-l-5 expenses__chart"
               arrowIcon={expensesIcon}
               iconButtonColor="#ec4c47"
               chartTitle="EXPENSES"
               displayTopIcon
             />
-          </div>
-          <h5 className="active__goals__header">My Active Goals</h5>
-          <div className="row active__goal">
-            {goalGrid.length < 1 ? <p>No Goals Found</p> : goalGrid}
+          </Grid>
+        </Grid>
+        <Typography variant="h5" component="h2">
+          My Active Goals
+        </Typography>
+        <div className="row active__goal">
+          {goalGrid.length < 1 ? <p>No Goals Found</p> : goalGrid}
+        </div>
+        <div className="savings__datails">
+          <div className="col-l-3 toggle__button__wrapper">
+            {toggleSideButtons && (
+              <div className="buttons__container cls__btns">
+                <UserDashboardButton
+                  buttonName="Income"
+                  backgroundColor="#47b881"
+                  imgUrl={incomeArrow}
+                />
+                <UserDashboardButton
+                  buttonName="expenses"
+                  backgroundColor="#ec4c47"
+                  imgUrl={expensesIcon}
+                />
+                <UserDashboardButton
+                  buttonName="transfer"
+                  backgroundColor="#51A553"
+                  imgUrl={transfer}
+                />
+                <UserDashboardButton
+                  buttonName="assets"
+                  backgroundColor="#4B0AA4"
+                  imgUrl={assets}
+                />
+                <UserDashboardButton
+                  buttonName="liabilities"
+                  backgroundColor="#0073F7"
+                  imgUrl={liabilities}
+                />
+                <UserDashboardButton
+                  buttonName="goals"
+                  backgroundColor="#1070CA"
+                  imgUrl={goals}
+                />
+              </div>
+            )}
+            <button
+              type="button"
+              className="toggle__button"
+              onClick={() => setToggleSideButtons(!toggleSideButtons)}
+            >
+              <img src={toggleSideButtons ? cancelIcon : addIcon} alt="icon" />
+            </button>
           </div>
         </div>
-        <div className="col-l-3 toggle__button__wrapper">
-          {toggleSideButtons && (
-            <div className="buttons__container cls__btns">
-              <UserDashboardButton
-                buttonName="Income"
-                backgroundColor="#47b881"
-                imgUrl={incomeArrow}
-              />
-              <UserDashboardButton
-                buttonName="expenses"
-                backgroundColor="#ec4c47"
-                imgUrl={expensesIcon}
-              />
-              <UserDashboardButton
-                buttonName="transfer"
-                backgroundColor="#51A553"
-                imgUrl={transfer}
-              />
-              <UserDashboardButton
-                buttonName="assets"
-                backgroundColor="#4B0AA4"
-                imgUrl={assets}
-              />
-              <UserDashboardButton
-                buttonName="liabilities"
-                backgroundColor="#0073F7"
-                imgUrl={liabilities}
-              />
-              <UserDashboardButton
-                buttonName="goals"
-                backgroundColor="#1070CA"
-                imgUrl={goals}
-              />
-            </div>
-          )}
-          <button
-            type="button"
-            className="toggle__button"
-            onClick={() => setToggleSideButtons(!toggleSideButtons)}
-          >
-            <img src={toggleSideButtons ? cancelIcon : addIcon} alt="icon" />
-          </button>
-        </div>
-      </div>
-    </DashboardWrapper>
+      </DashboardWrapper>
+    </>
   );
 };
 

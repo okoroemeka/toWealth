@@ -1,5 +1,12 @@
-@import '../../../../styles/commons.scss';
+@import "../../../../styles/commons.scss";
 
+.list__item {
+  cursor: pointer;
+}
+.list__item:hover {
+  background-color: $primary;
+  color: $white;
+}
 .side__nav {
   height: calc(100vh - 7rem);
   border: 1px solid #e4e7eb;
