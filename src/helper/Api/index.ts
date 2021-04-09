@@ -54,6 +54,20 @@ export default class ApiCall {
     });
   }
 
+  static async patchCall(endpoint: string, body: any) {
+    return new Promise((resolve, reject) => {
+      Axios.patch(`${base}/${endpoint}`, body, {
+        headers: {
+          Authorization: auth.getUserToken(),
+          "Content-Type": "application/json",
+        },
+      }).then(
+        (res) => resolve(res.data),
+        (err) => reject(err)
+      );
+    });
+  }
+
   static async deleteCall(endpoint: string) {
     return new Promise((resolve, reject) => {
       Axios.delete(`${base}/${endpoint}`, {

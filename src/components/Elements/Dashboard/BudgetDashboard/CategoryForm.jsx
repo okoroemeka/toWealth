@@ -39,7 +39,6 @@ export default function CategoryForm({ onClose }) {
           required={true}
           value={formDetails.categoryName}
           onChange={(e) => {
-            console.log(e);
             handleChange(e);
           }}
         />

@@ -15,7 +15,7 @@ import LinearWithValueLabel from "../../Reusable/ProgressBar";
 import ApiCall from "../../../helper/Api";
 import { toast } from "react-toastify";
 
-export default function index({ tableHead, tableData }) {
+export default function BudgetTable({ tableHead, tableData }) {
   const deleteBudget = (id) => {
     // Alert
     ApiCall.deleteCall(`budget/${id}`).then(

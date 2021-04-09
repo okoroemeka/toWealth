@@ -1,4 +1,4 @@
-@import '../../../../styles/commons.scss';
+@import "../../../../styles/commons.scss";
 
 .info__item {
   display: flex;
@@ -14,11 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 3rem;
-    height: 3rem;
     margin-left: auto;
-    border-radius: 50%;
-    background-color: red;
   }
   .item__detail__area {
     padding: 0.5rem 0;
