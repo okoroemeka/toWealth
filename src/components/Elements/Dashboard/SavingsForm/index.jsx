@@ -88,8 +88,8 @@ export default function SavingsForm({ type, onClose, editTransaction, id }) {
       <form onSubmit={editTransaction ? handleUpdate : handleSubmit}>
         <InputUI
           name="amount"
-          label="Amount"
           required={true}
+          label="Amount"
           type="number"
           value={formDetails.amount}
           onChange={(e) => {
