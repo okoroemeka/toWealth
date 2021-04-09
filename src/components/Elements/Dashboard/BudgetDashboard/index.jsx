@@ -7,7 +7,6 @@ import WalletIcon from "../../../UI/Icons/Wallet";
 import Calendar from "../../../Reusable/Calendar";
 import ModalUI from "../../../Reusable/ModalUI";
 import BudgetTable from "../../../Reusable/BudgetTable";
-import Table from "./Table";
 
 import "./budget.scss";
 import BudgetForm from "./BudgetForm";

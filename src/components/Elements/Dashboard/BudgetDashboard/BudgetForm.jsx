@@ -62,16 +62,18 @@ export default function BudgetForm({ onClose }) {
         />
         <ModalUI
           onOpen={showCategoryModal}
-          onClose={async () => {
-            await ApiCall.getCall("category").then((res) => {
-              setCategories(res.payload);
-            });
+          onClose={() => {
             setShowCategoryModal(!showCategoryModal);
           }}
           title="New Category"
         >
           <CategoryForm
-            onClose={() => setShowCategoryModal(!showCategoryModal)}
+            onClose={() => {
+              ApiCall.getCall("category").then((res) => {
+                setCategories(res.payload);
+              });
+              setShowCategoryModal(!showCategoryModal);
+            }}
           />
         </ModalUI>
         <InputUI

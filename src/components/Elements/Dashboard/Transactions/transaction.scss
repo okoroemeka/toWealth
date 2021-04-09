@@ -1,11 +1,11 @@
-@import '../../../../styles/commons.scss';
+@import "../../../../styles/commons.scss";
 
 .transaction__dashboard {
   width: 100%;
   height: 100%;
-  padding: 3rem 2rem;
+  // padding: 3rem 2rem;
   .dropdown__area {
-    margin-top: 3rem;
+    // margin-top: 3rem;
     display: flex;
 
     .dropdown {
@@ -82,7 +82,7 @@
     width: auto;
     display: flex;
     margin-left: auto;
-    margin-top: 4rem;
+    // margin-top: 4rem;
     &__input {
       color: $lightGray;
       font-size: 1rem;

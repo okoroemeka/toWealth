@@ -28,7 +28,6 @@ export default function index({
 }
 
 index.propTypes = {
-  label: PropTypes.string.isRequired,
   required: PropTypes.bool.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
