@@ -180,6 +180,7 @@ const Transaction = (props) => {
   useEffect(() => {
     ApiCall.getCall("transaction").then(
       (res) => {
+        console.log(res.payload);
         setTransactions(res.payload);
       },
       (err) => {

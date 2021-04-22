@@ -23,17 +23,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   content: {
-    // flexGrow: 1,
     paddingTop: "5rem",
-    // [theme.breakpoints.down("sm")]: {
-    //   paddingRight: "1rem",
-    //   paddingLeft: "1rem",
-    // },
-    // [theme.breakpoints.up("sm")]: {
-    //   paddingRight: "1rem",
-    //   paddingLeft: "1rem",
-    // },
-    // padding: theme.spacing(3),
+    [theme.breakpoints.up("md")]: {
+      paddingLeft: "5rem",
+      paddingRight: "5rem",
+    },
     flexGrow: 1,
     padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
