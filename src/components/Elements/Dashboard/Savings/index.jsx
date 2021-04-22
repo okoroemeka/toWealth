@@ -218,9 +218,7 @@ const Savings = (props) => {
 
             {displayIncomeTable ? (
               <div className="table__body">{incomeTrx}</div>
-            ) : (
-              ""
-            )}
+            ) : null}
             <div className="income__wrapper">
               <TableHead
                 color="red"
@@ -235,9 +233,7 @@ const Savings = (props) => {
               <div className="table__body">
                 {displayExpensesTable ? (
                   <div className="table__body">{expenseTrx}</div>
-                ) : (
-                  ""
-                )}
+                ) : null}
               </div>
             </div>
           </Box>
