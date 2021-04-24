@@ -7,6 +7,7 @@ import InfoItem from "./InfoItem";
 import "./transaction.scss";
 import {
   Avatar,
+  Box,
   Fab,
   Grid,
   ListItemIcon,
@@ -62,6 +63,38 @@ const useStyles = makeStyles((theme) => ({
       bottom: theme.spacing(5),
       right: theme.spacing(5),
     },
+  },
+  flex: {
+    display: "flex",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
+    [theme.breakpoints.up("sm")]: {
+      flexDirection: "row",
+    },
+    justifyContent: "space-between",
+    marginTop: "0.5rem",
+  },
+  main: {
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.up("sm")]: {
+      width: "75%",
+    },
+  },
+  sub: {
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      marginTop: "0.5rem",
+    },
+    [theme.breakpoints.up("sm")]: {
+      width: "25%",
+      marginLeft: "0.5rem",
+    },
+  },
+  mb: {
+    marginBottom: "0.5rem",
   },
 }));
 
@@ -210,65 +243,51 @@ const Transaction = (props) => {
   ];
   return (
     <div className={clsx(classes.root, "transaction__dashboard")}>
-      <Grid container wrap="wrap" spacing={3}>
-        <Grid container direction="row" item md={8} spacing={2}>
-          <Grid
-            container
-            spacing={2}
-            alignContent="flex-start"
-            justify="space-between"
-          >
-            <Grid item>
-              <DropDown
-                toggleDropdown={toggleDropdown}
-                currentItem={currentItem}
-                showDropdown={showDropdown}
-                transactionDropdown={transactionDropdown}
-                handleSelectItem={handleSelectItem}
-                headerBackground={headerColor}
-              />
-            </Grid>
-            <Grid item>
-              <Calendar handleReturnSelectedMonth={handleSelectDate} />
-            </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <Search searchData={searchData} handleInputChange={setSearchData} />
-          </Grid>
-          <Grid item xs={12}>
-            <TransactionTable
-              tableHead={tableHead}
-              tableData={transactions}
-              getTransactions={() => getTransactions()}
-              setId={(id) => {
-                handleEditClick(id);
-              }}
+      <Box className={classes.flex}>
+        <Box className={classes.main}>
+          <Box className={clsx(classes.flex, classes.mb)}>
+            <DropDown
+              toggleDropdown={toggleDropdown}
+              currentItem={currentItem}
+              showDropdown={showDropdown}
+              transactionDropdown={transactionDropdown}
+              handleSelectItem={handleSelectItem}
+              headerBackground={headerColor}
             />
-          </Grid>
-        </Grid>
-        <Grid container item xs={12} md={4} spacing={2}>
-          <Grid item xs={12} sm={6} md={12}>
-            <InfoItem title="income" amount={income}>
-              <Avatar className={classes.green}>
-                <ArrowDownward />
-              </Avatar>
-            </InfoItem>
-          </Grid>
-          <Grid item xs={12} sm={6} md={12}>
-            <InfoItem title="expenses" amount={expense}>
-              <Avatar className={classes.red}>
-                <ArrowUpward />
-              </Avatar>
-            </InfoItem>
-          </Grid>
-          <Grid item xs={12} sm={6} md={12}>
-            <InfoItem title="savings" amount={savings}>
-              <Avatar className={classes.purple}>
-                <SaveAltOutlined />
-              </Avatar>
-            </InfoItem>
-          </Grid>
-          {/* <Grid item xs={12} sm={6} md={12}>
+            <Calendar handleReturnSelectedMonth={handleSelectDate} />
+          </Box>
+          <Search
+            className={classes.mb}
+            searchData={searchData}
+            handleInputChange={setSearchData}
+          />
+          <TransactionTable
+            className={classes.mb}
+            tableHead={tableHead}
+            tableData={transactions}
+            getTransactions={() => getTransactions()}
+            setId={(id) => {
+              handleEditClick(id);
+            }}
+          />
+        </Box>
+        <Box className={classes.sub}>
+          <InfoItem title="income" amount={income}>
+            <Avatar className={classes.green}>
+              <ArrowDownward />
+            </Avatar>
+          </InfoItem>
+          <InfoItem title="expenses" amount={expense}>
+            <Avatar className={classes.red}>
+              <ArrowUpward />
+            </Avatar>
+          </InfoItem>
+          <InfoItem title="savings" amount={savings}>
+            <Avatar className={classes.purple}>
+              <SaveAltOutlined />
+            </Avatar>
+          </InfoItem>
+          {/*
             <InfoItem
               title="net worth"
               amount={savings}
@@ -277,10 +296,9 @@ const Transaction = (props) => {
               <Avatar className={classes.green}>
                 <MonetizationOnOutlined />
               </Avatar>
-            </InfoItem>
-          </Grid> */}
-        </Grid>
-      </Grid>
+            </InfoItem>*/}
+        </Box>
+      </Box>
 
       <Fab
         className={classes.fab}
