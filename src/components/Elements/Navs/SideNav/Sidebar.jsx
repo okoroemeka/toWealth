@@ -200,7 +200,7 @@ export default function Sidebar({
           className="list__item"
           onClick={() => {
             handleDrawerToggle();
-            navigate("/dashboard/goal");
+            navigate("/dashboard/goals");
           }}
         >
           <ListItemIcon>

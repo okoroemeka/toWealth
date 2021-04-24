@@ -1,23 +1,30 @@
-import React from 'react';
-import searchIcon from '../../../../assets/images/search.svg';
+import { InputAdornment, makeStyles, TextField } from "@material-ui/core";
+import { SearchOutlined } from "@material-ui/icons";
+import React from "react";
+const useStyle = makeStyles(() => ({
+  root: {
+    width: "100%",
+  },
+}));
 
 const Search = ({ searchData, handleInputChange = () => null }) => {
+  const classes = useStyle();
   return (
-    <div className='row'>
-      <div className='col-l-4 search'>
-        <div className='search__icon'>
-          <img src={searchIcon} alt='icon' />
-        </div>
-        <input
-          onChange={(e) => handleInputChange(e.target.value)}
-          type='text'
-          name='search'
-          value={searchData}
-          className='search__input'
-          placeholder='Search Transaction'
-        />
-      </div>
-    </div>
+    <>
+      <TextField
+        className={classes.root}
+        label="Search Transaction"
+        onChange={(e) => handleInputChange(e.target.value)}
+        value={searchData}
+        inputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchOutlined />
+            </InputAdornment>
+          ),
+        }}
+      />
+    </>
   );
 };
 
